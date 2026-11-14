@@ -39,7 +39,9 @@ function detectEnv() {
     "C:/Program Files/Google/Chrome/Application/chrome.exe",
   ].filter(Boolean);
   const browserExecutable = candidates.find((p) => fs.existsSync(p)) || undefined;
-  const gl = getArg("--gl", isTermux || process.arch === "arm64" && process.platform === "linux" ? "swangle" : "angle");
+  // Headless Linux (CI, cloud containers) has no GPU/display, so ANGLE cannot create a WebGL context there.
+  const headlessLinux = process.platform === "linux" && !process.env.DISPLAY && !process.env.WAYLAND_DISPLAY;
+  const gl = getArg("--gl", process.env.REMOTION_GL || (isTermux || headlessLinux || process.arch === "arm64" && process.platform === "linux" ? "swangle" : "angle"));
   const concurrency = Number(getArg("--concurrency", gl === "swangle" ? "1" : String(Math.max(1, Math.min(4, os.cpus().length >> 1)))));
   return { browserExecutable, gl, concurrency, isTermux };
 }
