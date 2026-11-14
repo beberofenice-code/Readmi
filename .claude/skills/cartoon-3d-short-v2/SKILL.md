@@ -22,6 +22,17 @@ Upgraded from `cartoon-3d-short` v1 to eliminate single-scene limits, dual-WebGL
 6. **Single-Bundle, Per-Shot Resumable Renderer (`templates/scripts/render.mjs`):**
    - Bundles Webpack **once** to `.remotion-bundle/` (no 1.3 GB temp-dir duplication per run), auto-detects OS Chromium/Chrome and GPU backend (`angle` on desktop vs `swangle --concurrency=1` on Termux/headless Linux), renders shots individually with `+xfade` handles, and stitches via FFmpeg `xfade`.
 
+## Dependency Rules (required)
+- **Pin `@react-three/postprocessing` to exactly `3.0.4`** (`npm install -E @react-three/postprocessing@3.0.4`; `package.json` must read `"3.0.4"`, never `^3`).
+  Versions >= 3.1 create the `EffectComposer` inside a `useEffect` + `setState`, so on the single `advance()` Remotion issues
+  per still/frame the composer does not exist yet while its priority-1 `useFrame` still suppresses R3F's default render:
+  every frame renders as an empty canvas (only the DOM background / HUD shows). 3.0.4 builds the composer synchronously
+  (`useMemo` + `useLayoutEffect`), so frame 1 of every single-pass render is drawn.
+- Peer set known to work with it: `three@0.187`, `@react-three/fiber@9`, `postprocessing@6.39`, `react@19`, Remotion `4.0.x`.
+- Headless Linux (no `DISPLAY`/`WAYLAND_DISPLAY`) has no GPU: `render.mjs` falls back to `--gl=swangle`; override with `REMOTION_GL`.
+- `HeroRig25D` faces local **+z** (face decal, vest opening, hands, feet). Pose `yaw` so +z points at the camera for front-on shots;
+  flat-coloured rig parts must use a texture (`cardShade` samples `map`; an untextured material renders black).
+
 ## 8-Stage Execution Pipeline
 1. **Script (`SCRIPT.md`):** Paradox hook in line 1 (10-16 words), 3-5 escalating beats, `[SPEAKER]` tags for micro-dialogue, and ironic twist ending on the final word (~3.7 words/s).
 2. **Voice & Alignment (`voice/`):** Generate/record 48 kHz `voice.wav`, trim pauses >0.25 s, run WhisperX / forced alignment to emit `voice/words.json` + 30 fps `voice/mouth_env.json`.

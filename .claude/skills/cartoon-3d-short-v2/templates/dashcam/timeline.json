@@ -125,8 +125,8 @@
       "frame": 20,
       "time_s": 0.6667,
       "type": "tire_screech",
-      "gain": 1.0,
-      "pan": 0.0,
+      "gain": 1,
+      "pan": 0,
       "desc": "Locked highway tires screeching on dry asphalt"
     },
     {
@@ -174,7 +174,7 @@
       "time_s": 31.7333,
       "type": "phone_ring",
       "gain": 0.75,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Insurance claims adjuster desk call"
     },
     {
@@ -190,7 +190,7 @@
       "time_s": 35.8333,
       "type": "hottub_bubbles",
       "gain": 0.7,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Backyard hot tub jets bubbling at night"
     },
     {
@@ -206,7 +206,7 @@
       "time_s": 46.2667,
       "type": "tire_screech",
       "gain": 0.95,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Wet-road hydroplane brake-check screech"
     },
     {
@@ -214,15 +214,15 @@
       "time_s": 47.2667,
       "type": "crash_impact",
       "gain": 1.1,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Old wood-panel wagon taps scammer bumper in rain"
     },
     {
       "frame": 1486,
       "time_s": 49.5333,
       "type": "music_stop",
-      "gain": 1.0,
-      "pan": 0.0,
+      "gain": 1,
+      "pan": 0,
       "desc": "Hard score dropout as quiet driver stays calm"
     },
     {
@@ -235,10 +235,10 @@
     },
     {
       "frame": 1650,
-      "time_s": 55.0,
+      "time_s": 55,
       "type": "wiper_sweep",
       "gain": 0.65,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Dashcam POV windshield wiper sweep 1"
     },
     {
@@ -246,7 +246,7 @@
       "time_s": 57.1667,
       "type": "wiper_sweep",
       "gain": 0.65,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Dashcam POV windshield wiper sweep 2"
     },
     {
@@ -254,7 +254,7 @@
       "time_s": 59.3333,
       "type": "wiper_sweep",
       "gain": 0.65,
-      "pan": 0.0,
+      "pan": 0,
       "desc": "Dashcam POV windshield wiper sweep 3"
     }
   ],
@@ -285,6 +285,10 @@
     ]
   ],
   "planned": [
+    [
+      13,
+      13
+    ],
     [
       126,
       126
