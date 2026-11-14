@@ -3,7 +3,8 @@
 // hills and CC0 Kenney props (trees, lanterns, stalls, hedges).
 import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
-import { D0 } from "./story";
+// v1 imported the bridge deck height from ./story; core/ has no story, so default to ground level.
+export const D0 = 0;
 import { brick, rng, ctex, rep, facadeHD, roofHD, stoneHD } from "./paint";
 import { twoTone } from "./shade";
 
