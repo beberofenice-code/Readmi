@@ -1,0 +1,33 @@
+{
+  "name": "shorts-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Three.js + Remotion vertical cartoon shorts (cartoon-3d-short-v2)",
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "typecheck": "tsc --noEmit",
+    "timeline": "node scripts/export_timeline.mjs src/videos/dashcam/story.ts out/dashcam/timeline.json",
+    "stills": "node scripts/render.mjs stills --comp DashcamShort --timeline out/dashcam/timeline.json --out out/dashcam/stills"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.8.2",
+    "@react-three/postprocessing": "^3.2.2",
+    "@remotion/bundler": "^4.0.543",
+    "@remotion/cli": "^4.0.543",
+    "@remotion/renderer": "^4.0.543",
+    "@remotion/three": "^4.0.543",
+    "postprocessing": "^6.39.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.543",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
+    "typescript": "^5.9.3"
+  }
+}
