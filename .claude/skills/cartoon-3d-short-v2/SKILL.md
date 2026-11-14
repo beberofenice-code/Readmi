@@ -18,7 +18,7 @@ Upgraded from `cartoon-3d-short` v1 to eliminate single-scene limits, dual-WebGL
 4. **DOM `<OverlayLayer>` (`templates/core/OverlayLayer.tsx`):**
    - Renders crisp diegetic UI (`<DashcamHUD>` with live `MPH`, `REC` dot, timestamp, fisheye vignette) and optional `words.json` 1-2 word pop-captions **outside** `<ThreeCanvas>` so WebGL DOF and colour grading never blur text.
 5. **Single-Source Master Timeline (`templates/scripts/export_timeline.mjs`):**
-   - `story.ts` is the sole source of truth. `export_timeline.mjs` compiles shots, crossfades, camera moves, kicks, and foley triggers to `timeline.json`, read directly by Python audio (`sfx.py`, `music.py`, `mix.py`) and `short_qa.py`.
+   - `story.ts` is the sole source of truth. `export_timeline.mjs` compiles shots, crossfades, camera moves, kicks, and foley triggers to `timeline.json`, read directly by Python audio (`mix.py`, which drives `sfx_gen.py` foley and `instruments.py` score synthesis) and `short_qa.py`.
 6. **Single-Bundle, Per-Shot Resumable Renderer (`templates/scripts/render.mjs`):**
    - Bundles Webpack **once** to `.remotion-bundle/` (no 1.3 GB temp-dir duplication per run), auto-detects OS Chromium/Chrome and GPU backend (`angle` on desktop vs `swangle --concurrency=1` on Termux/headless Linux), renders shots individually with `+xfade` handles, and stitches via FFmpeg `xfade`.
 
@@ -29,5 +29,5 @@ Upgraded from `cartoon-3d-short` v1 to eliminate single-scene limits, dual-WebGL
 4. **Sets & Rigs (`sets.ts`, `rig25d.ts`):** Build low-poly + painted `CanvasTexture` environments (`paint.ts`), put character/sky/particle meshes on `NOINK` (`layer 3`), and give readable signs unlit `MeshBasicMaterial` faces.
 5. **Stills Gate:** Run `node scripts/render.mjs stills --comp DashcamShort --out out/dashcam/stills` (renders 1 midpoint still per shot from the cached bundle) and inspect with `sbs_sheet.py`.
 6. **Procedural Audio (`audio/mix.py`):** Run `python audio/mix.py --timeline out/dashcam/timeline.json --voice voice/voice.wav --words voice/words.json`. Synthesizes foley + score, ducks `-3 dB` under speech, limits at `-1.2 dBTP`, and hits `-14.5 LUFS`.
-7. **Per-Shot Render & Stitch:** Run `node scripts/render.mjsrender-shots --comp DashcamShort --timeline out/dashcam/timeline.json --audio audio/mix.wav --out out/dashcam/final-short.mp4`.
+7. **Per-Shot Render & Stitch:** Run `node scripts/render.mjs render-shots --comp DashcamShort --timeline out/dashcam/timeline.json --audio audio/mix.wav --out out/dashcam/final-short.mp4`.
 8. **Frame-by-Frame QA:** Run `python scripts/short_qa.py out/dashcam/final-short.mp4 out/dashcam/qa out/dashcam/timeline.json` to verify zero unplanned black, white, pop, or >=12f frozen spans.
