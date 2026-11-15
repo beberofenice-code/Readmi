@@ -172,7 +172,8 @@ function stitchChunks(chunks, fps, audioFile, finalOut, totalFrames) {
   const withAudio = audioFile && fs.existsSync(audioFile);
   if (withAudio) ffArgs.push("-i", audioFile);
   ffArgs.push("-filter_complex", parts.join(";"), "-map", acc);
-  if (withAudio) ffArgs.push("-map", `${chunks.length}:a:0`, "-c:a", "aac", "-b:a", "192k");
+  // 256k: at 192k the AAC encode overshot a -1.2 dBTP master to 0 dBFS
+  if (withAudio) ffArgs.push("-map", `${chunks.length}:a:0`, "-c:a", "aac", "-b:a", "256k");
   else ffArgs.push("-an");
   ffArgs.push("-frames:v", String(frames), "-t", (frames / fps).toFixed(6), "-r", String(fps),
     "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", finalOut);
