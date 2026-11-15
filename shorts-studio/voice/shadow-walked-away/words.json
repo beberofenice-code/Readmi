@@ -1,0 +1,1184 @@
+[
+ {
+  "w": "One",
+  "s": 0.0,
+  "e": 0.186,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Monday",
+  "s": 0.232,
+  "e": 0.499,
+  "speaker": "narrator"
+ },
+ {
+  "w": "morning,",
+  "s": 0.557,
+  "e": 1.01,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 1.126,
+  "e": 1.184,
+  "speaker": "narrator"
+ },
+ {
+  "w": "man's",
+  "s": 1.265,
+  "e": 1.579,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 1.614,
+  "e": 1.962,
+  "speaker": "narrator"
+ },
+ {
+  "w": "stands",
+  "s": 2.032,
+  "e": 2.403,
+  "speaker": "narrator"
+ },
+ {
+  "w": "up,",
+  "s": 2.485,
+  "e": 2.717,
+  "speaker": "narrator"
+ },
+ {
+  "w": "stretches,",
+  "s": 2.926,
+  "e": 3.529,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 3.553,
+  "e": 3.646,
+  "speaker": "narrator"
+ },
+ {
+  "w": "walks",
+  "s": 3.715,
+  "e": 3.982,
+  "speaker": "narrator"
+ },
+ {
+  "w": "away",
+  "s": 4.029,
+  "e": 4.249,
+  "speaker": "narrator"
+ },
+ {
+  "w": "without",
+  "s": 4.284,
+  "e": 4.586,
+  "speaker": "narrator"
+ },
+ {
+  "w": "him.",
+  "s": 4.621,
+  "e": 5.062,
+  "speaker": "narrator"
+ },
+ {
+  "w": "He's",
+  "s": 5.162,
+  "e": 5.383,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 5.417,
+  "e": 5.487,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 5.522,
+  "e": 5.592,
+  "speaker": "narrator"
+ },
+ {
+  "w": "same",
+  "s": 5.65,
+  "e": 5.975,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gray",
+  "s": 6.044,
+  "e": 6.311,
+  "speaker": "narrator"
+ },
+ {
+  "w": "walk",
+  "s": 6.393,
+  "e": 6.66,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 6.718,
+  "e": 6.776,
+  "speaker": "narrator"
+ },
+ {
+  "w": "work",
+  "s": 6.834,
+  "e": 7.031,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he's",
+  "s": 7.078,
+  "e": 7.205,
+  "speaker": "narrator"
+ },
+ {
+  "w": "made",
+  "s": 7.263,
+  "e": 7.461,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 7.496,
+  "e": 7.623,
+  "speaker": "narrator"
+ },
+ {
+  "w": "eleven",
+  "s": 7.681,
+  "e": 8.088,
+  "speaker": "narrator"
+ },
+ {
+  "w": "years,",
+  "s": 8.157,
+  "e": 8.599,
+  "speaker": "narrator"
+ },
+ {
+  "w": "when",
+  "s": 8.68,
+  "e": 8.842,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 8.877,
+  "e": 8.924,
+  "speaker": "narrator"
+ },
+ {
+  "w": "just",
+  "s": 8.97,
+  "e": 9.133,
+  "speaker": "narrator"
+ },
+ {
+  "w": "peels",
+  "s": 9.214,
+  "e": 9.539,
+  "speaker": "narrator"
+ },
+ {
+  "w": "itself",
+  "s": 9.597,
+  "e": 9.91,
+  "speaker": "narrator"
+ },
+ {
+  "w": "off",
+  "s": 9.98,
+  "e": 10.131,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 10.178,
+  "e": 10.247,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sidewalk.",
+  "s": 10.305,
+  "e": 11.199,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Hey!",
+  "s": 11.299,
+  "e": 11.647,
+  "speaker": "man"
+ },
+ {
+  "w": "You",
+  "s": 11.694,
+  "e": 11.787,
+  "speaker": "man"
+ },
+ {
+  "w": "can't",
+  "s": 11.845,
+  "e": 12.065,
+  "speaker": "man"
+ },
+ {
+  "w": "leave.",
+  "s": 12.123,
+  "e": 12.39,
+  "speaker": "man"
+ },
+ {
+  "w": "You're",
+  "s": 12.414,
+  "e": 12.657,
+  "speaker": "man"
+ },
+ {
+  "w": "attached!",
+  "s": 12.681,
+  "e": 13.435,
+  "speaker": "man"
+ },
+ {
+  "w": "Not",
+  "s": 13.535,
+  "e": 13.779,
+  "speaker": "shadow"
+ },
+ {
+  "w": "anymore.",
+  "s": 13.825,
+  "e": 14.603,
+  "speaker": "shadow"
+ },
+ {
+  "w": "He",
+  "s": 14.704,
+  "e": 14.843,
+  "speaker": "narrator"
+ },
+ {
+  "w": "chases",
+  "s": 14.913,
+  "e": 15.296,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it,",
+  "s": 15.343,
+  "e": 15.528,
+  "speaker": "narrator"
+ },
+ {
+  "w": "but",
+  "s": 15.644,
+  "e": 15.784,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 15.819,
+  "e": 15.888,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 15.923,
+  "e": 16.225,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 16.271,
+  "e": 16.353,
+  "speaker": "narrator"
+ },
+ {
+  "w": "faster.",
+  "s": 16.411,
+  "e": 16.945,
+  "speaker": "narrator"
+ },
+ {
+  "w": "It",
+  "s": 17.154,
+  "e": 17.27,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doesn't",
+  "s": 17.305,
+  "e": 17.537,
+  "speaker": "narrator"
+ },
+ {
+  "w": "have",
+  "s": 17.583,
+  "e": 17.769,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 17.815,
+  "e": 17.874,
+  "speaker": "narrator"
+ },
+ {
+  "w": "carry",
+  "s": 17.955,
+  "e": 18.233,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 18.28,
+  "e": 18.315,
+  "speaker": "narrator"
+ },
+ {
+  "w": "briefcase.",
+  "s": 18.361,
+  "e": 19.255,
+  "speaker": "narrator"
+ },
+ {
+  "w": "At",
+  "s": 19.355,
+  "e": 19.506,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 19.541,
+  "e": 19.61,
+  "speaker": "narrator"
+ },
+ {
+  "w": "office,",
+  "s": 19.668,
+  "e": 20.005,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nobody",
+  "s": 20.063,
+  "e": 20.446,
+  "speaker": "narrator"
+ },
+ {
+  "w": "notices",
+  "s": 20.504,
+  "e": 20.899,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it's",
+  "s": 20.957,
+  "e": 21.085,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gone.",
+  "s": 21.131,
+  "e": 21.596,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Under",
+  "s": 21.77,
+  "e": 21.979,
+  "speaker": "narrator"
+ },
+ {
+  "w": "those",
+  "s": 22.014,
+  "e": 22.223,
+  "speaker": "narrator"
+ },
+ {
+  "w": "lights,",
+  "s": 22.269,
+  "e": 22.641,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nobody",
+  "s": 22.687,
+  "e": 23.001,
+  "speaker": "narrator"
+ },
+ {
+  "w": "there",
+  "s": 23.047,
+  "e": 23.279,
+  "speaker": "narrator"
+ },
+ {
+  "w": "has",
+  "s": 23.326,
+  "e": 23.442,
+  "speaker": "narrator"
+ },
+ {
+  "w": "much",
+  "s": 23.511,
+  "e": 23.686,
+  "speaker": "narrator"
+ },
+ {
+  "w": "of",
+  "s": 23.72,
+  "e": 23.767,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 23.813,
+  "e": 23.836,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 23.895,
+  "e": 24.22,
+  "speaker": "narrator"
+ },
+ {
+  "w": "anyway.",
+  "s": 24.278,
+  "e": 25.021,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then",
+  "s": 25.12,
+  "e": 25.317,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 25.375,
+  "e": 25.445,
+  "speaker": "narrator"
+ },
+ {
+  "w": "postcards",
+  "s": 25.492,
+  "e": 25.991,
+  "speaker": "narrator"
+ },
+ {
+  "w": "start",
+  "s": 26.014,
+  "e": 26.246,
+  "speaker": "narrator"
+ },
+ {
+  "w": "arriving.",
+  "s": 26.281,
+  "e": 27.024,
+  "speaker": "narrator"
+ },
+ {
+  "w": "His",
+  "s": 27.124,
+  "e": 27.321,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 27.368,
+  "e": 27.693,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 27.751,
+  "e": 27.809,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 27.844,
+  "e": 27.867,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rollercoaster.",
+  "s": 27.913,
+  "e": 28.68,
+  "speaker": "narrator"
+ },
+ {
+  "w": "His",
+  "s": 28.796,
+  "e": 28.947,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 28.993,
+  "e": 29.342,
+  "speaker": "narrator"
+ },
+ {
+  "w": "learning",
+  "s": 29.423,
+  "e": 29.725,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 29.771,
+  "e": 29.829,
+  "speaker": "narrator"
+ },
+ {
+  "w": "surf.",
+  "s": 29.899,
+  "e": 30.363,
+  "speaker": "narrator"
+ },
+ {
+  "w": "His",
+  "s": 30.572,
+  "e": 30.723,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 30.77,
+  "e": 31.095,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dancing",
+  "s": 31.176,
+  "e": 31.524,
+  "speaker": "narrator"
+ },
+ {
+  "w": "at",
+  "s": 31.571,
+  "e": 31.629,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 31.664,
+  "e": 31.687,
+  "speaker": "narrator"
+ },
+ {
+  "w": "wedding",
+  "s": 31.745,
+  "e": 32.012,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 32.058,
+  "e": 32.116,
+  "speaker": "narrator"
+ },
+ {
+  "w": "wasn't",
+  "s": 32.151,
+  "e": 32.372,
+  "speaker": "narrator"
+ },
+ {
+  "w": "even",
+  "s": 32.418,
+  "e": 32.581,
+  "speaker": "narrator"
+ },
+ {
+  "w": "invited",
+  "s": 32.627,
+  "e": 33.022,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to.",
+  "s": 33.068,
+  "e": 33.579,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Everything",
+  "s": 33.68,
+  "e": 34.063,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 34.11,
+  "e": 34.191,
+  "speaker": "narrator"
+ },
+ {
+  "w": "always",
+  "s": 34.26,
+  "e": 34.586,
+  "speaker": "narrator"
+ },
+ {
+  "w": "said",
+  "s": 34.632,
+  "e": 34.864,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he'd",
+  "s": 34.911,
+  "e": 35.062,
+  "speaker": "narrator"
+ },
+ {
+  "w": "do",
+  "s": 35.108,
+  "e": 35.271,
+  "speaker": "narrator"
+ },
+ {
+  "w": "someday.",
+  "s": 35.34,
+  "e": 36.002,
+  "speaker": "narrator"
+ },
+ {
+  "w": "So",
+  "s": 36.102,
+  "e": 36.276,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 36.334,
+  "e": 36.381,
+  "speaker": "narrator"
+ },
+ {
+  "w": "calls",
+  "s": 36.439,
+  "e": 36.682,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 36.729,
+  "e": 36.81,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sick,",
+  "s": 36.88,
+  "e": 37.228,
+  "speaker": "narrator"
+ },
+ {
+  "w": "buys",
+  "s": 37.472,
+  "e": 37.716,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 37.797,
+  "e": 37.832,
+  "speaker": "narrator"
+ },
+ {
+  "w": "ticket,",
+  "s": 37.878,
+  "e": 38.285,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 38.436,
+  "e": 38.575,
+  "speaker": "narrator"
+ },
+ {
+  "w": "finds",
+  "s": 38.656,
+  "e": 38.935,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 38.97,
+  "e": 39.028,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 39.063,
+  "e": 39.121,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 39.167,
+  "e": 39.19,
+  "speaker": "narrator"
+ },
+ {
+  "w": "beach",
+  "s": 39.248,
+  "e": 39.515,
+  "speaker": "narrator"
+ },
+ {
+  "w": "at",
+  "s": 39.55,
+  "e": 39.62,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sunset.",
+  "s": 39.678,
+  "e": 40.514,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Why",
+  "s": 40.613,
+  "e": 40.81,
+  "speaker": "man"
+ },
+ {
+  "w": "did",
+  "s": 40.857,
+  "e": 40.961,
+  "speaker": "man"
+ },
+ {
+  "w": "you",
+  "s": 41.008,
+  "e": 41.077,
+  "speaker": "man"
+ },
+ {
+  "w": "leave",
+  "s": 41.135,
+  "e": 41.344,
+  "speaker": "man"
+ },
+ {
+  "w": "me?",
+  "s": 41.391,
+  "e": 41.867,
+  "speaker": "man"
+ },
+ {
+  "w": "You",
+  "s": 41.967,
+  "e": 42.13,
+  "speaker": "narrator"
+ },
+ {
+  "w": "see,",
+  "s": 42.188,
+  "e": 42.42,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 42.455,
+  "e": 42.489,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 42.559,
+  "e": 42.884,
+  "speaker": "narrator"
+ },
+ {
+  "w": "can",
+  "s": 42.942,
+  "e": 43.058,
+  "speaker": "narrator"
+ },
+ {
+  "w": "only",
+  "s": 43.105,
+  "e": 43.279,
+  "speaker": "narrator"
+ },
+ {
+  "w": "go",
+  "s": 43.325,
+  "e": 43.488,
+  "speaker": "narrator"
+ },
+ {
+  "w": "where",
+  "s": 43.546,
+  "e": 43.685,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 43.708,
+  "e": 43.778,
+  "speaker": "narrator"
+ },
+ {
+  "w": "light",
+  "s": 43.836,
+  "e": 44.092,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is,",
+  "s": 44.15,
+  "e": 44.405,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 44.614,
+  "e": 44.753,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 44.8,
+  "e": 44.858,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hadn't",
+  "s": 44.928,
+  "e": 45.171,
+  "speaker": "narrator"
+ },
+ {
+  "w": "stood",
+  "s": 45.218,
+  "e": 45.427,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 45.462,
+  "e": 45.508,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 45.543,
+  "e": 45.613,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sun",
+  "s": 45.682,
+  "e": 45.961,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 46.042,
+  "e": 46.181,
+  "speaker": "narrator"
+ },
+ {
+  "w": "years.",
+  "s": 46.251,
+  "e": 46.89,
+  "speaker": "narrator"
+ },
+ {
+  "w": "I",
+  "s": 46.99,
+  "e": 47.083,
+  "speaker": "shadow"
+ },
+ {
+  "w": "didn't",
+  "s": 47.141,
+  "e": 47.35,
+  "speaker": "shadow"
+ },
+ {
+  "w": "leave.",
+  "s": 47.385,
+  "e": 47.756,
+  "speaker": "shadow"
+ },
+ {
+  "w": "I",
+  "s": 48.197,
+  "e": 48.244,
+  "speaker": "shadow"
+ },
+ {
+  "w": "just",
+  "s": 48.337,
+  "e": 48.464,
+  "speaker": "shadow"
+ },
+ {
+  "w": "got",
+  "s": 48.499,
+  "e": 48.639,
+  "speaker": "shadow"
+ },
+ {
+  "w": "tired",
+  "s": 48.673,
+  "e": 48.952,
+  "speaker": "shadow"
+ },
+ {
+  "w": "of",
+  "s": 48.975,
+  "e": 49.033,
+  "speaker": "shadow"
+ },
+ {
+  "w": "waiting.",
+  "s": 49.103,
+  "e": 49.591,
+  "speaker": "shadow"
+ },
+ {
+  "w": "So",
+  "s": 49.691,
+  "e": 49.854,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 49.912,
+  "e": 49.981,
+  "speaker": "narrator"
+ },
+ {
+  "w": "man",
+  "s": 50.039,
+  "e": 50.26,
+  "speaker": "narrator"
+ },
+ {
+  "w": "kicks",
+  "s": 50.353,
+  "e": 50.62,
+  "speaker": "narrator"
+ },
+ {
+  "w": "off",
+  "s": 50.666,
+  "e": 50.829,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 50.875,
+  "e": 50.968,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shoes",
+  "s": 51.026,
+  "e": 51.363,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 51.398,
+  "e": 51.491,
+  "speaker": "narrator"
+ },
+ {
+  "w": "steps",
+  "s": 51.549,
+  "e": 51.862,
+  "speaker": "narrator"
+ },
+ {
+  "w": "into",
+  "s": 51.897,
+  "e": 52.071,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 52.141,
+  "e": 52.21,
+  "speaker": "narrator"
+ },
+ {
+  "w": "light,",
+  "s": 52.28,
+  "e": 52.582,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 52.605,
+  "e": 52.675,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 52.721,
+  "e": 52.826,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shadow",
+  "s": 52.872,
+  "e": 53.22,
+  "speaker": "narrator"
+ },
+ {
+  "w": "slides",
+  "s": 53.29,
+  "e": 53.65,
+  "speaker": "narrator"
+ },
+ {
+  "w": "right",
+  "s": 53.743,
+  "e": 53.963,
+  "speaker": "narrator"
+ },
+ {
+  "w": "back",
+  "s": 54.033,
+  "e": 54.254,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 54.312,
+  "e": 54.37,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 54.451,
+  "e": 54.544,
+  "speaker": "narrator"
+ },
+ {
+  "w": "feet.",
+  "s": 54.614,
+  "e": 55.264,
+  "speaker": "narrator"
+ },
+ {
+  "w": "It",
+  "s": 55.363,
+  "e": 55.514,
+  "speaker": "narrator"
+ },
+ {
+  "w": "never",
+  "s": 55.572,
+  "e": 55.758,
+  "speaker": "narrator"
+ },
+ {
+  "w": "ran",
+  "s": 55.816,
+  "e": 55.978,
+  "speaker": "narrator"
+ },
+ {
+  "w": "away.",
+  "s": 56.013,
+  "e": 56.524,
+  "speaker": "narrator"
+ },
+ {
+  "w": "It",
+  "s": 56.733,
+  "e": 56.849,
+  "speaker": "narrator"
+ },
+ {
+  "w": "just",
+  "s": 56.896,
+  "e": 57.058,
+  "speaker": "narrator"
+ },
+ {
+  "w": "went",
+  "s": 57.093,
+  "e": 57.255,
+  "speaker": "narrator"
+ },
+ {
+  "w": "first,",
+  "s": 57.325,
+  "e": 57.708,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 57.731,
+  "e": 57.824,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 57.882,
+  "e": 57.987,
+  "speaker": "narrator"
+ },
+ {
+  "w": "once,",
+  "s": 58.057,
+  "e": 58.335,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 58.382,
+  "e": 58.463,
+  "speaker": "narrator"
+ },
+ {
+  "w": "was",
+  "s": 58.521,
+  "e": 58.637,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 58.683,
+  "e": 58.753,
+  "speaker": "narrator"
+ },
+ {
+  "w": "one",
+  "s": 58.823,
+  "e": 58.985,
+  "speaker": "narrator"
+ },
+ {
+  "w": "who",
+  "s": 59.02,
+  "e": 59.113,
+  "speaker": "narrator"
+ },
+ {
+  "w": "followed.",
+  "s": 59.194,
+  "e": 59.775,
+  "speaker": "narrator"
+ }
+]

@@ -51,6 +51,8 @@ export type RigStyle = {
   tie?: string;
   hair?: string;
   shades?: boolean;    // gold/dark sunglasses for Shot 6 cash mountain
+  faceInk?: string;    // light face-line colour for dark "living shadow" characters (glowing eyes + mouth)
+  boots?: string;      // boot colour (default tan)
 };
 
 export class HeroRig25D {
@@ -70,6 +72,9 @@ export class HeroRig25D {
   private bootR: THREE.Mesh;
   private brace: THREE.Mesh;
   private cap: THREE.Group;
+  private tintMats: THREE.MeshLambertMaterial[] = [];
+  private bootMat: THREE.MeshLambertMaterial;
+  private bareMat: THREE.MeshLambertMaterial;
 
   constructor(parent: THREE.Object3D, public style: RigStyle) {
     this.root.add(this.torsoPivot);
@@ -84,6 +89,7 @@ export class HeroRig25D {
     torsoGeo.rotateY(-Math.PI / 2);
     const torsoTex = this.makeTorsoTexture(style);
     const torsoMat = cardShade(new THREE.MeshLambertMaterial({ map: torsoTex }));
+    this.tintMats.push(torsoMat);
     const torsoMesh = new THREE.Mesh(torsoGeo, torsoMat);
     torsoMesh.position.set(0, 0.24, 0);
     torsoMesh.layers.set(NOINK);
@@ -101,6 +107,7 @@ export class HeroRig25D {
     headGeo.scale(1.06, 0.98, 0.92); // H/W ~0.93 wider-than-tall reference proportion
     headGeo.rotateY(-Math.PI / 2);   // face decal forward (+z), matching limbs and poses
     const headMat = cardShade(new THREE.MeshLambertMaterial({ map: this.faceTex }));
+    this.tintMats.push(headMat);
     const headMesh = new THREE.Mesh(headGeo, headMat);
     headMesh.position.set(0, 0.20, 0);
     headMesh.layers.set(NOINK);
@@ -120,7 +127,10 @@ export class HeroRig25D {
     // 4. Boots (rounded toe-forward blobs at the foot targets)
     const bootGeo = new THREE.SphereGeometry(0.06, 14, 10);
     bootGeo.scale(1.0, 0.75, 1.9);
-    const bootMat = solid("#a8703f");
+    const bootMat = solid(style.boots ?? "#a8703f");
+    this.bootMat = bootMat;
+    this.bareMat = solid(style.skin ?? SKIN);
+    this.tintMats.push(bootMat, this.bareMat);
     this.bootL = new THREE.Mesh(bootGeo, bootMat);
     this.bootR = new THREE.Mesh(bootGeo, bootMat);
     for (const b of [this.bootL, this.bootR]) { addPlumHull(b, 1.06); b.layers.set(NOINK); this.root.add(b); }
@@ -197,6 +207,18 @@ export class HeroRig25D {
 
     const p = new Pen(g);
     const cy = 248, exL = 224, exR = 288;
+    if (this.style.faceInk) {
+      // Living-shadow face: glowing eyes + mouth only, no brows
+      const c = this.style.faceInk, my = cy + 46;
+      if (blink >= 0.8) { p.stroke([[exL - 15, cy], [exL + 15, cy]], 9, c); p.stroke([[exR - 15, cy], [exR + 15, cy]], 9, c); }
+      else if (expr === "grin" || expr === "smile") { p.arc(exL, cy + 6, 15, 13, 200, 340, 9, c); p.arc(exR, cy + 6, 15, 13, 200, 340, 9, c); }
+      else { const ry = expr === "shock" ? 20 : 15; p.ell(exL, cy, 13, ry, c, 0); p.ell(exR, cy, 13, ry, c, 0); }
+      if (mouthOpen > 0.25) p.ell(256, my, 16, 5 + mouthOpen * 14, c, 0);
+      else if (expr === "grin" || expr === "smile") p.arc(256, my - 6, 22, 11, 15, 165, 8, c);
+      else p.stroke([[244, my], [268, my]], 7, c);
+      this.faceTex.needsUpdate = true;
+      return;
+    }
     // Eyes or sunglasses
     if (this.style.shades) {
       p.poly([[192, cy - 18], [250, cy - 18], [246, cy + 16], [196, cy + 16]], "#181622", 6);
@@ -269,6 +291,15 @@ export class HeroRig25D {
     this.bootL.position.copy(fL).add(new THREE.Vector3(0, 0.025, 0.05));
     this.bootR.position.copy(fR).add(new THREE.Vector3(0, 0.025, 0.05));
     this.root.updateMatrixWorld(true);
+  }
+
+  /** Multiply the lit parts (torso, head, boots) by a colour, e.g. a cool dark tint while standing in shade. */
+  setTint(c: THREE.ColorRepresentation) { for (const m of this.tintMats) m.color.set(c); }
+
+  /** Swap boots for bare skin-coloured feet. */
+  setBarefoot(left: boolean, right = left) {
+    this.bootL.material = left ? this.bareMat : this.bootMat;
+    this.bootR.material = right ? this.bareMat : this.bootMat;
   }
 
   /** World-space position of a hand after pose(), for attaching held props (checks, tickets, phones). */
