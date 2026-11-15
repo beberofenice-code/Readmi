@@ -1,0 +1,1424 @@
+[
+ {
+  "w": "He",
+  "s": 0.0,
+  "e": 0.133,
+  "speaker": "narrator"
+ },
+ {
+  "w": "slammed",
+  "s": 0.184,
+  "e": 0.458,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 0.479,
+  "e": 0.54,
+  "speaker": "narrator"
+ },
+ {
+  "w": "brakes",
+  "s": 0.571,
+  "e": 0.846,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 0.876,
+  "e": 0.938,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 0.968,
+  "e": 1.03,
+  "speaker": "narrator"
+ },
+ {
+  "w": "highway,",
+  "s": 1.081,
+  "e": 1.508,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 1.57,
+  "e": 1.692,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 1.723,
+  "e": 1.784,
+  "speaker": "narrator"
+ },
+ {
+  "w": "car",
+  "s": 1.824,
+  "e": 2.008,
+  "speaker": "narrator"
+ },
+ {
+  "w": "behind",
+  "s": 2.059,
+  "e": 2.365,
+  "speaker": "narrator"
+ },
+ {
+  "w": "him",
+  "s": 2.406,
+  "e": 2.487,
+  "speaker": "narrator"
+ },
+ {
+  "w": "smashes",
+  "s": 2.589,
+  "e": 3.069,
+  "speaker": "narrator"
+ },
+ {
+  "w": "right",
+  "s": 3.17,
+  "e": 3.385,
+  "speaker": "narrator"
+ },
+ {
+  "w": "into",
+  "s": 3.415,
+  "e": 3.537,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 3.598,
+  "e": 3.68,
+  "speaker": "narrator"
+ },
+ {
+  "w": "bumper.",
+  "s": 3.731,
+  "e": 4.363,
+  "speaker": "narrator"
+ },
+ {
+  "w": "He",
+  "s": 4.451,
+  "e": 4.573,
+  "speaker": "narrator"
+ },
+ {
+  "w": "climbs",
+  "s": 4.614,
+  "e": 4.879,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out",
+  "s": 4.919,
+  "e": 5.063,
+  "speaker": "narrator"
+ },
+ {
+  "w": "holding",
+  "s": 5.103,
+  "e": 5.317,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 5.348,
+  "e": 5.43,
+  "speaker": "narrator"
+ },
+ {
+  "w": "neck",
+  "s": 5.49,
+  "e": 5.674,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 5.735,
+  "e": 5.817,
+  "speaker": "narrator"
+ },
+ {
+  "w": "limping,",
+  "s": 5.898,
+  "e": 6.346,
+  "speaker": "narrator"
+ },
+ {
+  "w": "because",
+  "s": 6.459,
+  "e": 6.673,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 6.693,
+  "e": 6.734,
+  "speaker": "narrator"
+ },
+ {
+  "w": "figures",
+  "s": 6.795,
+  "e": 7.071,
+  "speaker": "narrator"
+ },
+ {
+  "w": "whoever",
+  "s": 7.101,
+  "e": 7.345,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hits",
+  "s": 7.396,
+  "e": 7.57,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 7.611,
+  "e": 7.682,
+  "speaker": "narrator"
+ },
+ {
+  "w": "from",
+  "s": 7.733,
+  "e": 7.845,
+  "speaker": "narrator"
+ },
+ {
+  "w": "behind",
+  "s": 7.896,
+  "e": 8.253,
+  "speaker": "narrator"
+ },
+ {
+  "w": "always",
+  "s": 8.314,
+  "e": 8.671,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gets",
+  "s": 8.712,
+  "e": 8.884,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 8.915,
+  "e": 8.986,
+  "speaker": "narrator"
+ },
+ {
+  "w": "blame.",
+  "s": 9.017,
+  "e": 9.629,
+  "speaker": "narrator"
+ },
+ {
+  "w": "And",
+  "s": 9.717,
+  "e": 9.849,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sure",
+  "s": 9.911,
+  "e": 10.104,
+  "speaker": "narrator"
+ },
+ {
+  "w": "enough,",
+  "s": 10.135,
+  "e": 10.389,
+  "speaker": "narrator"
+ },
+ {
+  "w": "their",
+  "s": 10.41,
+  "e": 10.583,
+  "speaker": "narrator"
+ },
+ {
+  "w": "insurance",
+  "s": 10.614,
+  "e": 11.001,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pays",
+  "s": 11.032,
+  "e": 11.236,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 11.276,
+  "e": 11.358,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 11.409,
+  "e": 11.501,
+  "speaker": "narrator"
+ },
+ {
+  "w": "car,",
+  "s": 11.562,
+  "e": 11.979,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 12.082,
+  "e": 12.204,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doctor,",
+  "s": 12.265,
+  "e": 12.764,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 12.897,
+  "e": 13.03,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 13.071,
+  "e": 13.091,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nice",
+  "s": 13.142,
+  "e": 13.356,
+  "speaker": "narrator"
+ },
+ {
+  "w": "fat",
+  "s": 13.427,
+  "e": 13.672,
+  "speaker": "narrator"
+ },
+ {
+  "w": "check",
+  "s": 13.733,
+  "e": 13.967,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 14.009,
+  "e": 14.1,
+  "speaker": "narrator"
+ },
+ {
+  "w": "all",
+  "s": 14.141,
+  "e": 14.232,
+  "speaker": "narrator"
+ },
+ {
+  "w": "that",
+  "s": 14.274,
+  "e": 14.396,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pain",
+  "s": 14.457,
+  "e": 14.671,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he's",
+  "s": 14.712,
+  "e": 14.844,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in.",
+  "s": 14.895,
+  "e": 15.303,
+  "speaker": "narrator"
+ },
+ {
+  "w": "So",
+  "s": 15.39,
+  "e": 15.543,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 15.594,
+  "e": 15.656,
+  "speaker": "narrator"
+ },
+ {
+  "w": "next",
+  "s": 15.707,
+  "e": 15.89,
+  "speaker": "narrator"
+ },
+ {
+  "w": "week,",
+  "s": 15.93,
+  "e": 16.267,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 16.45,
+  "e": 16.512,
+  "speaker": "narrator"
+ },
+ {
+  "w": "does",
+  "s": 16.553,
+  "e": 16.695,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 16.726,
+  "e": 16.777,
+  "speaker": "narrator"
+ },
+ {
+  "w": "again",
+  "s": 16.808,
+  "e": 17.042,
+  "speaker": "narrator"
+ },
+ {
+  "w": "with",
+  "s": 17.082,
+  "e": 17.205,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 17.235,
+  "e": 17.256,
+  "speaker": "narrator"
+ },
+ {
+  "w": "different",
+  "s": 17.338,
+  "e": 17.664,
+  "speaker": "narrator"
+ },
+ {
+  "w": "car.",
+  "s": 17.715,
+  "e": 18.285,
+  "speaker": "narrator"
+ },
+ {
+  "w": "He",
+  "s": 18.373,
+  "e": 18.506,
+  "speaker": "narrator"
+ },
+ {
+  "w": "picks",
+  "s": 18.546,
+  "e": 18.74,
+  "speaker": "narrator"
+ },
+ {
+  "w": "them",
+  "s": 18.771,
+  "e": 18.873,
+  "speaker": "narrator"
+ },
+ {
+  "w": "carefully:",
+  "s": 18.924,
+  "e": 19.464,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 19.616,
+  "e": 19.658,
+  "speaker": "narrator"
+ },
+ {
+  "w": "guy",
+  "s": 19.729,
+  "e": 19.892,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 19.943,
+  "e": 20.004,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 20.034,
+  "e": 20.116,
+  "speaker": "narrator"
+ },
+ {
+  "w": "phone,",
+  "s": 20.167,
+  "e": 20.555,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 20.585,
+  "e": 20.606,
+  "speaker": "narrator"
+ },
+ {
+  "w": "kid",
+  "s": 20.666,
+  "e": 20.84,
+  "speaker": "narrator"
+ },
+ {
+  "w": "who",
+  "s": 20.87,
+  "e": 20.952,
+  "speaker": "narrator"
+ },
+ {
+  "w": "just",
+  "s": 21.013,
+  "e": 21.207,
+  "speaker": "narrator"
+ },
+ {
+  "w": "got",
+  "s": 21.288,
+  "e": 21.502,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 21.544,
+  "e": 21.635,
+  "speaker": "narrator"
+ },
+ {
+  "w": "license,",
+  "s": 21.696,
+  "e": 22.165,
+  "speaker": "narrator"
+ },
+ {
+  "w": "anyone",
+  "s": 22.298,
+  "e": 22.623,
+  "speaker": "narrator"
+ },
+ {
+  "w": "driving",
+  "s": 22.654,
+  "e": 22.94,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 22.97,
+  "e": 22.99,
+  "speaker": "narrator"
+ },
+ {
+  "w": "little",
+  "s": 23.021,
+  "e": 23.215,
+  "speaker": "narrator"
+ },
+ {
+  "w": "too",
+  "s": 23.235,
+  "e": 23.368,
+  "speaker": "narrator"
+ },
+ {
+  "w": "close.",
+  "s": 23.419,
+  "e": 24.041,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then",
+  "s": 24.129,
+  "e": 24.302,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 24.353,
+  "e": 24.394,
+  "speaker": "narrator"
+ },
+ {
+  "w": "brings",
+  "s": 24.435,
+  "e": 24.669,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 24.71,
+  "e": 24.741,
+  "speaker": "narrator"
+ },
+ {
+  "w": "buddy",
+  "s": 24.812,
+  "e": 25.098,
+  "speaker": "narrator"
+ },
+ {
+  "w": "who",
+  "s": 25.149,
+  "e": 25.25,
+  "speaker": "narrator"
+ },
+ {
+  "w": "drives",
+  "s": 25.292,
+  "e": 25.587,
+  "speaker": "narrator"
+ },
+ {
+  "w": "right",
+  "s": 25.658,
+  "e": 25.852,
+  "speaker": "narrator"
+ },
+ {
+  "w": "beside",
+  "s": 25.903,
+  "e": 26.29,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 26.331,
+  "e": 26.443,
+  "speaker": "narrator"
+ },
+ {
+  "w": "so",
+  "s": 26.545,
+  "e": 26.657,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 26.729,
+  "e": 26.8,
+  "speaker": "narrator"
+ },
+ {
+  "w": "can't",
+  "s": 26.861,
+  "e": 27.096,
+  "speaker": "narrator"
+ },
+ {
+  "w": "swerve.",
+  "s": 27.147,
+  "e": 27.84,
+  "speaker": "narrator"
+ },
+ {
+  "w": "The",
+  "s": 27.927,
+  "e": 28.06,
+  "speaker": "narrator"
+ },
+ {
+  "w": "money",
+  "s": 28.1,
+  "e": 28.254,
+  "speaker": "narrator"
+ },
+ {
+  "w": "comes",
+  "s": 28.294,
+  "e": 28.458,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 28.498,
+  "e": 28.569,
+  "speaker": "narrator"
+ },
+ {
+  "w": "so",
+  "s": 28.631,
+  "e": 28.774,
+  "speaker": "narrator"
+ },
+ {
+  "w": "fast,",
+  "s": 28.845,
+  "e": 29.181,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 29.212,
+  "e": 29.263,
+  "speaker": "narrator"
+ },
+ {
+  "w": "buys",
+  "s": 29.324,
+  "e": 29.497,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 29.538,
+  "e": 29.568,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nicer",
+  "s": 29.65,
+  "e": 29.935,
+  "speaker": "narrator"
+ },
+ {
+  "w": "car",
+  "s": 29.997,
+  "e": 30.211,
+  "speaker": "narrator"
+ },
+ {
+  "w": "just",
+  "s": 30.262,
+  "e": 30.425,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 30.446,
+  "e": 30.497,
+  "speaker": "narrator"
+ },
+ {
+  "w": "crash",
+  "s": 30.568,
+  "e": 30.833,
+  "speaker": "narrator"
+ },
+ {
+  "w": "that",
+  "s": 30.884,
+  "e": 31.036,
+  "speaker": "narrator"
+ },
+ {
+  "w": "one",
+  "s": 31.098,
+  "e": 31.24,
+  "speaker": "narrator"
+ },
+ {
+  "w": "too.",
+  "s": 31.281,
+  "e": 31.842,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Eventually,",
+  "s": 31.929,
+  "e": 32.511,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 32.531,
+  "e": 32.592,
+  "speaker": "narrator"
+ },
+ {
+  "w": "insurance",
+  "s": 32.643,
+  "e": 33.061,
+  "speaker": "narrator"
+ },
+ {
+  "w": "company",
+  "s": 33.102,
+  "e": 33.397,
+  "speaker": "narrator"
+ },
+ {
+  "w": "starts",
+  "s": 33.448,
+  "e": 33.723,
+  "speaker": "narrator"
+ },
+ {
+  "w": "calling.",
+  "s": 33.785,
+  "e": 34.417,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Sir,",
+  "s": 34.505,
+  "e": 34.841,
+  "speaker": "agent"
+ },
+ {
+  "w": "this",
+  "s": 34.902,
+  "e": 35.045,
+  "speaker": "agent"
+ },
+ {
+  "w": "is",
+  "s": 35.086,
+  "e": 35.146,
+  "speaker": "agent"
+ },
+ {
+  "w": "your",
+  "s": 35.188,
+  "e": 35.3,
+  "speaker": "agent"
+ },
+ {
+  "w": "fifth",
+  "s": 35.371,
+  "e": 35.626,
+  "speaker": "agent"
+ },
+ {
+  "w": "neck",
+  "s": 35.728,
+  "e": 35.922,
+  "speaker": "agent"
+ },
+ {
+  "w": "injury",
+  "s": 35.993,
+  "e": 36.268,
+  "speaker": "agent"
+ },
+ {
+  "w": "this",
+  "s": 36.309,
+  "e": 36.441,
+  "speaker": "agent"
+ },
+ {
+  "w": "year.",
+  "s": 36.482,
+  "e": 36.829,
+  "speaker": "agent"
+ },
+ {
+  "w": "Yeah,",
+  "s": 36.916,
+  "e": 37.365,
+  "speaker": "scammer"
+ },
+ {
+  "w": "I've",
+  "s": 37.405,
+  "e": 37.549,
+  "speaker": "scammer"
+ },
+ {
+  "w": "got",
+  "s": 37.569,
+  "e": 37.681,
+  "speaker": "scammer"
+ },
+ {
+  "w": "a",
+  "s": 37.712,
+  "e": 37.732,
+  "speaker": "scammer"
+ },
+ {
+  "w": "really",
+  "s": 37.793,
+  "e": 38.017,
+  "speaker": "scammer"
+ },
+ {
+  "w": "weak",
+  "s": 38.079,
+  "e": 38.252,
+  "speaker": "scammer"
+ },
+ {
+  "w": "neck.",
+  "s": 38.323,
+  "e": 38.792,
+  "speaker": "scammer"
+ },
+ {
+  "w": "But",
+  "s": 38.88,
+  "e": 39.023,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it's",
+  "s": 39.053,
+  "e": 39.154,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 39.176,
+  "e": 39.267,
+  "speaker": "narrator"
+ },
+ {
+  "w": "word",
+  "s": 39.318,
+  "e": 39.521,
+  "speaker": "narrator"
+ },
+ {
+  "w": "against",
+  "s": 39.552,
+  "e": 39.756,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 39.787,
+  "e": 39.848,
+  "speaker": "narrator"
+ },
+ {
+  "w": "guy",
+  "s": 39.888,
+  "e": 40.042,
+  "speaker": "narrator"
+ },
+ {
+  "w": "who",
+  "s": 40.083,
+  "e": 40.164,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hit",
+  "s": 40.215,
+  "e": 40.337,
+  "speaker": "narrator"
+ },
+ {
+  "w": "him,",
+  "s": 40.368,
+  "e": 40.551,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 40.684,
+  "e": 40.796,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he's",
+  "s": 40.837,
+  "e": 40.929,
+  "speaker": "narrator"
+ },
+ {
+  "w": "counting",
+  "s": 40.969,
+  "e": 41.265,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 41.296,
+  "e": 41.357,
+  "speaker": "narrator"
+ },
+ {
+  "w": "everyone",
+  "s": 41.438,
+  "e": 41.836,
+  "speaker": "narrator"
+ },
+ {
+  "w": "blaming",
+  "s": 41.867,
+  "e": 42.132,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 42.172,
+  "e": 42.234,
+  "speaker": "narrator"
+ },
+ {
+  "w": "guy",
+  "s": 42.285,
+  "e": 42.478,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 42.519,
+  "e": 42.57,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 42.61,
+  "e": 42.672,
+  "speaker": "narrator"
+ },
+ {
+  "w": "back.",
+  "s": 42.723,
+  "e": 43.324,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then",
+  "s": 43.412,
+  "e": 43.606,
+  "speaker": "narrator"
+ },
+ {
+  "w": "one",
+  "s": 43.677,
+  "e": 43.84,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rainy",
+  "s": 43.891,
+  "e": 44.126,
+  "speaker": "narrator"
+ },
+ {
+  "w": "morning,",
+  "s": 44.177,
+  "e": 44.564,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 44.645,
+  "e": 44.706,
+  "speaker": "narrator"
+ },
+ {
+  "w": "picks",
+  "s": 44.758,
+  "e": 44.931,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 44.962,
+  "e": 44.992,
+  "speaker": "narrator"
+ },
+ {
+  "w": "quiet",
+  "s": 45.043,
+  "e": 45.329,
+  "speaker": "narrator"
+ },
+ {
+  "w": "guy",
+  "s": 45.389,
+  "e": 45.573,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 45.614,
+  "e": 45.675,
+  "speaker": "narrator"
+ },
+ {
+  "w": "an",
+  "s": 45.716,
+  "e": 45.767,
+  "speaker": "narrator"
+ },
+ {
+  "w": "old",
+  "s": 45.807,
+  "e": 45.95,
+  "speaker": "narrator"
+ },
+ {
+  "w": "car,",
+  "s": 46.012,
+  "e": 46.419,
+  "speaker": "narrator"
+ },
+ {
+  "w": "slams",
+  "s": 46.572,
+  "e": 46.888,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 46.928,
+  "e": 46.979,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 47.02,
+  "e": 47.092,
+  "speaker": "narrator"
+ },
+ {
+  "w": "brakes,",
+  "s": 47.143,
+  "e": 47.479,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 47.51,
+  "e": 47.632,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out",
+  "s": 47.693,
+  "e": 47.816,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 47.846,
+  "e": 47.897,
+  "speaker": "narrator"
+ },
+ {
+  "w": "comes,",
+  "s": 47.948,
+  "e": 48.244,
+  "speaker": "narrator"
+ },
+ {
+  "w": "clutching",
+  "s": 48.274,
+  "e": 48.59,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 48.631,
+  "e": 48.723,
+  "speaker": "narrator"
+ },
+ {
+  "w": "neck.",
+  "s": 48.774,
+  "e": 49.324,
+  "speaker": "narrator"
+ },
+ {
+  "w": "But",
+  "s": 49.412,
+  "e": 49.565,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 49.596,
+  "e": 49.657,
+  "speaker": "narrator"
+ },
+ {
+  "w": "quiet",
+  "s": 49.698,
+  "e": 49.983,
+  "speaker": "narrator"
+ },
+ {
+  "w": "guy",
+  "s": 50.034,
+  "e": 50.237,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doesn't",
+  "s": 50.299,
+  "e": 50.533,
+  "speaker": "narrator"
+ },
+ {
+  "w": "yell,",
+  "s": 50.584,
+  "e": 50.911,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 50.941,
+  "e": 51.043,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 51.084,
+  "e": 51.135,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doesn't",
+  "s": 51.186,
+  "e": 51.44,
+  "speaker": "narrator"
+ },
+ {
+  "w": "even",
+  "s": 51.482,
+  "e": 51.634,
+  "speaker": "narrator"
+ },
+ {
+  "w": "get",
+  "s": 51.685,
+  "e": 51.818,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out.",
+  "s": 51.869,
+  "e": 52.389,
+  "speaker": "narrator"
+ },
+ {
+  "w": "He",
+  "s": 52.476,
+  "e": 52.589,
+  "speaker": "narrator"
+ },
+ {
+  "w": "just",
+  "s": 52.64,
+  "e": 52.792,
+  "speaker": "narrator"
+ },
+ {
+  "w": "points",
+  "s": 52.843,
+  "e": 53.088,
+  "speaker": "narrator"
+ },
+ {
+  "w": "at",
+  "s": 53.129,
+  "e": 53.18,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 53.21,
+  "e": 53.231,
+  "speaker": "narrator"
+ },
+ {
+  "w": "little",
+  "s": 53.272,
+  "e": 53.455,
+  "speaker": "narrator"
+ },
+ {
+  "w": "box",
+  "s": 53.496,
+  "e": 53.75,
+  "speaker": "narrator"
+ },
+ {
+  "w": "taped",
+  "s": 53.812,
+  "e": 54.077,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 54.097,
+  "e": 54.148,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 54.21,
+  "e": 54.291,
+  "speaker": "narrator"
+ },
+ {
+  "w": "windshield.",
+  "s": 54.332,
+  "e": 55.086,
+  "speaker": "narrator"
+ },
+ {
+  "w": "It's",
+  "s": 55.174,
+  "e": 55.357,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 55.377,
+  "e": 55.398,
+  "speaker": "narrator"
+ },
+ {
+  "w": "camera,",
+  "s": 55.448,
+  "e": 55.887,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 56.02,
+  "e": 56.132,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 56.182,
+  "e": 56.244,
+  "speaker": "narrator"
+ },
+ {
+  "w": "filmed",
+  "s": 56.284,
+  "e": 56.529,
+  "speaker": "narrator"
+ },
+ {
+  "w": "an",
+  "s": 56.56,
+  "e": 56.611,
+  "speaker": "narrator"
+ },
+ {
+  "w": "empty",
+  "s": 56.642,
+  "e": 56.856,
+  "speaker": "narrator"
+ },
+ {
+  "w": "road",
+  "s": 56.916,
+  "e": 57.141,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 57.182,
+  "e": 57.263,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 57.304,
+  "e": 57.325,
+  "speaker": "narrator"
+ },
+ {
+  "w": "man",
+  "s": 57.376,
+  "e": 57.579,
+  "speaker": "narrator"
+ },
+ {
+  "w": "braking",
+  "s": 57.641,
+  "e": 57.977,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 58.017,
+  "e": 58.119,
+  "speaker": "narrator"
+ },
+ {
+  "w": "absolutely",
+  "s": 58.17,
+  "e": 58.66,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nothing.",
+  "s": 58.721,
+  "e": 59.373,
+  "speaker": "narrator"
+ },
+ {
+  "w": "And",
+  "s": 59.461,
+  "e": 59.604,
+  "speaker": "narrator"
+ },
+ {
+  "w": "that's",
+  "s": 59.665,
+  "e": 59.889,
+  "speaker": "narrator"
+ },
+ {
+  "w": "how",
+  "s": 59.94,
+  "e": 60.062,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 60.113,
+  "e": 60.184,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dashcam",
+  "s": 60.235,
+  "e": 60.694,
+  "speaker": "narrator"
+ },
+ {
+  "w": "was",
+  "s": 60.745,
+  "e": 60.847,
+  "speaker": "narrator"
+ },
+ {
+  "w": "invented.",
+  "s": 60.898,
+  "e": 61.5,
+  "speaker": "narrator"
+ }
+]
