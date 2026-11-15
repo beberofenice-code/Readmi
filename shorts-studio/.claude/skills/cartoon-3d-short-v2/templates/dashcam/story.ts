@@ -97,6 +97,17 @@ export const highwaySpeedMps = (f: number): number => {
   return 0;
 };
 
+/** Shot 10 wood-panel wagon (victim car) position; shared by sets.ts and the hood-cam in CAMS[10] */
+export const wagonZ = (f: number) => (f < 1418 ? -6.8 + 2.6 * smooth((f - 1385) / 33) : -4.2);
+
+/** Brake-light level 0..1, eased over 4 frames at each edge (no single-frame light pops) */
+export const brakeK = (f: number) => {
+  const win: [number, number][] = [[16, 95], [1385, 1440], [1675, 1760]];
+  let k = 0;
+  for (const [a, b] of win) k = Math.max(k, Math.min(1, Math.max(0, (f - a + 1) / 4), Math.max(0, (b - f) / 4)));
+  return k;
+};
+
 export const dashcamMph = (f: number): number => highwaySpeedMps(f) * 2.23694;
 
 // ---------------- Camera Grammar (smootherstep glides, creeping holds, 7f kicks) ----------------
@@ -187,7 +198,10 @@ export const CAMS: Record<number, CamKey[]> = {
   // Shot 10: Rainy highway wood-panel wagon profile -> victim windshield POV crash
   10: [
     { f: 1305, s: (f) => dolly([5.2, 1.45, -3.8], [0, 1.05, -3.6], pushK(f, 1305, 0.0024), { fov: 40 }) },
-    { f: 1372, cut: true, s: (f) => dolly([0, 1.35, -4.4], [0, 1.08, 0.4], pushK(f, 1372, 0.0028), { fov: 44 }) },
+    // hood-cam rides with the wagon (a fixed camera let the wagon drive through the lens at f1405-1412)
+    { f: 1372, cut: true, s: (f) => ({ pos: [0, 1.5, wagonZ(f) + 0.5], look: [0, 0.95, wagonZ(f) + 6.0], fov: 50 }) },
+    // "...and out he comes, clutching his neck": 3/4 angle on the scammer beside his crushed bumper
+    { f: 1440, cut: true, s: (f) => dolly([3.6, 1.5, -6.0], [0.7, 1.05, -2.2], pushK(f, 1440, 0.0024), { fov: 40 }) },
   ],
   // Shot 11: Quiet driver cabin OTS -> glide zoom to taped windshield dashcam
   11: [
@@ -248,6 +262,7 @@ export const DOF: DofEntry[] = [
   { f: 1075, cInf: 14 }, // hot tub night bokeh on string lights
   { f: 1145, cInf: 11 }, // trooper foreground / scammer background
   { f: 1305, cInf: 6 },
+  { f: 1440, cInf: 10 }, // scammer out of the car, rain bokeh behind
   { f: 1490, cInf: 13 }, // calm driver & dashcam box CU
   { f: 1645, cInf: 0 },  // dashcam wide fisheye all-in-focus
   { f: 1790, cInf: 14 }, // final push onto dashcam lens

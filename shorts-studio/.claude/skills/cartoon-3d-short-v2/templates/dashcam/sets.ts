@@ -7,7 +7,7 @@ import { twoTone, untone, TONE, CHAR } from "../core/shade";
 import { LIGHTS, LOOK } from "../core/lights";
 import { NOINK } from "../core/ink";
 import { HeroRig25D } from "../core/rig25d";
-import { FPS, SHOTS, camAt, highwaySpeedMps, smooth } from "./story";
+import { FPS, SHOTS, brakeK, camAt, highwaySpeedMps, smooth, wagonZ } from "./story";
 
 const box = (w: number, h: number, d: number, mat: THREE.Material, x = 0, y = 0, z = 0) => {
   const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
@@ -66,8 +66,10 @@ export class ToonCar {
     }
   }
 
-  setBraking(on: boolean) {
-    this.brakeMat.color.setRGB(on ? 2.6 : 0.45, on ? 0.18 : 0.05, on ? 0.12 : 0.05);
+  /** true/false or an eased 0..1 level */
+  setBraking(on: boolean | number) {
+    const k = typeof on === "number" ? Math.max(0, Math.min(1, on)) : on ? 1 : 0;
+    this.brakeMat.color.setRGB(0.45 + 2.15 * k, 0.05 + 0.13 * k, 0.05 + 0.07 * k);
   }
 
   setCrushed(crushed: boolean) {
@@ -734,13 +736,12 @@ export class MultiSetWorld {
       }
       this.roadDashes.instanceMatrix.needsUpdate = true;
 
-      const braking = (f >= 16 && f < 95) || (f >= 1385 && f < 1440) || (f >= 1675 && f < 1760);
-      this.scammerCar.setBraking(braking);
+      this.scammerCar.setBraking(brakeK(f));
       this.scammerCar.setCrushed((id === 2 && f >= 78) || id === 3 || (id === 10 && f >= 1418));
       this.scammerCar.root.position.set(0, 0, id === 12 ? 5.5 - 2.4 * smooth((f - 1675) / 35) : 0);
 
       this.victimCar.root.visible = id === 2 || id === 3 || id === 5;
-      this.buddyTruck.root.visible = id === 5 && f >= 660;
+      this.buddyTruck.root.visible = id === 5 && f >= 630;
       this.wagonCar.root.visible = id === 10 || id === 12;
 
       if (id === 2) {
@@ -748,13 +749,20 @@ export class MultiSetWorld {
         this.victimCar.root.position.set(0, 0, gap);
       } else if (id === 5) {
         this.victimCar.root.position.set(0, 0, -5.8);
-        this.buddyTruck.root.position.set(-2.9, 0, -5.6 + 1.5 * smooth((f - 660) / 35));
+        // drives in from behind the camera (no pop-in), then swoops alongside (lane_swoop f695)
+        this.buddyTruck.root.position.set(-2.9, 0, -17 + 11.4 * smooth((f - 632) / 48) + 1.5 * smooth((f - 680) / 35));
       } else if (id === 10) {
-        this.wagonCar.root.position.set(0, 0, f < 1418 ? -6.8 + 2.6 * smooth((f - 1385) / 33) : -4.2);
+        this.wagonCar.root.position.set(0, 0, wagonZ(f));
       } else if (id === 12) {
         this.wagonCar.root.position.set(0, 0, -3.8);
         this.wiperMesh.visible = f < 1790;
         this.wiperMesh.rotation.z = Math.sin(t * 5.2) * 0.65;
+      }
+
+      if (id === 10 && f >= 1440) {
+        const out = smooth((f - 1440) / 14);
+        this.scammerRig.pose({ pos: [1.05 + 0.4 * out, 0, -1.9 - 0.5 * out], yaw: 2.45, lean: 0.14, expr: "pained",
+          handR: [0.08, 1.32, 0.12], handL: [-0.3, 0.95 + 0.15 * Math.abs(Math.sin(t * 4)), 0.15] });
       }
 
       if (id === 3 && f >= 168) {

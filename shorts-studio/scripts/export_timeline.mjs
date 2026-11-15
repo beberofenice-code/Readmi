@@ -59,7 +59,8 @@ if (kickBlock) {
 
 const xfade = shots
   .filter((s) => s.xfade > 0)
-  .map((s) => [s.a - Math.floor(s.xfade / 2), s.a + Math.ceil(s.xfade / 2)]);
+  // render.mjs dissolves over the incoming shot's first xfade frames (the outgoing chunk carries a tail handle)
+  .map((s) => [s.a, s.a + s.xfade]);
 
 const payload = {
   fps,

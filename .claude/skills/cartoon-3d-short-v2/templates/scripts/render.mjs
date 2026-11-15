@@ -137,53 +137,47 @@ async function run() {
     }
 
     // Stitch chunks via FFmpeg xfade / concat + mux audio
-    stitchChunks(chunkFiles, tl.fps, audioPath, outPath);
+    stitchChunks(chunkFiles, tl.fps, audioPath, outPath, tl.total_frames);
   }
 }
 
-function stitchChunks(chunks, fps, audioFile, finalOut) {
+function stitchChunks(chunks, fps, audioFile, finalOut, totalFrames) {
+  // Each chunk i holds shot i plus a tail handle of `nextXfade` frames. Hard cuts are joined with concat; real
+  // dissolves with xfade (offset = frames accumulated so far - handle). Every input is normalised first
+  // (Remotion chunks are full-range yuvj420p: convert range, SAR, timebase, fps), otherwise xfade stops the chain early
+  // or ffmpeg fails with "Error reinitializing filters".
   fs.mkdirSync(path.dirname(finalOut), { recursive: true });
-  const inputs = [];
-  chunks.forEach((c) => inputs.push("-i", c.file));
-
-  let filter = "";
-  let prevLabel = "[0:v]";
+  const inputs = chunks.flatMap((c) => ["-reinit_filter", "0", "-i", c.file]);
+  const parts = chunks.map((_, i) => `[${i}:v]scale=in_range=pc:out_range=tv,format=yuv420p,setsar=1,setpts=PTS-STARTPTS,fps=${fps},settb=1/${fps}[n${i}]`);
+  let acc = "[n0]";
   let cumulativeFrames = chunks[0].durFrames;
-
   for (let i = 1; i < chunks.length; i++) {
     const xf = chunks[i].shot.xfade || 0;
-    const outLabel = `[v${i}]`;
+    const out = `[v${i}]`;
     if (xf > 0) {
-      const offsetSec = ((cumulativeFrames - xf) / fps).toFixed(4);
-      const durSec = (xf / fps).toFixed(4);
-      filter += `${prevLabel}[${i}:v]xfade=transition=fade:duration=${durSec}:offset=${offsetSec}${outLabel};`;
-      cumulativeFrames = cumulativeFrames - xf + chunks[i].durFrames;
+      parts.push(`${acc}[n${i}]xfade=transition=fade:duration=${(xf / fps).toFixed(6)}:offset=${((cumulativeFrames - xf) / fps).toFixed(6)},settb=1/${fps}${out}`);
+      cumulativeFrames += chunks[i].durFrames - xf;
     } else {
-      const offsetSec = (cumulativeFrames / fps).toFixed(4);
-      filter += `${prevLabel}[${i}:v]xfade=transition=fade:duration=0.001:offset=${offsetSec}${outLabel};`;
+      parts.push(`${acc}[n${i}]concat=n=2:v=1:a=0,settb=1/${fps}${out}`); // concat outputs 1/1000000; xfade needs equal timebases
       cumulativeFrames += chunks[i].durFrames;
     }
-    prevLabel = outLabel;
+    acc = out;
+  }
+  const frames = totalFrames ?? cumulativeFrames;
+  if (totalFrames && totalFrames !== cumulativeFrames) {
+    console.warn(`[stitch] chunk frames sum to ${cumulativeFrames}, timeline says ${totalFrames}; trimming/padding to the timeline.`);
   }
 
   const ffArgs = ["-y", ...inputs];
-  if (audioFile && fs.existsSync(audioFile)) ffArgs.push("-i", audioFile);
-
-  if (chunks.length > 1) {
-    ffArgs.push("-filter_complex", filter.slice(0, -1), "-map", prevLabel);
-  } else {
-    ffArgs.push("-map", "0:v:0");
-  }
-
-  if (audioFile && fs.existsSync(audioFile)) {
-    ffArgs.push("-map", `${chunks.length}:a:0`, "-c:a", "aac", "-b:a", "192k", "-shortest");
-  } else {
-    ffArgs.push("-an");
-  }
-
-  ffArgs.push("-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", finalOut);
-  console.log(`[stitch] Running FFmpeg stitch -> ${finalOut}`);
-  execFileSync("ffmpeg", ffArgs, { stdio: "inherit" });
+  const withAudio = audioFile && fs.existsSync(audioFile);
+  if (withAudio) ffArgs.push("-i", audioFile);
+  ffArgs.push("-filter_complex", parts.join(";"), "-map", acc);
+  if (withAudio) ffArgs.push("-map", `${chunks.length}:a:0`, "-c:a", "aac", "-b:a", "192k");
+  else ffArgs.push("-an");
+  ffArgs.push("-frames:v", String(frames), "-t", (frames / fps).toFixed(6), "-r", String(fps),
+    "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", finalOut);
+  console.log(`[stitch] ${chunks.length} chunks -> ${frames} frames (${(frames / fps).toFixed(2)} s) -> ${finalOut}`);
+  execFileSync("ffmpeg", ["-v", "warning", ...ffArgs], { stdio: "inherit" });
 }
 
 run().catch((err) => {
