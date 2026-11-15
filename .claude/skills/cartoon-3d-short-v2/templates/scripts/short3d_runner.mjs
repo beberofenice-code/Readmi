@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // One-command orchestrator for the /short3d slash command across Desktop, Linux, and Android/Termux.
 // Usage:
-//   node scripts/short3d_runner.mjs --slug dashcam --comp DashcamShort [--stage all|stills|audio|render|qa] [--scale 0.5]
+//   node scripts/short3d_runner.mjs --slug dashcam --comp DashcamShort [--stage all|timeline|voice|stills|audio|render|qa] [--scale 0.5]
+//   voice: ElevenLabs TTS from src/videos/<slug>/SCRIPT.md (needs ELEVENLABS_API_KEY + ELEVENLABS_VOICE_ID; add --force-voice to redo)
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -14,7 +15,7 @@ const getArg = (flag, def) => {
 
 const slug = getArg("--slug", "dashcam");
 const comp = getArg("--comp", "DashcamShort");
-const stage = getArg("--stage", "all"); // all | timeline | stills | audio | render | qa
+const stage = getArg("--stage", "all"); // all | timeline | voice | stills | audio | render | qa
 const isTermux = Boolean(process.env.TERMUX_VERSION) || process.platform === "android" || fs.existsSync("/data/data/com.termux");
 const scale = getArg("--scale", isTermux ? "0.5" : "1.0");
 const pyBin = fs.existsSync("/data/data/com.termux/files/usr/bin/python3") ? "python3" : "python3";
@@ -26,6 +27,7 @@ const stillsDir = path.join(outDir, "stills");
 const qaDir = path.join(outDir, "qa");
 const voiceWav = getArg("--voice", `voice/${slug}/voice.wav`);
 const wordsJson = getArg("--words", `voice/${slug}/words.json`);
+const scriptMd = getArg("--script", `src/videos/${slug}/SCRIPT.md`);
 const mixWav = getArg("--mix", `audio/${slug}_mix.wav`);
 const finalMp4 = getArg("--out", path.join(outDir, "final-short.mp4"));
 
@@ -37,6 +39,24 @@ function step(label, cmd, cmdArgs) {
 
 if (stage === "all" || stage === "timeline") {
   step("Export Master Timeline", "node", ["scripts/export_timeline.mjs", storyTs, timelineJson]);
+}
+
+if (stage === "voice" || stage === "all") {
+  const haveVoice = fs.existsSync(voiceWav) && !args.includes("--force-voice");
+  if (haveVoice) {
+    console.log(`\n[short3d] Voice: keeping existing ${voiceWav} (--force-voice to regenerate).`);
+  } else if (!process.env.ELEVENLABS_API_KEY) {
+    const msg = "[short3d] Voice: ELEVENLABS_API_KEY not set; skipping TTS (audio stage will mix score + foley only).";
+    if (stage === "voice") { console.error(msg); process.exit(1); }
+    console.log("\n" + msg);
+  } else {
+    step("ElevenLabs Voiceover + Word Timings", pyBin, [
+      "scripts/elevenlabs_tts.py",
+      "--script", scriptMd,
+      "--out-dir", path.dirname(voiceWav),
+      ...(args.includes("--force-voice") ? ["--force"] : []),
+    ]);
+  }
 }
 
 if (stage === "all" || stage === "stills") {

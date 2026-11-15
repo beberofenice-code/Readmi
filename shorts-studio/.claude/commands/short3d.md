@@ -19,8 +19,13 @@ Execute the **Shorts-Studio v2** 8-stage production workflow end-to-end without 
    - **Body:** Present-tense setting, 3–5 escalating story beats with `[SPEAKER]` micro-dialogue tags, mystery pivot (`"You see,"` or equivalent), and a crisp 1–2 sentence ironic payoff ending on the final word.
 
 ## Stage 2 — Voiceover & Word Alignment (`voice/<slug>/`)
-1. If `voice/<slug>/voice.wav` is already present, inspect its sample rate (`48000 Hz` required) and align or load `voice/<slug>/words.json`.
-2. Otherwise, synthesize narration at `48000 Hz`, trim inter-word silences `> 0.25 s` down to `0.10 s`, and emit `voice/<slug>/words.json` (`[{"w": "...", "s": 0.04, "e": 0.28, "speaker": "narrator"}]`).
+1. If `voice/<slug>/voice.wav` is already present, inspect its sample rate (`48000 Hz` required) and load `voice/<slug>/words.json`.
+2. Otherwise, if `ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` are set (optional per-speaker `ELEVENLABS_VOICE_ID_<SPEAKER>`), generate it with ElevenLabs:
+   ```bash
+   node scripts/short3d_runner.mjs --slug <slug> --comp <CompName> --stage voice
+   ```
+   This runs `scripts/elevenlabs_tts.py` (`/v1/text-to-speech/{voice_id}/with-timestamps` per `[SPEAKER]` line -> ffmpeg -> 48 kHz mono `voice.wav`, character timings grouped into `words.json` `[{"w": "...", "s": 0.04, "e": 0.28, "speaker": "narrator"}]`). In a cloud session `api.elevenlabs.io` must be allowed; store the key as a network secret for that host (header `xi-api-key`), never in chat or git.
+3. With no key, continue without narration (Stage 6 mixes score + foley only) and say so in the final report.
 
 ## Stage 3 — Master Timeline (`src/videos/<slug>/story.ts` -> `out/<slug>/timeline.json`)
 1. Author `src/videos/<slug>/story.ts` as the **single source of truth**:

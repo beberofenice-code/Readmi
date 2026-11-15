@@ -9,7 +9,7 @@ Complete upgraded Three.js + Remotion + Python BS.1770-4 production template and
 | `templates/core/` | Core engine: 5-mode `lights.ts` & `grade.ts`, `rig25d.ts` hybrid 2.5D rig, `OverlayLayer.tsx` (`<DashcamHUD>` + `<PopCaptions>`), `ink.ts`, `lensblur.ts`, `shade.ts`, `cardshade.ts`, `toon.ts`, `paint.ts`, `build.ts` |
 | `templates/dashcam/` | Complete 12-shot, 1,867-frame implementation of **"How the Dashcam Was Invented"** (`SCRIPT.md`, `story.ts`, `sets.ts`, `DashcamShort.tsx`) |
 | `templates/audio/` | Auto-synced procedural foley + 120 BPM score + BS.1770-4 master limiter (`mix.py`, `sfx_gen.py`, `dsp.py`, `instruments.py`) |
-| `templates/scripts/` | `export_timeline.mjs` (`story.ts` -> `timeline.json`), cross-platform persistent-bundle `render.mjs`, `sbs_sheet.py`, and `short_qa.py` |
+| `templates/scripts/` | `export_timeline.mjs` (`story.ts` -> `timeline.json`), cross-platform persistent-bundle `render.mjs`, `sbs_sheet.py`, `short_qa.py`, `elevenlabs_tts.py` (ElevenLabs `SCRIPT.md` -> 48 kHz `voice.wav` + `words.json`), and `short3d_runner.mjs` |
 | `references/` | Measured `STYLE_BIBLE.md` + all 7 quantitative look-match reports |
 
 ## Quick Start (Desktop, Linux, or Android / Termux)
