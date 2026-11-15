@@ -32,6 +32,16 @@ def build_sfx(tl, N, v_ref):
             if np.isfinite(cur):
                 bed *= dbg((v_ref - 24.0) - cur)
             place(out, bed, t0)
+        elif s["set"] in ("tower_ext", "lamp_room", "bridge"):
+            # lighthouse short: gale + rain + surf through the night (muffled behind glass), calm wash at sunrise
+            if s["light"] == "golden":
+                bed, rel = G.amb_calm_sea(dur, r), -22.0
+            else:
+                bed, rel = G.amb_storm(dur, r, inside=(s["set"] != "tower_ext")), -17.0
+            cur = integrated(bed)
+            if np.isfinite(cur):
+                bed *= dbg((v_ref + rel) - cur)
+            place(out, bed, t0)
 
     # Discrete timeline events
     dispatch = {
@@ -47,6 +57,19 @@ def build_sfx(tl, N, v_ref):
         "siren_chirp":   (lambda: G.siren_chirp(r), -9.5),
         "wiper_sweep":   (lambda: G.wiper_sweep(r), -12.0),
         "camera_beep":   (lambda: G.camera_beep(r), -7.5),
+        # lighthouse short
+        "thunder":       (lambda: G.thunder(r), -4.0),
+        "wave_crash":    (lambda: G.wave_crash(r), -9.0),
+        "switch_clunk":  (lambda: G.switch_clunk(r), -5.5),
+        "motor_die":     (lambda: G.motor_die(r), -7.0),
+        "crank_ratchet": (lambda: G.crank_ratchet(r), -10.0),
+        "boot_clang":    (lambda: G.boot_clang(r), -6.0),
+        "ship_horn":     (lambda: G.ship_horn(r), -10.0),
+        "telegraph_bell":(lambda: G.telegraph_bell(r), -8.5),
+        "anchor_splash": (lambda: G.anchor_splash(r), -8.0),
+        "gull_cry":      (lambda: G.gull_cry(r), -14.0),
+        "paper_rustle":  (lambda: G.paper_rustle(r), -13.0),
+        "mug_sip":       (lambda: G.mug_sip(r), -11.0),
     }
 
     for ev in tl["events"]:
@@ -98,10 +121,11 @@ def build_score(tl, N):
     stop_idx = ns(stop_ev)
     out[:, stop_idx:] = 0.0
 
-    # Payoff reveal pad (54.8s -> end)
-    if dur_s > 55.0:
-        pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - 55.0, 0.48, r, att=0.4, rel=0.5)
-        place(out, pad, 55.0)
+    # Payoff reveal pad: from the timeline's `score_resolve` event when present (default 55.0 s) -> end
+    resolve = next((e["time_s"] for e in tl["events"] if e["type"] == "score_resolve"), 55.0)
+    if dur_s > resolve:
+        pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - resolve, 0.48, r, att=0.4, rel=0.5)
+        place(out, pad, resolve)
 
     return hp(out, 32, 2)
 

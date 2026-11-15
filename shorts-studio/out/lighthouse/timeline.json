@@ -1,0 +1,461 @@
+{
+  "fps": 30,
+  "total_frames": 2030,
+  "duration_s": 67.6667,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 110,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 110,
+      "b": 165,
+      "set": "lamp_room",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 165,
+      "b": 370,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 370,
+      "b": 464,
+      "set": "lamp_room",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 464,
+      "b": 568,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 0,
+      "hud": "flash"
+    },
+    {
+      "id": 6,
+      "a": 568,
+      "b": 621,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 621,
+      "b": 795,
+      "set": "lamp_room",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 795,
+      "b": 996,
+      "set": "lamp_room",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 996,
+      "b": 1109,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 1109,
+      "b": 1196,
+      "set": "bridge",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1196,
+      "b": 1354,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 0,
+      "hud": "signals"
+    },
+    {
+      "id": 12,
+      "a": 1354,
+      "b": 1457,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 1457,
+      "b": 1532,
+      "set": "lamp_room",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 1532,
+      "b": 1670,
+      "set": "tower_ext",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 15,
+      "a": 1670,
+      "b": 1850,
+      "set": "tower_ext",
+      "light": "golden",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 16,
+      "a": 1850,
+      "b": 2030,
+      "set": "tower_ext",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 24,
+      "time_s": 0.8,
+      "type": "thunder",
+      "gain": 0.8,
+      "pan": 0.3,
+      "desc": "Distant lightning behind the tower"
+    },
+    {
+      "frame": 52,
+      "time_s": 1.7333,
+      "type": "wave_crash",
+      "gain": 0.7,
+      "pan": -0.2,
+      "desc": "Storm swell breaks on the rock"
+    },
+    {
+      "frame": 150,
+      "time_s": 5,
+      "type": "switch_clunk",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Teaser: keeper throws the main light switch"
+    },
+    {
+      "frame": 190,
+      "time_s": 6.3333,
+      "type": "wave_crash",
+      "gain": 0.9,
+      "pan": 0.2,
+      "desc": "Wave smashes the rocks below the tower"
+    },
+    {
+      "frame": 236,
+      "time_s": 7.8667,
+      "type": "wave_crash",
+      "gain": 1.1,
+      "pan": -0.15,
+      "desc": "Big breaker explodes over the rocks"
+    },
+    {
+      "frame": 300,
+      "time_s": 10,
+      "type": "ship_horn",
+      "gain": 0.6,
+      "pan": -0.3,
+      "desc": "Cargo convoy horn far out at sea"
+    },
+    {
+      "frame": 598,
+      "time_s": 19.9333,
+      "type": "thunder",
+      "gain": 1.25,
+      "pan": 0,
+      "desc": "Lightning bolt strikes the lantern roof"
+    },
+    {
+      "frame": 624,
+      "time_s": 20.8,
+      "type": "motor_die",
+      "gain": 1,
+      "pan": 0.15,
+      "desc": "Rotation motor sparks, whines down and dies"
+    },
+    {
+      "frame": 797,
+      "time_s": 26.5667,
+      "type": "crank_ratchet",
+      "gain": 0.85,
+      "pan": -0.1,
+      "desc": "Keeper winds the hand crank"
+    },
+    {
+      "frame": 838,
+      "time_s": 27.9333,
+      "type": "boot_clang",
+      "gain": 1,
+      "pan": 0.2,
+      "desc": "Keeper kicks the dead motor housing"
+    },
+    {
+      "frame": 1040,
+      "time_s": 34.6667,
+      "type": "ship_horn",
+      "gain": 0.8,
+      "pan": -0.2,
+      "desc": "Lead ship answers the steady light"
+    },
+    {
+      "frame": 1168,
+      "time_s": 38.9333,
+      "type": "telegraph_bell",
+      "gain": 0.9,
+      "pan": 0.25,
+      "desc": "Engine telegraph rung to FULL AHEAD"
+    },
+    {
+      "frame": 1512,
+      "time_s": 50.4,
+      "type": "switch_clunk",
+      "gain": 1.1,
+      "pan": 0,
+      "desc": "Main light switch pulled, lamp dies"
+    },
+    {
+      "frame": 1529,
+      "time_s": 50.9667,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out into the dark"
+    },
+    {
+      "frame": 1614,
+      "time_s": 53.8,
+      "type": "anchor_splash",
+      "gain": 1,
+      "pan": 0.2,
+      "desc": "Lead ship lets go its anchor"
+    },
+    {
+      "frame": 1640,
+      "time_s": 54.6667,
+      "type": "anchor_splash",
+      "gain": 0.6,
+      "pan": -0.4,
+      "desc": "Second anchor further out"
+    },
+    {
+      "frame": 1672,
+      "time_s": 55.7333,
+      "type": "score_resolve",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Warm sunrise chord"
+    },
+    {
+      "frame": 1690,
+      "time_s": 56.3333,
+      "type": "gull_cry",
+      "gain": 0.7,
+      "pan": -0.3,
+      "desc": "Gulls over the calm morning sea"
+    },
+    {
+      "frame": 1780,
+      "time_s": 59.3333,
+      "type": "paper_rustle",
+      "gain": 0.8,
+      "pan": 0.1,
+      "desc": "Captains wave their complaint forms"
+    },
+    {
+      "frame": 1800,
+      "time_s": 60,
+      "type": "gull_cry",
+      "gain": 0.5,
+      "pan": 0.35,
+      "desc": "Second gull"
+    },
+    {
+      "frame": 1862,
+      "time_s": 62.0667,
+      "type": "paper_rustle",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Lead captain shakes his complaint"
+    },
+    {
+      "frame": 1952,
+      "time_s": 65.0667,
+      "type": "mug_sip",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Keeper sips his tea"
+    }
+  ],
+  "xfade": [
+    [
+      996,
+      1002
+    ],
+    [
+      1354,
+      1360
+    ],
+    [
+      1670,
+      1678
+    ]
+  ],
+  "planned": [
+    [
+      110,
+      110
+    ],
+    [
+      165,
+      165
+    ],
+    [
+      280,
+      280
+    ],
+    [
+      370,
+      370
+    ],
+    [
+      464,
+      464
+    ],
+    [
+      568,
+      568
+    ],
+    [
+      621,
+      621
+    ],
+    [
+      704,
+      704
+    ],
+    [
+      795,
+      795
+    ],
+    [
+      832,
+      832
+    ],
+    [
+      856,
+      856
+    ],
+    [
+      894,
+      894
+    ],
+    [
+      961,
+      961
+    ],
+    [
+      1109,
+      1109
+    ],
+    [
+      1164,
+      1164
+    ],
+    [
+      1196,
+      1196
+    ],
+    [
+      1457,
+      1457
+    ],
+    [
+      1532,
+      1532
+    ],
+    [
+      1568,
+      1568
+    ],
+    [
+      1748,
+      1748
+    ],
+    [
+      1850,
+      1850
+    ],
+    [
+      1906,
+      1906
+    ],
+    [
+      24,
+      32
+    ],
+    [
+      150,
+      158
+    ],
+    [
+      236,
+      244
+    ],
+    [
+      598,
+      606
+    ],
+    [
+      838,
+      846
+    ],
+    [
+      1168,
+      1176
+    ],
+    [
+      1512,
+      1520
+    ]
+  ]
+}

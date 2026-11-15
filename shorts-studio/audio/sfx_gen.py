@@ -130,3 +130,165 @@ def amb_highway(dur, r, rain=False):
         patter = bp(colored(n, r, 0.4), 900, 5200, 1) * 0.38
         out += widen(patter, r, 7, 0.9)
     return fades(out, 0.25, 0.35)
+
+# ---------------- Lighthouse short: storm, machinery and harbour foley ----------------
+BOXMETAL = [(180, 1.0, 0.12), (410, 0.7, 0.09), (930, 0.5, 0.06), (2100, 0.3, 0.04)]
+
+def thunder(r, dur=3.4):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    crack = hp(r.standard_normal(n), 1400) * np.exp(-t / 0.035) * 1.2
+    crack += bp(r.standard_normal(n), 400, 3000, 1) * np.exp(-np.maximum(0, t - 0.03) / 0.16) * (t > 0.03) * 0.7
+    roll = lp(colored(n, r, 1.6), 190, 2) * np.minimum(1, t / 0.03) * np.exp(-t / 1.0) * (1.0 + 0.6 * smooth_noise(n, r, 5.0)) * 2.4
+    sub = np.sin(phase(52 * (1 + 0.4 * np.exp(-t / 0.05)))) * np.exp(-t / 0.5) * 1.6
+    return fades(widen(crack + roll + sub, r, 14, 0.85), 0.001, 0.5)
+
+def wave_crash(r, dur=2.4):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    env = np.minimum(1, (t / 0.22)) ** 2 * np.exp(-np.maximum(0, t - 0.22) / 0.65)
+    wash = bp(colored(n, r, 0.5), 180, 6500, 1) * env
+    hiss = hp(colored(n, r, 0.2), 3500) * np.exp(-np.maximum(0, t - 0.3) / 0.9) * (t > 0.2) * 0.35
+    thump = lp(r.standard_normal(n), 110, 2) * np.exp(-np.maximum(0, t - 0.18) / 0.12) * (t > 0.15) * 2.2
+    return fades(widen(wash + hiss + thump, r, 13, 0.9), 0.02, 0.4)
+
+def switch_clunk(r):
+    dur = 0.85
+    t = tt(dur)
+    thump = np.sin(phase(105 * (1 - 0.3 * t))) * np.exp(-t / 0.05) * 1.5
+    jaws = modal(dur, [(640, 0.8, 0.06), (1480, 0.5, 0.04), (2900, 0.3, 0.03)], r)
+    click = hp(r.standard_normal(len(t)), 2600) * np.exp(-t / 0.004) * 0.6
+    f = 118 * np.exp(-t / 0.28) + 36
+    powerdown = (np.sin(phase(f)) + 0.4 * np.sin(2 * phase(f))) * np.minimum(1, t / 0.02) * np.exp(-t / 0.3) * 0.7
+    return fades(thump + jaws + click + powerdown, 0.001, 0.08)
+
+def motor_die(r, dur=2.6):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    zap = np.zeros(n)
+    for _ in range(9):
+        k = ns(r.uniform(0.0, 0.5))
+        L = ns(r.uniform(0.02, 0.07))
+        m = min(L, n - k)
+        zap[k:k + m] += hp(r.standard_normal(L), 2800)[:m] * np.linspace(1, 0, L)[:m] * r.uniform(0.5, 1.0)
+    f = 30 + 420 * np.exp(-t / 0.7)
+    ph = phase(f)
+    whine = (np.sin(ph) + 0.5 * np.sin(2 * ph) + 0.33 * np.sin(3 * ph)) * np.exp(-t / 1.1) * 0.55
+    rattle = bp(r.standard_normal(n), 300, 1800, 1) * (0.5 + 0.5 * np.sign(np.sin(ph * 0.25))) * np.exp(-t / 0.9) * 0.3
+    return fades(zap * 0.9 + whine + rattle, 0.002, 0.3)
+
+def crank_ratchet(r, dur=1.1):
+    n = ns(dur)
+    y = np.zeros(n)
+    tm = 0.0
+    while tm < dur - 0.06:
+        k = ns(tm)
+        f0 = r.uniform(1500, 2300)
+        c = modal(0.05, [(f0, 0.8, 0.012), (f0 * 2.4, 0.4, 0.007)], r)
+        m = min(len(c), n - k)
+        y[k:k + m] += c[:m] * r.uniform(0.6, 1.0)
+        tm += 0.062 + r.uniform(-0.008, 0.008)
+    groan = bp(colored(n, r, 1.0), 120, 520, 1) * (0.5 + 0.5 * np.sin(TAU * 1.8 * np.arange(n) / SR)) * 0.5
+    return fades(y + groan, 0.005, 0.05)
+
+def boot_clang(r):
+    dur = 0.7
+    t = tt(dur)
+    box_ = modal(dur, BOXMETAL, r)
+    thump = np.sin(phase(88 * (1 - 0.3 * t))) * np.exp(-t / 0.04) * 1.3
+    slap = bp(r.standard_normal(len(t)), 700, 4000, 1) * np.exp(-t / 0.01) * 0.6
+    return fades(box_ + thump + slap, 0.001, 0.08)
+
+def ship_horn(r, dur=1.7):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    env = np.minimum(1, t / 0.14) * np.minimum(1, (dur - t) / 0.35)
+    y = np.zeros(n)
+    for f0, g in ((98.0, 1.0), (147.0, 0.7)):
+        ph = phase(f0 * (1 + 0.004 * np.sin(TAU * 4.6 * t)))
+        for h in range(1, 9):
+            y += g * np.sin(h * ph) / h ** 1.15
+    y = lp(y, 1100, 2) * env
+    air = bp(colored(n, r, 0.6), 200, 1500, 1) * env * 0.12
+    return fades(widen(y * 0.5 + air, r, 15, 0.6), 0.01, 0.1)
+
+def telegraph_bell(r):
+    dur = 0.95
+    y = np.zeros(ns(dur))
+    for k, g in ((0.0, 1.0), (0.17, 0.85)):
+        b = modal(dur - k, [(1760, 1.0, 0.33), (1760 * 2.76, 0.4, 0.14), (1760 * 5.4, 0.18, 0.06)], r)
+        i0 = ns(k)
+        y[i0:i0 + len(b)] += b[:len(y) - i0] * g
+    return fades(y, 0.001, 0.08)
+
+def anchor_splash(r, dur=2.1):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    y = np.zeros(n)
+    tm = 0.0
+    while tm < 0.42:
+        k = ns(tm)
+        L = ns(0.03)
+        y[k:k + L] += bp(r.standard_normal(L), 1400, 5200, 1) * np.linspace(1, 0, L) * r.uniform(0.4, 0.9)
+        tm += r.uniform(0.018, 0.034)
+    ts = np.maximum(0, t - 0.42)
+    on = (t > 0.42)
+    splash = bp(colored(n, r, 0.4), 260, 5500, 1) * on * np.minimum(1, ts / 0.02) * np.exp(-ts / 0.38) * 1.5
+    plunge = lp(r.standard_normal(n), 140, 2) * on * np.exp(-ts / 0.16) * 2.4
+    return fades(widen(y * 0.7 + splash + plunge, r, 11, 0.8), 0.002, 0.3)
+
+def gull_cry(r):
+    dur = 1.15
+    n = ns(dur)
+    y = np.zeros(n)
+    for k, t0 in enumerate((0.0, 0.33, 0.62)):
+        L = ns(0.26)
+        tl = np.arange(L) / SR
+        f = (1950 - 120 * k) * (1 - 0.28 * (tl / 0.26)) * (1 + 0.03 * np.sin(TAU * 28 * tl))
+        ph = phase(f)
+        c = (np.sin(ph) + 0.5 * np.sin(2 * ph) + 0.25 * np.sin(3 * ph)) * np.sin(np.pi * tl / 0.26) ** 1.2
+        i0 = ns(t0)
+        y[i0:i0 + L] += c * (1.0 - 0.18 * k)
+    return fades(y * 0.5, 0.005, 0.05)
+
+def paper_rustle(r, dur=0.95):
+    n = ns(dur)
+    env = np.clip(0.55 + 0.8 * smooth_noise(n, r, 14.0), 0, None) * np.sin(np.pi * np.arange(n) / n) ** 0.6
+    return fades(widen(hp(colored(n, r, 0.2), 2400) * env, r, 8, 0.8), 0.01, 0.08)
+
+def mug_sip(r):
+    dur = 0.75
+    n = ns(dur)
+    t = np.arange(n) / SR
+    slurp = np.zeros(n)
+    L = ns(0.42)
+    seg = r.standard_normal(L)
+    for k in range(6):  # rising-band slurp
+        a, b = k * L // 6, (k + 1) * L // 6
+        slurp[a:b] = bp(seg, 700 + 420 * k, 2400 + 500 * k, 1)[a:b]
+    slurp[:L] *= np.sin(np.pi * np.arange(L) / L) ** 0.8 * (0.7 + 0.3 * np.sin(TAU * 31 * np.arange(L) / SR))
+    tick = modal(0.2, [(2650, 0.6, 0.05), (5300, 0.3, 0.03)], r)
+    i0 = ns(0.52)
+    slurp[i0:i0 + len(tick)] += tick[:n - i0] * 0.6
+    return fades(slurp, 0.01, 0.05)
+
+def amb_storm(dur, r, inside=False):
+    """Gale + rain + surf bed; `inside` = heard through lantern-room / wheelhouse glass."""
+    n = ns(dur)
+    gust = 0.55 + 0.45 * smooth_noise(n, r, 0.35)
+    wind = bp(colored(n, r, 1.0), 180, 1400, 1) * gust * 0.6
+    howl_f = 520 + 160 * smooth_noise(n, r, 0.5)
+    howl = np.sin(phase(howl_f)) * bp(colored(n, r, 0.8), 300, 900, 1) * gust ** 2 * 0.5
+    rain = bp(colored(n, r, 0.3), 1200, 7000, 1) * 0.3
+    surf = lp(colored(n, r, 1.5), 240, 2) * (0.6 + 0.4 * smooth_noise(n, r, 0.22)) * 0.75
+    out = widen(wind + howl, r, 13, 0.7) + widen(rain, r, 7, 0.9) + st(surf)
+    if inside:
+        out = lp(out, 1500, 2) * 0.8 + widen(bp(colored(n, r, 0.2), 2200, 6000, 1) * 0.12, r, 6, 0.9)
+    return fades(out, 0.2, 0.3)
+
+def amb_calm_sea(dur, r):
+    n = ns(dur)
+    swell = 0.5 + 0.5 * np.sin(TAU * 0.16 * np.arange(n) / SR + 1.0)
+    wash = bp(colored(n, r, 0.8), 250, 3200, 1) * (0.25 + 0.75 * swell ** 2) * 0.5
+    air = lp(colored(n, r, 1.2), 400, 1) * 0.2
+    return fades(widen(wash, r, 12, 0.8) + st(air), 0.4, 0.4)
