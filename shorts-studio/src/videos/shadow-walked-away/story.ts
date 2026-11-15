@@ -181,10 +181,10 @@ export const CAMS: Record<number, CamKey[]> = {
     { f: 86,  cut: true, s: (f) => dolly([1.1, 1.35, -3.0], [1.03, 1.02, 0.72], pushK(f, 86, 0.003), { fov: 36 }) },
     { f: 118, dur: 30, s: (f) => dolly([0.55, 1.45, -4.5], [0.5, 1.0, 0.5], pushK(f, 118, 0.002), { fov: 40 }) },
   ],
-  // Shot 2: side tracking on the commute treadmill -> low CU at his shoes for the peel
+  // Shot 2: side tracking on the commute treadmill -> head-on down the sidewalk as the shadow peels toward the lens
   2: [
     { f: 155, s: (f) => dolly([0.7, 1.6, -6.6], [0.5, 0.95, 0.3], pushK(f, 155, 0.0018), { fov: 44 }) },
-    { f: 262, cut: true, s: (f) => dolly([2.7, 2.3, -2.0], [0.75, 0.0, 0.5], pushK(f, 262, 0.002, 0.0035, 30), { fov: 46, roll: -0.03 }) },
+    { f: 262, cut: true, s: (f) => dolly([3.5, 1.95, 1.0], [0.5, 0.55, 0.42], pushK(f, 262, 0.002, 0.0035, 30), { fov: 40, roll: -0.02 }) },
   ],
   // Shot 3: man MS ("You're attached!") -> shadow MS ("Not anymore.")
   3: [
@@ -287,7 +287,7 @@ export const DOF: DofEntry[] = [
   { f: 86,   cInf: 11 },  // shadow MS
   { f: 118,  dur: 30, cInf: 4 },
   { f: 155,  cInf: 0 },   // commute wide
-  { f: 262,  cInf: 9, focus: () => [0.8, 0.05, 0.55] }, // shoes insert
+  { f: 262,  cInf: 6, focus: () => [0.3, 0.6, 0.35] }, // peel, man + shadow both readable
   { f: 339,  cInf: 12 },  // dialogue MS
   { f: 441,  cInf: 0 },   // chase wide
   { f: 515,  cInf: 10 },  // out of breath MS

@@ -660,7 +660,7 @@ export class MultiSetWorld {
       const v = walkSpeedMps(f) / 1.3;
       const ph = scrollAt(f) * Math.PI / 0.6;
       const down = smooth((f - 286) / 10);
-      const hop = f >= 300 ? 0.1 * Math.sin(Math.min(1, (f - 300) / 9) * Math.PI) : 0;
+      const hop = f >= 300 ? 0.1 * Math.sin(Math.min(1, (f - 300) / 14) * Math.PI) ** 2 : 0; // sin^2: eased take-off and landing
       const g = gait(ph, 0.3, 0.1, 0.2, v);
       this.man.pose({ pos: [mx, hop + 0.02 * Math.abs(Math.sin(ph)) * v, mz], yaw: Math.PI / 2, lean: 0.06 * v, blink,
         expr: f >= 300 ? "shock" : "neutral", headPitch: 0.5 * down, ...g, handR: [0.27, 0.8, 0.04] });

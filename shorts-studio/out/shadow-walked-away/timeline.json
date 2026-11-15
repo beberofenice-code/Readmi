@@ -1,0 +1,455 @@
+{
+  "fps": 30,
+  "total_frames": 1840,
+  "duration_s": 61.3333,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 155,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 155,
+      "b": 339,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 339,
+      "b": 441,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 441,
+      "b": 581,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 581,
+      "b": 754,
+      "set": "office",
+      "light": "interior",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 6,
+      "a": 754,
+      "b": 814,
+      "set": "apartment",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 814,
+      "b": 1010,
+      "set": "apartment",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 1010,
+      "b": 1083,
+      "set": "apartment",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 1083,
+      "b": 1153,
+      "set": "apartment",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 1153,
+      "b": 1338,
+      "set": "beach",
+      "light": "golden",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1338,
+      "b": 1410,
+      "set": "beach",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 1410,
+      "b": 1491,
+      "set": "beach",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 1491,
+      "b": 1661,
+      "set": "beach",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 1661,
+      "b": 1840,
+      "set": "beach",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 36,
+      "time_s": 1.2,
+      "type": "shadow_rise",
+      "gain": 0.9,
+      "pan": 0.2,
+      "desc": "Flat shadow hinges up off the sidewalk"
+    },
+    {
+      "frame": 90,
+      "time_s": 3,
+      "type": "stretch_squeak",
+      "gain": 0.8,
+      "pan": 0.15,
+      "desc": "Shadow stretches its arms"
+    },
+    {
+      "frame": 124,
+      "time_s": 4.1333,
+      "type": "soft_steps",
+      "gain": 0.7,
+      "pan": 0.35,
+      "desc": "Shadow strolls away"
+    },
+    {
+      "frame": 160,
+      "time_s": 5.3333,
+      "type": "soft_steps",
+      "gain": 0.6,
+      "pan": -0.05,
+      "desc": "Man commute footsteps A"
+    },
+    {
+      "frame": 205,
+      "time_s": 6.8333,
+      "type": "soft_steps",
+      "gain": 0.6,
+      "pan": 0,
+      "desc": "Man commute footsteps B"
+    },
+    {
+      "frame": 284,
+      "time_s": 9.4667,
+      "type": "stretch_squeak",
+      "gain": 0.75,
+      "pan": 0.1,
+      "desc": "Shadow strands stretch from his heels"
+    },
+    {
+      "frame": 300,
+      "time_s": 10,
+      "type": "peel_snap",
+      "gain": 1,
+      "pan": 0.1,
+      "desc": "Shadow snaps free of his shoes"
+    },
+    {
+      "frame": 432,
+      "time_s": 14.4,
+      "type": "whoosh",
+      "gain": 0.8,
+      "pan": 0.4,
+      "desc": "Shadow bolts"
+    },
+    {
+      "frame": 446,
+      "time_s": 14.8667,
+      "type": "soft_steps",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Chase footsteps A"
+    },
+    {
+      "frame": 480,
+      "time_s": 16,
+      "type": "soft_steps",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Chase footsteps B"
+    },
+    {
+      "frame": 500,
+      "time_s": 16.6667,
+      "type": "whoosh",
+      "gain": 0.7,
+      "pan": 0.5,
+      "desc": "Shadow whips past the camera"
+    },
+    {
+      "frame": 556,
+      "time_s": 18.5333,
+      "type": "briefcase_thud",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Briefcase drops as he gives up"
+    },
+    {
+      "frame": 590,
+      "time_s": 19.6667,
+      "type": "keyboard",
+      "gain": 0.7,
+      "pan": -0.15,
+      "desc": "Office typing bed A"
+    },
+    {
+      "frame": 660,
+      "time_s": 22,
+      "type": "keyboard",
+      "gain": 0.6,
+      "pan": 0.2,
+      "desc": "Office typing bed B"
+    },
+    {
+      "frame": 762,
+      "time_s": 25.4,
+      "type": "mail_slot",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Postcard 1 through the mail slot"
+    },
+    {
+      "frame": 778,
+      "time_s": 25.9333,
+      "type": "mail_slot",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Postcard 2 through the mail slot"
+    },
+    {
+      "frame": 792,
+      "time_s": 26.4,
+      "type": "mail_slot",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Postcard 3 through the mail slot"
+    },
+    {
+      "frame": 814,
+      "time_s": 27.1333,
+      "type": "card_flip",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Rollercoaster postcard"
+    },
+    {
+      "frame": 864,
+      "time_s": 28.8,
+      "type": "card_flip",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Surfing postcard"
+    },
+    {
+      "frame": 917,
+      "time_s": 30.5667,
+      "type": "card_flip",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Wedding postcard"
+    },
+    {
+      "frame": 1086,
+      "time_s": 36.2,
+      "type": "phone_beep",
+      "gain": 0.7,
+      "pan": 0.1,
+      "desc": "Dials the office"
+    },
+    {
+      "frame": 1128,
+      "time_s": 37.6,
+      "type": "ticket_stamp",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "One-way ticket stamped"
+    },
+    {
+      "frame": 1215,
+      "time_s": 40.5,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out for the question"
+    },
+    {
+      "frame": 1259,
+      "time_s": 41.9667,
+      "type": "music_resolve",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Warm pad enters on the reveal"
+    },
+    {
+      "frame": 1519,
+      "time_s": 50.6333,
+      "type": "shoe_thud",
+      "gain": 0.8,
+      "pan": -0.2,
+      "desc": "Left shoe lands in the sand"
+    },
+    {
+      "frame": 1535,
+      "time_s": 51.1667,
+      "type": "shoe_thud",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Right shoe lands in the sand"
+    },
+    {
+      "frame": 1556,
+      "time_s": 51.8667,
+      "type": "soft_steps",
+      "gain": 0.5,
+      "pan": 0,
+      "desc": "Barefoot steps into the light"
+    },
+    {
+      "frame": 1614,
+      "time_s": 53.8,
+      "type": "whoosh",
+      "gain": 0.6,
+      "pan": 0.1,
+      "desc": "Shadow folds down onto the sand"
+    },
+    {
+      "frame": 1640,
+      "time_s": 54.6667,
+      "type": "shimmer",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Shadow re-attaches at his heels"
+    },
+    {
+      "frame": 1766,
+      "time_s": 58.8667,
+      "type": "shimmer",
+      "gain": 0.5,
+      "pan": 0,
+      "desc": "The shadow waves first"
+    }
+  ],
+  "xfade": [
+    [
+      581,
+      587
+    ],
+    [
+      754,
+      762
+    ],
+    [
+      1153,
+      1161
+    ]
+  ],
+  "planned": [
+    [
+      86,
+      86
+    ],
+    [
+      262,
+      262
+    ],
+    [
+      404,
+      404
+    ],
+    [
+      515,
+      515
+    ],
+    [
+      653,
+      653
+    ],
+    [
+      864,
+      864
+    ],
+    [
+      917,
+      917
+    ],
+    [
+      1124,
+      1124
+    ],
+    [
+      1218,
+      1218
+    ],
+    [
+      1259,
+      1259
+    ],
+    [
+      1550,
+      1550
+    ],
+    [
+      1612,
+      1612
+    ],
+    [
+      300,
+      308
+    ],
+    [
+      556,
+      564
+    ],
+    [
+      1128,
+      1136
+    ],
+    [
+      1640,
+      1648
+    ]
+  ]
+}
