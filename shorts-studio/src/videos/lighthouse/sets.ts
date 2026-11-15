@@ -11,7 +11,7 @@ import { NOINK } from "../core/ink";
 import { HeroRig25D } from "../core/rig25d";
 import {
   FPS, SHOTS, V3, BRIDGE, LAMP, CRASH_PERIOD, CRASH_PHASE, STRIKES, SWITCH_OFF,
-  camAt, lampAngle, lampOn, leverK, lightningK, smooth, stormK, waveY,
+  BEAM_PERIOD, camAt, lampAngle, lampOn, leverK, lightningK, smooth, stormK, waveY,
 } from "./story";
 
 const box = (w: number, h: number, d: number, mat: THREE.Material, x = 0, y = 0, z = 0) => {
@@ -767,13 +767,13 @@ export class LighthouseWorld {
   private poseSunrise(id: number, f: number, t: number) {
     const K = this.keeper, C = this.captains;
     const spots: V3[] = [[0, 3, -4.6], [-0.36, 3, -5.9], [0.32, 3, -7.2], [-0.22, 3, -8.5]];
-    const shout = f >= 1850 && f < 1903;
+    const shoutK = f >= 1850 ? 1 - smooth((f - 1895) / 9) : 0;
     C.forEach((c, k) => {
       const w = Math.sin(t * (7 + k) + k * 2.1);
       const lead = k === 0;
       c.pose({
-        pos: spots[k], yaw: (k % 2 ? 0.12 : -0.1), cap: true, expr: "stern", lean: lead && shout ? 0.12 : 0.04,
-        mouthOpen: lead ? (shout ? 0.35 + 0.6 * Math.abs(Math.sin(t * 13)) : 0) : 0.25 + 0.3 * Math.abs(Math.sin(t * (9 + k * 1.3) + k)),
+        pos: spots[k], yaw: (k % 2 ? 0.12 : -0.1), cap: true, expr: "stern", lean: lead ? 0.04 + 0.08 * shoutK : 0.04,
+        mouthOpen: lead ? shoutK * (0.35 + 0.6 * Math.abs(Math.sin(t * 13))) : 0.25 + 0.3 * Math.abs(Math.sin(t * (9 + k * 1.3) + k)),
         handR: lead && f >= 1906 ? [0.27, 0.78, 0.1] : [0.34, 1.52 + 0.09 * w, 0.2 + 0.05 * w],
         handL: lead && f < 1906 ? [-0.3, 1.2 + 0.05 * w, 0.3] : [-0.26, 0.9, 0.12],
       });
@@ -865,11 +865,15 @@ export class LighthouseWorld {
     const a = lampAngle(f);
     this.extBeam.rotation.y = a;
     this.extLampMat.color.setRGB(0.1 + 3.1 * on, 0.1 + 2.5 * on, 0.1 + 1.2 * on);
-    this.beamMat.opacity = (inRoom ? 0.16 : 0.24) * on;
     this.extBeam.visible = on > 0.01; this.roomBeam.visible = on > 0.01;
     const lampPos = inRoom ? this.v3.set(...ROOM_LAMP) : this.v3.set(...LAMP);
     const dx = cam.position.x - lampPos.x, dz = cam.position.z - lampPos.z, dh = Math.hypot(dx, dz) || 1;
     const align = (Math.sin(a) * dx + Math.cos(a) * dz) / dh;
+    // A spinning beam sweeping across the lens would wash the frame for 1-2 frames: thin the cone as it
+    // swings toward camera and let the glare sprite carry the flash instead.
+    const spin = Math.min(1, Math.abs(lampAngle(f + 1) - a) / ((Math.PI * 2) / BEAM_PERIOD));
+    const thin = 1 - 0.88 * spin * smooth((align - 0.5) / 0.38);
+    this.beamMat.opacity = (inRoom ? 0.16 : 0.24) * on * thin;
     const g = on * Math.max(0, align) ** 12;
     const dist = cam.position.distanceTo(lampPos);
     this.glare.visible = on > 0.01;
