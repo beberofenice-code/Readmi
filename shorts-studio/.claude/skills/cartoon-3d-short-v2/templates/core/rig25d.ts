@@ -208,23 +208,37 @@ export class HeroRig25D {
     } else if (expr === "shock") {
       p.ell(exL, cy, 20, 20, "#ffffff", 6); p.dot(exL, cy, 6);
       p.ell(exR, cy, 20, 20, "#ffffff", 6); p.dot(exR, cy, 6);
+    } else if (expr === "nervous") {
+      // wide, worried eyes (round whites, small pupils)
+      p.ell(exL, cy, 17, 18, "#ffffff", 6); p.dot(exL, cy + 2, 5);
+      p.ell(exR, cy, 17, 18, "#ffffff", 6); p.dot(exR, cy + 2, 5);
+    } else if (expr === "relief" || expr === "relief_open") {
+      // happy closed eyes (upward arcs)
+      p.arc(exL, cy + 6, 16, 12, 200, 340, 8);
+      p.arc(exR, cy + 6, 16, 12, 200, 340, 8);
     } else {
       p.ell(exL, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exL - 16, cy], [exL + 16, cy]], 7);
       p.ell(exR, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exR - 16, cy], [exR + 16, cy]], 7);
     }
     // Brows
     const browLift = expr === "shock" ? -16 : expr === "stern" ? 6 : 0;
-    p.stroke([[exL - 18, cy - 32 + browLift], [exL + 16, cy - 34]], 9);
-    p.stroke([[exR - 16, cy - 34], [exR + 18, cy - 32 + browLift]], 9);
+    if (expr === "nervous") {
+      // raised brows, inner ends highest (worried)
+      p.stroke([[exL - 18, cy - 38], [exL + 16, cy - 48]], 9);
+      p.stroke([[exR - 16, cy - 48], [exR + 18, cy - 38]], 9);
+    } else {
+      p.stroke([[exL - 18, cy - 32 + browLift], [exL + 16, cy - 34]], 9);
+      p.stroke([[exR - 16, cy - 34], [exR + 18, cy - 32 + browLift]], 9);
+    }
 
     // Mouth (driven by mouthOpen or expression)
     const my = cy + 44;
-    if (mouthOpen > 0.25 || expr === "shock" || expr === "laugh") {
+    if (mouthOpen > 0.25 || expr === "shock" || expr === "laugh" || expr === "relief_open") {
       const ry = 8 + mouthOpen * 18;
       p.ell(256, my, 20, ry, "#5a1e28", 6);
     } else if (expr === "pained") {
       p.poly([[232, my - 8], [280, my - 8], [278, my + 8], [234, my + 8]], "#ffffff", 5);
-    } else if (expr === "grin" || expr === "smile") {
+    } else if (expr === "grin" || expr === "smile" || expr === "relief") {
       p.arc(256, my - 4, 18, 9, 20, 160, 7);
     } else {
       p.stroke([[244, my], [268, my - 2]], 7);

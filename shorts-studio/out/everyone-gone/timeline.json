@@ -1,0 +1,370 @@
+{
+  "fps": 30,
+  "total_frames": 1745,
+  "duration_s": 58.1667,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 96,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 96,
+      "b": 265,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 265,
+      "b": 410,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 410,
+      "b": 480,
+      "set": "highway",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 480,
+      "b": 580,
+      "set": "market",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 6,
+      "a": 580,
+      "b": 756,
+      "set": "mansion",
+      "light": "golden",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 756,
+      "b": 818,
+      "set": "street",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 818,
+      "b": 895,
+      "set": "plant",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 895,
+      "b": 947,
+      "set": "kitchen",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 947,
+      "b": 1022,
+      "set": "market",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1022,
+      "b": 1300,
+      "set": "tower",
+      "light": "night",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 1300,
+      "b": 1582,
+      "set": "street",
+      "light": "golden",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 1582,
+      "b": 1745,
+      "set": "mansion",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 3,
+      "time_s": 0.1,
+      "type": "alarm_clock",
+      "gain": 0.6,
+      "pan": 0.25,
+      "desc": "Bedside alarm beeps, nobody else hears it"
+    },
+    {
+      "frame": 100,
+      "time_s": 3.3333,
+      "type": "wind_gust",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Wind through an empty street"
+    },
+    {
+      "frame": 212,
+      "time_s": 7.0667,
+      "type": "phone_ringout",
+      "gain": 0.7,
+      "pan": 0.15,
+      "desc": "Phone rings out, nobody picks up"
+    },
+    {
+      "frame": 349,
+      "time_s": 11.6333,
+      "type": "whoosh",
+      "gain": 0.8,
+      "pan": -0.3,
+      "desc": "Briefcase tossed away (no boss)"
+    },
+    {
+      "frame": 412,
+      "time_s": 13.7333,
+      "type": "engine_rev",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Sports car roars down the empty highway"
+    },
+    {
+      "frame": 484,
+      "time_s": 16.1333,
+      "type": "cart_rattle",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Overloaded shopping cart rattles past the empty checkout"
+    },
+    {
+      "frame": 693,
+      "time_s": 23.1,
+      "type": "crown_ding",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Crown sparkle as you declare yourself king"
+    },
+    {
+      "frame": 756,
+      "time_s": 25.2,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out on day three"
+    },
+    {
+      "frame": 794,
+      "time_s": 26.4667,
+      "type": "power_down",
+      "gain": 1,
+      "pan": 0,
+      "desc": "City grid winds down, windows go dark block by block"
+    },
+    {
+      "frame": 822,
+      "time_s": 27.4,
+      "type": "steam_hiss",
+      "gain": 0.75,
+      "pan": -0.1,
+      "desc": "Cooling towers exhale their last steam"
+    },
+    {
+      "frame": 880,
+      "time_s": 29.3333,
+      "type": "music_lonely",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Sparse music-box motif for the empty world"
+    },
+    {
+      "frame": 900,
+      "time_s": 30,
+      "type": "tap_sputter",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen tap coughs air"
+    },
+    {
+      "frame": 918,
+      "time_s": 30.6,
+      "type": "water_drip",
+      "gain": 0.8,
+      "pan": 0.05,
+      "desc": "Second to last drop"
+    },
+    {
+      "frame": 932,
+      "time_s": 31.0667,
+      "type": "water_drip",
+      "gain": 0.65,
+      "pan": -0.05,
+      "desc": "Last drop"
+    },
+    {
+      "frame": 955,
+      "time_s": 31.8333,
+      "type": "flies_buzz",
+      "gain": 0.7,
+      "pan": -0.2,
+      "desc": "Flies over rotting supermarket shelves"
+    },
+    {
+      "frame": 1026,
+      "time_s": 34.2,
+      "type": "wind_gust",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "High wind on the radio tower"
+    },
+    {
+      "frame": 1186,
+      "time_s": 39.5333,
+      "type": "radio_static",
+      "gain": 0.85,
+      "pan": 0.1,
+      "desc": "Only static answers"
+    },
+    {
+      "frame": 1398,
+      "time_s": 46.6,
+      "type": "ghost_chime",
+      "gain": 0.7,
+      "pan": -0.3,
+      "desc": "Every light: the electrician appears"
+    },
+    {
+      "frame": 1426,
+      "time_s": 47.5333,
+      "type": "ghost_chime",
+      "gain": 0.7,
+      "pan": 0.3,
+      "desc": "Every tap: the plumber appears"
+    },
+    {
+      "frame": 1449,
+      "time_s": 48.3,
+      "type": "ghost_chime",
+      "gain": 0.75,
+      "pan": 0,
+      "desc": "Every slice of bread: the baker appears"
+    },
+    {
+      "frame": 1492,
+      "time_s": 49.7333,
+      "type": "crowd_murmur",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "A thousand strangers fill the street"
+    },
+    {
+      "frame": 1578,
+      "time_s": 52.6,
+      "type": "music_resolve",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Warm resolve pad under the final line"
+    }
+  ],
+  "xfade": [
+    [
+      580,
+      586
+    ],
+    [
+      756,
+      764
+    ],
+    [
+      1022,
+      1028
+    ],
+    [
+      1300,
+      1308
+    ],
+    [
+      1582,
+      1590
+    ]
+  ],
+  "planned": [
+    [
+      42,
+      42
+    ],
+    [
+      141,
+      141
+    ],
+    [
+      207,
+      207
+    ],
+    [
+      366,
+      366
+    ],
+    [
+      693,
+      693
+    ],
+    [
+      1130,
+      1130
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      349,
+      357
+    ],
+    [
+      693,
+      701
+    ],
+    [
+      796,
+      804
+    ],
+    [
+      1449,
+      1457
+    ]
+  ]
+}

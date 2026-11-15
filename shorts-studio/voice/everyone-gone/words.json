@@ -1,0 +1,1118 @@
+[
+ {
+  "w": "You",
+  "s": 0.0,
+  "e": 0.139,
+  "speaker": "narrator"
+ },
+ {
+  "w": "wake",
+  "s": 0.197,
+  "e": 0.372,
+  "speaker": "narrator"
+ },
+ {
+  "w": "up",
+  "s": 0.406,
+  "e": 0.488,
+  "speaker": "narrator"
+ },
+ {
+  "w": "one",
+  "s": 0.557,
+  "e": 0.673,
+  "speaker": "narrator"
+ },
+ {
+  "w": "morning,",
+  "s": 0.697,
+  "e": 1.01,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 1.045,
+  "e": 1.173,
+  "speaker": "narrator"
+ },
+ {
+  "w": "every",
+  "s": 1.242,
+  "e": 1.428,
+  "speaker": "narrator"
+ },
+ {
+  "w": "other",
+  "s": 1.486,
+  "e": 1.649,
+  "speaker": "narrator"
+ },
+ {
+  "w": "person",
+  "s": 1.695,
+  "e": 1.985,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 2.043,
+  "e": 2.101,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Earth",
+  "s": 2.159,
+  "e": 2.322,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 2.368,
+  "e": 2.45,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gone.",
+  "s": 2.519,
+  "e": 3.204,
+  "speaker": "narrator"
+ },
+ {
+  "w": "The",
+  "s": 3.304,
+  "e": 3.443,
+  "speaker": "narrator"
+ },
+ {
+  "w": "street",
+  "s": 3.478,
+  "e": 3.734,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 3.78,
+  "e": 3.85,
+  "speaker": "narrator"
+ },
+ {
+  "w": "silent.",
+  "s": 3.896,
+  "e": 4.511,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Cars",
+  "s": 4.686,
+  "e": 5.022,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sit",
+  "s": 5.069,
+  "e": 5.22,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 5.266,
+  "e": 5.324,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 5.359,
+  "e": 5.429,
+  "speaker": "narrator"
+ },
+ {
+  "w": "road",
+  "s": 5.487,
+  "e": 5.672,
+  "speaker": "narrator"
+ },
+ {
+  "w": "with",
+  "s": 5.707,
+  "e": 5.812,
+  "speaker": "narrator"
+ },
+ {
+  "w": "their",
+  "s": 5.847,
+  "e": 5.998,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doors",
+  "s": 6.044,
+  "e": 6.323,
+  "speaker": "narrator"
+ },
+ {
+  "w": "open,",
+  "s": 6.392,
+  "e": 6.833,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 6.984,
+  "e": 7.124,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nobody",
+  "s": 7.205,
+  "e": 7.576,
+  "speaker": "narrator"
+ },
+ {
+  "w": "answers",
+  "s": 7.635,
+  "e": 7.925,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 7.971,
+  "e": 8.041,
+  "speaker": "narrator"
+ },
+ {
+  "w": "phone.",
+  "s": 8.087,
+  "e": 8.83,
+  "speaker": "narrator"
+ },
+ {
+  "w": "At",
+  "s": 8.931,
+  "e": 9.082,
+  "speaker": "narrator"
+ },
+ {
+  "w": "first,",
+  "s": 9.14,
+  "e": 9.465,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it's",
+  "s": 9.5,
+  "e": 9.639,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 9.674,
+  "e": 9.744,
+  "speaker": "narrator"
+ },
+ {
+  "w": "best",
+  "s": 9.802,
+  "e": 10.034,
+  "speaker": "narrator"
+ },
+ {
+  "w": "day",
+  "s": 10.104,
+  "e": 10.336,
+  "speaker": "narrator"
+ },
+ {
+  "w": "of",
+  "s": 10.382,
+  "e": 10.44,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 10.487,
+  "e": 10.614,
+  "speaker": "narrator"
+ },
+ {
+  "w": "life.",
+  "s": 10.672,
+  "e": 11.149,
+  "speaker": "narrator"
+ },
+ {
+  "w": "No",
+  "s": 11.427,
+  "e": 11.566,
+  "speaker": "narrator"
+ },
+ {
+  "w": "boss,",
+  "s": 11.625,
+  "e": 12.042,
+  "speaker": "narrator"
+ },
+ {
+  "w": "no",
+  "s": 12.135,
+  "e": 12.251,
+  "speaker": "narrator"
+ },
+ {
+  "w": "traffic,",
+  "s": 12.298,
+  "e": 12.786,
+  "speaker": "narrator"
+ },
+ {
+  "w": "no",
+  "s": 12.867,
+  "e": 13.006,
+  "speaker": "narrator"
+ },
+ {
+  "w": "lines.",
+  "s": 13.087,
+  "e": 13.668,
+  "speaker": "narrator"
+ },
+ {
+  "w": "You",
+  "s": 13.768,
+  "e": 13.919,
+  "speaker": "narrator"
+ },
+ {
+  "w": "take",
+  "s": 13.977,
+  "e": 14.14,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 14.163,
+  "e": 14.186,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sports",
+  "s": 14.221,
+  "e": 14.511,
+  "speaker": "narrator"
+ },
+ {
+  "w": "car",
+  "s": 14.546,
+  "e": 14.72,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 14.79,
+  "e": 14.859,
+  "speaker": "narrator"
+ },
+ {
+  "w": "could",
+  "s": 14.906,
+  "e": 15.045,
+  "speaker": "narrator"
+ },
+ {
+  "w": "never",
+  "s": 15.138,
+  "e": 15.393,
+  "speaker": "narrator"
+ },
+ {
+  "w": "afford,",
+  "s": 15.451,
+  "e": 15.951,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 16.067,
+  "e": 16.194,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 16.253,
+  "e": 16.334,
+  "speaker": "narrator"
+ },
+ {
+  "w": "fill",
+  "s": 16.403,
+  "e": 16.554,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 16.601,
+  "e": 16.636,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cart",
+  "s": 16.705,
+  "e": 16.938,
+  "speaker": "narrator"
+ },
+ {
+  "w": "at",
+  "s": 16.972,
+  "e": 17.03,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 17.065,
+  "e": 17.135,
+  "speaker": "narrator"
+ },
+ {
+  "w": "supermarket",
+  "s": 17.17,
+  "e": 17.797,
+  "speaker": "narrator"
+ },
+ {
+  "w": "without",
+  "s": 17.831,
+  "e": 18.133,
+  "speaker": "narrator"
+ },
+ {
+  "w": "paying",
+  "s": 18.203,
+  "e": 18.54,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 18.586,
+  "e": 18.621,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cent.",
+  "s": 18.702,
+  "e": 19.341,
+  "speaker": "narrator"
+ },
+ {
+  "w": "You",
+  "s": 19.44,
+  "e": 19.603,
+  "speaker": "narrator"
+ },
+ {
+  "w": "move",
+  "s": 19.672,
+  "e": 19.858,
+  "speaker": "narrator"
+ },
+ {
+  "w": "into",
+  "s": 19.893,
+  "e": 20.032,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 20.09,
+  "e": 20.16,
+  "speaker": "narrator"
+ },
+ {
+  "w": "biggest",
+  "s": 20.206,
+  "e": 20.497,
+  "speaker": "narrator"
+ },
+ {
+  "w": "mansion",
+  "s": 20.555,
+  "e": 20.891,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 20.938,
+  "e": 21.007,
+  "speaker": "narrator"
+ },
+ {
+  "w": "town",
+  "s": 21.077,
+  "e": 21.356,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 21.402,
+  "e": 21.483,
+  "speaker": "narrator"
+ },
+ {
+  "w": "give",
+  "s": 21.53,
+  "e": 21.669,
+  "speaker": "narrator"
+ },
+ {
+  "w": "yourself",
+  "s": 21.704,
+  "e": 22.041,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 22.099,
+  "e": 22.122,
+  "speaker": "narrator"
+ },
+ {
+  "w": "new",
+  "s": 22.192,
+  "e": 22.331,
+  "speaker": "narrator"
+ },
+ {
+  "w": "job.",
+  "s": 22.389,
+  "e": 23.109,
+  "speaker": "narrator"
+ },
+ {
+  "w": "I",
+  "s": 23.209,
+  "e": 23.302,
+  "speaker": "you"
+ },
+ {
+  "w": "declare",
+  "s": 23.395,
+  "e": 23.697,
+  "speaker": "you"
+ },
+ {
+  "w": "myself",
+  "s": 23.731,
+  "e": 24.068,
+  "speaker": "you"
+ },
+ {
+  "w": "king",
+  "s": 24.138,
+  "e": 24.335,
+  "speaker": "you"
+ },
+ {
+  "w": "of",
+  "s": 24.37,
+  "e": 24.416,
+  "speaker": "you"
+ },
+ {
+  "w": "everything.",
+  "s": 24.486,
+  "e": 25.206,
+  "speaker": "you"
+ },
+ {
+  "w": "But",
+  "s": 25.306,
+  "e": 25.492,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 25.527,
+  "e": 25.596,
+  "speaker": "narrator"
+ },
+ {
+  "w": "day",
+  "s": 25.666,
+  "e": 25.863,
+  "speaker": "narrator"
+ },
+ {
+  "w": "three,",
+  "s": 25.933,
+  "e": 26.27,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 26.304,
+  "e": 26.374,
+  "speaker": "narrator"
+ },
+ {
+  "w": "lights",
+  "s": 26.432,
+  "e": 26.688,
+  "speaker": "narrator"
+ },
+ {
+  "w": "go",
+  "s": 26.734,
+  "e": 26.862,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out,",
+  "s": 26.943,
+  "e": 27.175,
+  "speaker": "narrator"
+ },
+ {
+  "w": "because",
+  "s": 27.222,
+  "e": 27.489,
+  "speaker": "narrator"
+ },
+ {
+  "w": "nobody",
+  "s": 27.547,
+  "e": 27.965,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 28.011,
+  "e": 28.081,
+  "speaker": "narrator"
+ },
+ {
+  "w": "left",
+  "s": 28.15,
+  "e": 28.348,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 28.383,
+  "e": 28.441,
+  "speaker": "narrator"
+ },
+ {
+  "w": "run",
+  "s": 28.534,
+  "e": 28.731,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 28.777,
+  "e": 28.847,
+  "speaker": "narrator"
+ },
+ {
+  "w": "power",
+  "s": 28.893,
+  "e": 29.149,
+  "speaker": "narrator"
+ },
+ {
+  "w": "plant.",
+  "s": 29.195,
+  "e": 29.811,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then",
+  "s": 29.911,
+  "e": 30.108,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 30.155,
+  "e": 30.224,
+  "speaker": "narrator"
+ },
+ {
+  "w": "taps",
+  "s": 30.271,
+  "e": 30.608,
+  "speaker": "narrator"
+ },
+ {
+  "w": "run",
+  "s": 30.689,
+  "e": 30.886,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dry.",
+  "s": 30.956,
+  "e": 31.467,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then",
+  "s": 31.618,
+  "e": 31.78,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 31.815,
+  "e": 31.885,
+  "speaker": "narrator"
+ },
+ {
+  "w": "food",
+  "s": 31.943,
+  "e": 32.198,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 32.245,
+  "e": 32.314,
+  "speaker": "narrator"
+ },
+ {
+  "w": "every",
+  "s": 32.372,
+  "e": 32.558,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shelf",
+  "s": 32.616,
+  "e": 32.883,
+  "speaker": "narrator"
+ },
+ {
+  "w": "starts",
+  "s": 32.941,
+  "e": 33.197,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 33.231,
+  "e": 33.301,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rot.",
+  "s": 33.394,
+  "e": 34.044,
+  "speaker": "narrator"
+ },
+ {
+  "w": "So",
+  "s": 34.144,
+  "e": 34.295,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 34.353,
+  "e": 34.434,
+  "speaker": "narrator"
+ },
+ {
+  "w": "climb",
+  "s": 34.504,
+  "e": 34.771,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 34.806,
+  "e": 34.875,
+  "speaker": "narrator"
+ },
+ {
+  "w": "tallest",
+  "s": 34.922,
+  "e": 35.259,
+  "speaker": "narrator"
+ },
+ {
+  "w": "radio",
+  "s": 35.317,
+  "e": 35.607,
+  "speaker": "narrator"
+ },
+ {
+  "w": "tower",
+  "s": 35.665,
+  "e": 35.944,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 36.002,
+  "e": 36.094,
+  "speaker": "narrator"
+ },
+ {
+  "w": "call",
+  "s": 36.164,
+  "e": 36.385,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out",
+  "s": 36.443,
+  "e": 36.57,
+  "speaker": "narrator"
+ },
+ {
+  "w": "into",
+  "s": 36.617,
+  "e": 36.768,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 36.826,
+  "e": 36.896,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dark.",
+  "s": 36.942,
+  "e": 37.72,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Hello?",
+  "s": 37.82,
+  "e": 38.319,
+  "speaker": "you"
+ },
+ {
+  "w": "Is",
+  "s": 38.354,
+  "e": 38.47,
+  "speaker": "you"
+ },
+ {
+  "w": "anybody",
+  "s": 38.517,
+  "e": 38.795,
+  "speaker": "you"
+ },
+ {
+  "w": "out",
+  "s": 38.842,
+  "e": 38.969,
+  "speaker": "you"
+ },
+ {
+  "w": "there?",
+  "s": 39.016,
+  "e": 39.445,
+  "speaker": "you"
+ },
+ {
+  "w": "And",
+  "s": 39.545,
+  "e": 39.696,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 39.742,
+  "e": 39.812,
+  "speaker": "narrator"
+ },
+ {
+  "w": "only",
+  "s": 39.882,
+  "e": 40.067,
+  "speaker": "narrator"
+ },
+ {
+  "w": "thing",
+  "s": 40.125,
+  "e": 40.311,
+  "speaker": "narrator"
+ },
+ {
+  "w": "that",
+  "s": 40.358,
+  "e": 40.474,
+  "speaker": "narrator"
+ },
+ {
+  "w": "answers,",
+  "s": 40.532,
+  "e": 41.089,
+  "speaker": "narrator"
+ },
+ {
+  "w": "night",
+  "s": 41.217,
+  "e": 41.53,
+  "speaker": "narrator"
+ },
+ {
+  "w": "after",
+  "s": 41.6,
+  "e": 41.855,
+  "speaker": "narrator"
+ },
+ {
+  "w": "night,",
+  "s": 41.925,
+  "e": 42.273,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 42.32,
+  "e": 42.482,
+  "speaker": "narrator"
+ },
+ {
+  "w": "static.",
+  "s": 42.529,
+  "e": 43.307,
+  "speaker": "narrator"
+ },
+ {
+  "w": "You",
+  "s": 43.407,
+  "e": 43.57,
+  "speaker": "narrator"
+ },
+ {
+  "w": "see,",
+  "s": 43.639,
+  "e": 44.046,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 44.22,
+  "e": 44.313,
+  "speaker": "narrator"
+ },
+ {
+  "w": "were",
+  "s": 44.347,
+  "e": 44.498,
+  "speaker": "narrator"
+ },
+ {
+  "w": "never",
+  "s": 44.591,
+  "e": 44.881,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doing",
+  "s": 44.94,
+  "e": 45.183,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 45.23,
+  "e": 45.288,
+  "speaker": "narrator"
+ },
+ {
+  "w": "alone.",
+  "s": 45.334,
+  "e": 45.857,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Every",
+  "s": 46.24,
+  "e": 46.542,
+  "speaker": "narrator"
+ },
+ {
+  "w": "light,",
+  "s": 46.611,
+  "e": 47.053,
+  "speaker": "narrator"
+ },
+ {
+  "w": "every",
+  "s": 47.122,
+  "e": 47.436,
+  "speaker": "narrator"
+ },
+ {
+  "w": "tap,",
+  "s": 47.517,
+  "e": 47.888,
+  "speaker": "narrator"
+ },
+ {
+  "w": "every",
+  "s": 47.923,
+  "e": 48.214,
+  "speaker": "narrator"
+ },
+ {
+  "w": "slice",
+  "s": 48.306,
+  "e": 48.69,
+  "speaker": "narrator"
+ },
+ {
+  "w": "of",
+  "s": 48.724,
+  "e": 48.794,
+  "speaker": "narrator"
+ },
+ {
+  "w": "bread",
+  "s": 48.864,
+  "e": 49.177,
+  "speaker": "narrator"
+ },
+ {
+  "w": "was",
+  "s": 49.247,
+  "e": 49.409,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 49.467,
+  "e": 49.502,
+  "speaker": "narrator"
+ },
+ {
+  "w": "thousand",
+  "s": 49.653,
+  "e": 50.234,
+  "speaker": "narrator"
+ },
+ {
+  "w": "strangers",
+  "s": 50.303,
+  "e": 50.814,
+  "speaker": "narrator"
+ },
+ {
+  "w": "quietly",
+  "s": 50.872,
+  "e": 51.313,
+  "speaker": "narrator"
+ },
+ {
+  "w": "keeping",
+  "s": 51.371,
+  "e": 51.685,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 51.743,
+  "e": 51.836,
+  "speaker": "narrator"
+ },
+ {
+  "w": "alive.",
+  "s": 51.906,
+  "e": 52.695,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Now",
+  "s": 52.795,
+  "e": 52.992,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 53.05,
+  "e": 53.132,
+  "speaker": "narrator"
+ },
+ {
+  "w": "own",
+  "s": 53.225,
+  "e": 53.375,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 53.41,
+  "e": 53.492,
+  "speaker": "narrator"
+ },
+ {
+  "w": "whole",
+  "s": 53.538,
+  "e": 53.735,
+  "speaker": "narrator"
+ },
+ {
+  "w": "world,",
+  "s": 53.77,
+  "e": 54.107,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 54.13,
+  "e": 54.211,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 54.258,
+  "e": 54.328,
+  "speaker": "narrator"
+ },
+ {
+  "w": "only",
+  "s": 54.397,
+  "e": 54.595,
+  "speaker": "narrator"
+ },
+ {
+  "w": "thing",
+  "s": 54.653,
+  "e": 54.827,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 54.885,
+  "e": 54.966,
+  "speaker": "narrator"
+ },
+ {
+  "w": "want",
+  "s": 55.059,
+  "e": 55.349,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 55.419,
+  "e": 55.512,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 55.57,
+  "e": 55.593,
+  "speaker": "narrator"
+ },
+ {
+  "w": "neighbor.",
+  "s": 55.674,
+  "e": 56.324,
+  "speaker": "narrator"
+ }
+]

@@ -32,6 +32,13 @@ def build_sfx(tl, N, v_ref):
             if np.isfinite(cur):
                 bed *= dbg((v_ref - 24.0) - cur)
             place(out, bed, t0)
+        elif s["set"] in ("street", "mansion", "tower", "plant"):
+            # outdoor sets without traffic: a thin wind bed (the "nobody is here" room tone)
+            bed = G.amb_wind(dur, r)
+            cur = integrated(bed)
+            if np.isfinite(cur):
+                bed *= dbg((v_ref - 27.0) - cur)
+            place(out, bed, t0)
 
     # Discrete timeline events
     dispatch = {
@@ -47,6 +54,21 @@ def build_sfx(tl, N, v_ref):
         "siren_chirp":   (lambda: G.siren_chirp(r), -9.5),
         "wiper_sweep":   (lambda: G.wiper_sweep(r), -12.0),
         "camera_beep":   (lambda: G.camera_beep(r), -7.5),
+        "alarm_clock":   (lambda: G.alarm_clock(r), -13.0),
+        "wind_gust":     (lambda: G.wind_gust(r), -14.0),
+        "phone_ringout": (lambda: G.phone_ringout(r), -13.0),
+        "whoosh":        (lambda: G.whoosh(r), -9.0),
+        "engine_rev":    (lambda: G.engine_rev(r), -8.0),
+        "cart_rattle":   (lambda: G.cart_rattle(r), -12.0),
+        "crown_ding":    (lambda: G.crown_ding(r), -10.0),
+        "power_down":    (lambda: G.power_down(r), -5.0),
+        "steam_hiss":    (lambda: G.steam_hiss(r), -13.0),
+        "tap_sputter":   (lambda: G.tap_sputter(r), -10.0),
+        "water_drip":    (lambda: G.water_drip(r), -9.0),
+        "flies_buzz":    (lambda: G.flies_buzz(r), -13.0),
+        "radio_static":  (lambda: G.radio_static(r), -9.0),
+        "ghost_chime":   (lambda: G.ghost_chime(r), -10.0),
+        "crowd_murmur":  (lambda: G.crowd_murmur(r), -12.0),
     }
 
     for ev in tl["events"]:
@@ -98,8 +120,35 @@ def build_score(tl, N):
     stop_idx = ns(stop_ev)
     out[:, stop_idx:] = 0.0
 
-    # Payoff reveal pad (54.8s -> end)
-    if dur_s > 55.0:
+    lonely_ev = next((e["time_s"] for e in tl["events"] if e["type"] == "music_lonely"), None)
+    resolve_ev = next((e["time_s"] for e in tl["events"] if e["type"] == "music_resolve"), None)
+
+    # Optional sparse "empty world" section (music_lonely -> music_resolve): slow music-box arpeggios over a low pad
+    if lonely_ev is not None:
+        end = resolve_ev if resolve_ev is not None else dur_s
+        chords = [[50, 57, 62, 65], [48, 55, 60, 64], [46, 53, 58, 62], [45, 52, 57, 61]]  # Dm - C - Bb - A
+        step, bar = 0.75, 3.0
+        t, k = lonely_ev, 0
+        while t < end - 0.4:
+            ch = chords[(k // 4) % len(chords)]
+            if k % 4 == 0:
+                seg = min(bar + 0.6, end - t)
+                place(out, I.pad([I.m2f(m - 12) for m in ch[:3]], seg, 0.2, r, att=0.9, rel=0.9), t)
+            note = ch[[0, 2, 3, 2][k % 4]] + 12
+            place(out, pan(I.musicbox(I.m2f(note), 0.42, r, dur=1.5), 0.2 * (-1) ** k), t)
+            t += step
+            k += 1
+
+    # Payoff pad: at the music_resolve event (warm F add9) when the timeline has one, else the original 55.0 s Dm pad
+    if resolve_ev is not None:
+        if dur_s - resolve_ev > 0.5:
+            pad = I.pad([I.m2f(41), I.m2f(53), I.m2f(57), I.m2f(60), I.m2f(67)], dur_s - resolve_ev, 0.5, r, att=0.5, rel=0.6)
+            place(out, pad, resolve_ev)
+            for i, m in enumerate([72, 77, 81, 84]):
+                tn = resolve_ev + 0.9 + i * 0.6
+                if tn < dur_s - 0.3:
+                    place(out, pan(I.musicbox(I.m2f(m), 0.4, r, dur=1.6), 0.15 * (-1) ** i), tn)
+    elif dur_s > 55.0:
         pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - 55.0, 0.48, r, att=0.4, rel=0.5)
         place(out, pad, 55.0)
 
