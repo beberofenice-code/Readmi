@@ -18,16 +18,31 @@ Upgraded from `cartoon-3d-short` v1 to eliminate single-scene limits, dual-WebGL
 4. **DOM `<OverlayLayer>` (`templates/core/OverlayLayer.tsx`):**
    - Renders crisp diegetic UI (`<DashcamHUD>` with live `MPH`, `REC` dot, timestamp, fisheye vignette) and optional `words.json` 1-2 word pop-captions **outside** `<ThreeCanvas>` so WebGL DOF and colour grading never blur text.
 5. **Single-Source Master Timeline (`templates/scripts/export_timeline.mjs`):**
-   - `story.ts` is the sole source of truth. `export_timeline.mjs` compiles shots, crossfades, camera moves, kicks, and foley triggers to `timeline.json`, read directly by Python audio (`sfx.py`, `music.py`, `mix.py`) and `short_qa.py`.
+   - `story.ts` is the sole source of truth. `export_timeline.mjs` compiles shots, crossfades, camera moves, kicks, and foley triggers to `timeline.json`, read directly by Python audio (`mix.py`, which drives `sfx_gen.py` foley and `instruments.py` score synthesis) and `short_qa.py`.
 6. **Single-Bundle, Per-Shot Resumable Renderer (`templates/scripts/render.mjs`):**
    - Bundles Webpack **once** to `.remotion-bundle/` (no 1.3 GB temp-dir duplication per run), auto-detects OS Chromium/Chrome and GPU backend (`angle` on desktop vs `swangle --concurrency=1` on Termux/headless Linux), renders shots individually with `+xfade` handles, and stitches via FFmpeg `xfade`.
 
+## Dependency Rules (required)
+- **Pin `@react-three/postprocessing` to exactly `3.0.4`** (`npm install -E @react-three/postprocessing@3.0.4`; `package.json` must read `"3.0.4"`, never `^3`).
+  Versions >= 3.1 create the `EffectComposer` inside a `useEffect` + `setState`, so on the single `advance()` Remotion issues
+  per still/frame the composer does not exist yet while its priority-1 `useFrame` still suppresses R3F's default render:
+  every frame renders as an empty canvas (only the DOM background / HUD shows). 3.0.4 builds the composer synchronously
+  (`useMemo` + `useLayoutEffect`), so frame 1 of every single-pass render is drawn.
+- Peer set known to work with it: `three@0.187`, `@react-three/fiber@9`, `postprocessing@6.39`, `react@19`, Remotion `4.0.x`.
+- Headless Linux (no `DISPLAY`/`WAYLAND_DISPLAY`) has no GPU: `render.mjs` falls back to `--gl=swangle`; override with `REMOTION_GL`.
+- `HeroRig25D` faces local **+z** (face decal, vest opening, hands, feet). Pose `yaw` so +z points at the camera for front-on shots;
+  flat-coloured rig parts must use a texture (`cardShade` samples `map`; an untextured material renders black).
+
 ## 8-Stage Execution Pipeline
 1. **Script (`SCRIPT.md`):** Paradox hook in line 1 (10-16 words), 3-5 escalating beats, `[SPEAKER]` tags for micro-dialogue, and ironic twist ending on the final word (~3.7 words/s).
-2. **Voice & Alignment (`voice/`):** Generate/record 48 kHz `voice.wav`, trim pauses >0.25 s, run WhisperX / forced alignment to emit `voice/words.json` + 30 fps `voice/mouth_env.json`.
+2. **Voice & Alignment (`voice/<slug>/`):** Generate the narration with ElevenLabs: `node scripts/short3d_runner.mjs --slug <slug> --comp <CompName> --stage voice` runs `scripts/elevenlabs_tts.py`, which reads every `[SPEAKER] line` of `SCRIPT.md`, calls `POST https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps` per line, trims each clip to its aligned speech, joins lines with 0.10 s gaps, converts via ffmpeg to 48 kHz mono 16-bit `voice/<slug>/voice.wav`, and groups `character_start_times_seconds` into word-level `voice/<slug>/words.json` (`[{"w","s","e","speaker"}]`, used by `mix.py` for ducking and by `<PopCaptions>`).
+   - Env: `ELEVENLABS_API_KEY` (required), `ELEVENLABS_VOICE_ID` (default voice), optional `ELEVENLABS_VOICE_ID_<SPEAKER>` per speaker (e.g. `ELEVENLABS_VOICE_ID_AGENT`), optional `ELEVENLABS_MODEL_ID` (default `eleven_multilingual_v2`). Check the plan offline with `python3 scripts/elevenlabs_tts.py --script src/videos/<slug>/SCRIPT.md --out-dir voice/<slug> --dry-run`.
+   - Cloud sessions: `api.elevenlabs.io` must be reachable. Prefer saving the key as an environment network secret for that host (header `xi-api-key`) and set `ELEVENLABS_API_KEY` to any placeholder; never paste the key into chat or commit it.
+   - `--stage all` runs this automatically when `ELEVENLABS_API_KEY` is set and no `voice.wav` exists (`--force-voice` regenerates); without a key it is skipped and the audio stage mixes score + foley only.
+   - After a new voice, re-run Stage 6 (audio) so the mix ducks under the narration, and fit `story.ts` shot lengths to `words.json` if the read is longer than `TOTAL`.
 3. **Master Timeline (`story.ts` -> `timeline.json`):** Define `SHOTS`, `CAMS` (`glide` 18-40 f, creeping `pushK` 0.15-0.35 %/f on every hold, 7-frame sign-flipping `KICKS`), `DOF`, and `EVENTS`. Run `node scripts/export_timeline.mjs src/videos/<short>/story.ts out/<short>/timeline.json`.
 4. **Sets & Rigs (`sets.ts`, `rig25d.ts`):** Build low-poly + painted `CanvasTexture` environments (`paint.ts`), put character/sky/particle meshes on `NOINK` (`layer 3`), and give readable signs unlit `MeshBasicMaterial` faces.
 5. **Stills Gate:** Run `node scripts/render.mjs stills --comp DashcamShort --out out/dashcam/stills` (renders 1 midpoint still per shot from the cached bundle) and inspect with `sbs_sheet.py`.
 6. **Procedural Audio (`audio/mix.py`):** Run `python audio/mix.py --timeline out/dashcam/timeline.json --voice voice/voice.wav --words voice/words.json`. Synthesizes foley + score, ducks `-3 dB` under speech, limits at `-1.2 dBTP`, and hits `-14.5 LUFS`.
-7. **Per-Shot Render & Stitch:** Run `node scripts/render.mjsrender-shots --comp DashcamShort --timeline out/dashcam/timeline.json --audio audio/mix.wav --out out/dashcam/final-short.mp4`.
+7. **Per-Shot Render & Stitch:** Run `node scripts/render.mjs render-shots --comp DashcamShort --timeline out/dashcam/timeline.json --audio audio/mix.wav --out out/dashcam/final-short.mp4`.
 8. **Frame-by-Frame QA:** Run `python scripts/short_qa.py out/dashcam/final-short.mp4 out/dashcam/qa out/dashcam/timeline.json` to verify zero unplanned black, white, pop, or >=12f frozen spans.

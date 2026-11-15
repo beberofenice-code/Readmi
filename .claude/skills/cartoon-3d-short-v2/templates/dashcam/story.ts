@@ -97,6 +97,17 @@ export const highwaySpeedMps = (f: number): number => {
   return 0;
 };
 
+/** Shot 10 wood-panel wagon (victim car) position; shared by sets.ts and the hood-cam in CAMS[10] */
+export const wagonZ = (f: number) => (f < 1418 ? -6.8 + 2.6 * smooth((f - 1385) / 33) : -4.2);
+
+/** Brake-light level 0..1, eased over 4 frames at each edge (no single-frame light pops) */
+export const brakeK = (f: number) => {
+  const win: [number, number][] = [[16, 95], [1385, 1440], [1675, 1760]];
+  let k = 0;
+  for (const [a, b] of win) k = Math.max(k, Math.min(1, Math.max(0, (f - a + 1) / 4), Math.max(0, (b - f) / 4)));
+  return k;
+};
+
 export const dashcamMph = (f: number): number => highwaySpeedMps(f) * 2.23694;
 
 // ---------------- Camera Grammar (smootherstep glides, creeping holds, 7f kicks) ----------------
@@ -141,8 +152,8 @@ const dolly = (pos: V3, look: V3, k: number, rest: Partial<Cam> = {}): ShotCam =
 export const CAMS: Record<number, CamKey[]> = {
   // Shot 1: Cabin low-angle push to brake pedal slam
   1: [
-    { f: 0,  s: (f) => dolly([0.45, 0.95, -0.35], [-0.15, 0.35, 0.65], pushK(f, 0, 0.003, 0.006, 24), { fov: 46 }) },
-    { f: 16, dur: 20, s: (f) => dolly([0.22, 0.52, 0.05], [-0.12, 0.22, 0.72], pushK(f, 16, 0.0035), { fov: 38, roll: -0.05 }) },
+    { f: 0,  s: (f) => dolly([1.75, 0.92, 0.12], [-0.3, 0.86, 0.15], pushK(f, 0, 0.003, 0.006, 24), { fov: 56 }) },
+    { f: 13, cut: true, s: (f) => dolly([0.66, 0.54, 0.4], [-0.16, 0.27, 0.74], pushK(f, 13, 0.0035), { fov: 48, roll: -0.04 }) },
   ],
   // Shot 2: Highway side-tracking -> bumper smash close-up
   2: [
@@ -156,19 +167,19 @@ export const CAMS: Record<number, CamKey[]> = {
   ],
   // Shot 4: Suburban driveway lateral pan across repair bill, doctor, agent & cash pile
   4: [
-    { f: 295, s: (f) => dolly([-2.8, 1.65, -6.4], [-1.2, 1.2, 0], pushK(f, 295, 0.002), { fov: 40 }) },
-    { f: 350, dur: 36, s: (f) => dolly([2.4, 1.75, -6.8], [1.4, 1.25, 0.2], pushK(f, 350, 0.0028, 0.0055, 32), { fov: 38 }) },
+    { f: 295, s: (f) => dolly([-2.3, 1.6, -6.3], [-1.45, 1.2, -0.8], pushK(f, 295, 0.002), { fov: 40 }) },
+    { f: 350, dur: 36, s: (f) => dolly([2.0, 1.6, -6.3], [1.35, 1.25, -0.8], pushK(f, 350, 0.0028, 0.0055, 32), { fov: 40 }) },
   ],
   // Shot 5: Golden-hour highway target selection + 2-car box-in crane rise
   5: [
     { f: 465, s: (f) => dolly([1.8, 1.6, 4.8], [0, 1.15, -3.5], pushK(f, 465, 0.002), { fov: 40 }) },
-    { f: 585, dur: 28, s: (f) => dolly([-2.2, 1.65, -6.2], [0, 1.1, -2.2], pushK(f, 585, 0.0022), { fov: 40 }) },
+    { f: 585, dur: 28, s: (f) => dolly([-3.8, 2.5, -10.5], [0, 0.95, -3.4], pushK(f, 585, 0.0022), { fov: 42 }) },
     { f: 685, dur: 34, s: (f) => dolly([0.4, 5.8, -10.5], [-0.8, 1.0, -1.5], pushK(f, 685, 0.0025), { fov: 44, roll: 0.04 }) },
   ],
   // Shot 6: Night cash-stuffed garage -> whip glide to supercar crash
   6: [
-    { f: 815, s: (f) => dolly([0.5, 1.5, -6.5], [0, 1.35, 1.5], pushK(f, 815, 0.0026), { fov: 40 }) },
-    { f: 882, dur: 22, s: (f) => dolly([5.2, 1.6, -4.8], [4.5, 1.05, 1.2], pushK(f, 882, 0.003, 0.006, 26), { fov: 42, roll: -0.05 }) },
+    { f: 815, s: (f) => dolly([0.8, 1.6, -5.4], [0.3, 1.25, 3.2], pushK(f, 815, 0.0026), { fov: 44 }) },
+    { f: 880, dur: 20, s: (f) => dolly([11.0, 3.0, -1.4], [1.7, 1.1, -7.0], pushK(f, 880, 0.003, 0.006, 26), { fov: 46, roll: -0.05 }) },
   ],
   // Shot 7: Insurance skyscraper office symmetrical dolly to desk counter flip
   7: [
@@ -181,18 +192,21 @@ export const CAMS: Record<number, CamKey[]> = {
   ],
   // Shot 9: Night driveway trooper ticketing victim in foreground, smug scammer behind
   9: [
-    { f: 1145, s: (f) => dolly([-1.4, 1.42, -4.5], [-0.2, 1.2, 0.5], pushK(f, 1145, 0.0022), { fov: 40, roll: 0.06 }) },
-    { f: 1215, dur: 30, s: (f) => dolly([-2.1, 1.35, -6.2], [-0.5, 1.18, -1.2], pushK(f, 1215, 0.002), { fov: 42, roll: 0.04 }) },
+    { f: 1145, s: (f) => dolly([-0.15, 1.5, -18.6], [0.0, 1.2, -12.6], pushK(f, 1145, 0.0022), { fov: 44, roll: 0.03 }) },
+    { f: 1215, dur: 30, s: (f) => dolly([-0.05, 1.48, -17.4], [0.15, 1.3, -12.5], pushK(f, 1215, 0.002), { fov: 40, roll: 0.02 }) },
   ],
   // Shot 10: Rainy highway wood-panel wagon profile -> victim windshield POV crash
   10: [
     { f: 1305, s: (f) => dolly([5.2, 1.45, -3.8], [0, 1.05, -3.6], pushK(f, 1305, 0.0024), { fov: 40 }) },
-    { f: 1372, cut: true, s: (f) => dolly([0, 1.35, -4.4], [0, 1.08, 0.4], pushK(f, 1372, 0.0028), { fov: 44 }) },
+    // hood-cam rides with the wagon (a fixed camera let the wagon drive through the lens at f1405-1412)
+    { f: 1372, cut: true, s: (f) => ({ pos: [0, 1.5, wagonZ(f) + 0.5], look: [0, 0.95, wagonZ(f) + 6.0], fov: 50 }) },
+    // "...and out he comes, clutching his neck": 3/4 angle on the scammer beside his crushed bumper
+    { f: 1440, cut: true, s: (f) => dolly([3.6, 1.5, -6.0], [0.7, 1.05, -2.2], pushK(f, 1440, 0.0024), { fov: 40 }) },
   ],
   // Shot 11: Quiet driver cabin OTS -> glide zoom to taped windshield dashcam
   11: [
-    { f: 1490, cut: true, s: (f) => dolly([0.52, 1.26, -0.45], [-0.22, 1.18, 0.35], pushK(f, 1490, 0.0022), { fov: 40 }) },
-    { f: 1568, dur: 26, s: (f) => dolly([-0.15, 1.28, -0.15], [0.0, 1.34, 0.72], pushK(f, 1568, 0.0035, 0.006, 30), { fov: 34 }) },
+    { f: 1490, cut: true, s: (f) => dolly([0.05, 1.55, -1.25], [-0.12, 1.36, 0.78], pushK(f, 1490, 0.0022), { fov: 44 }) },
+    { f: 1568, dur: 26, s: (f) => dolly([0.06, 1.42, 0.1], [-0.05, 1.43, 0.74], pushK(f, 1568, 0.0035, 0.006, 30), { fov: 36 }) },
   ],
   // Shot 12: Wide fisheye Dashcam HUD playback -> exterior reverse push onto dashcam lens
   12: [
@@ -248,6 +262,7 @@ export const DOF: DofEntry[] = [
   { f: 1075, cInf: 14 }, // hot tub night bokeh on string lights
   { f: 1145, cInf: 11 }, // trooper foreground / scammer background
   { f: 1305, cInf: 6 },
+  { f: 1440, cInf: 10 }, // scammer out of the car, rain bokeh behind
   { f: 1490, cInf: 13 }, // calm driver & dashcam box CU
   { f: 1645, cInf: 0 },  // dashcam wide fisheye all-in-focus
   { f: 1790, cInf: 14 }, // final push onto dashcam lens
