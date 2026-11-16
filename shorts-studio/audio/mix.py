@@ -32,6 +32,12 @@ def build_sfx(tl, N, v_ref):
             if np.isfinite(cur):
                 bed *= dbg((v_ref - 24.0) - cur)
             place(out, bed, t0)
+        elif s["set"] in ("elevator", "lobby", "office"):
+            bed = G.amb_room(dur, r, hum=(s["set"] == "elevator"))
+            cur = integrated(bed)
+            if np.isfinite(cur):
+                bed *= dbg((v_ref - 27.0) - cur)
+            place(out, bed, t0)
 
     # Discrete timeline events
     dispatch = {
@@ -47,6 +53,22 @@ def build_sfx(tl, N, v_ref):
         "siren_chirp":   (lambda: G.siren_chirp(r), -9.5),
         "wiper_sweep":   (lambda: G.wiper_sweep(r), -12.0),
         "camera_beep":   (lambda: G.camera_beep(r), -7.5),
+        # "The Elevator Stranger"
+        "footsteps_run": (lambda: G.footsteps_run(r), -9.0),
+        "door_slide":    (lambda: G.door_slide(r), -9.5),
+        "elevator_ding": (lambda: G.elevator_ding(r), -8.0),
+        "floor_tick":    (lambda: G.floor_tick(r), -11.0),
+        "elevator_jolt": (lambda: G.elevator_jolt(r), -4.5),
+        "alarm_buzz":    (lambda: G.alarm_buzz(r), -12.0),
+        "door_pound":    (lambda: G.door_pound(r), -5.5),
+        "lights_flicker":(lambda: G.lights_flicker(r), -11.0),
+        "bubble_pop":    (lambda: G.bubble_pop(r), -9.0),
+        "pencil_scribble": (lambda: G.pencil_scribble(r), -10.0),
+        "water_drip":    (lambda: G.water_drip(r), -8.0),
+        "time_whoosh":   (lambda: G.time_whoosh(r), -8.5),
+        "chair_creak":   (lambda: G.chair_creak(r), -10.0),
+        "cup_set":       (lambda: G.cup_set(r), -9.0),
+        "stop_knob":     (lambda: G.stop_knob(r), -5.5),
     }
 
     for ev in tl["events"]:
@@ -98,10 +120,11 @@ def build_score(tl, N):
     stop_idx = ns(stop_ev)
     out[:, stop_idx:] = 0.0
 
-    # Payoff reveal pad (54.8s -> end)
-    if dur_s > 55.0:
-        pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - 55.0, 0.48, r, att=0.4, rel=0.5)
-        place(out, pad, 55.0)
+    # Payoff reveal pad: from the `music_resolve` event if the timeline has one, else 55.0 s -> end
+    pad_t = next((e["time_s"] for e in tl["events"] if e["type"] == "music_resolve"), 55.0)
+    if dur_s > pad_t:
+        pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - pad_t, 0.48, r, att=0.4, rel=0.5)
+        place(out, pad, pad_t)
 
     return hp(out, 32, 2)
 

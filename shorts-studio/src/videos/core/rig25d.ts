@@ -51,6 +51,8 @@ export type RigStyle = {
   tie?: string;
   hair?: string;
   shades?: boolean;    // gold/dark sunglasses for Shot 6 cash mountain
+  bob?: boolean;       // chin-length bob: hair wraps the sides and back of the head
+  glasses?: boolean;   // round wire glasses
 };
 
 export class HeroRig25D {
@@ -193,6 +195,11 @@ export class HeroRig25D {
     if (this.style.hair) {
       g.fillStyle = this.style.hair;
       g.fillRect(0, 0, 512, 155);
+      if (this.style.bob) {
+        // face centre is u = 0.5 (x 256): keep x 160..352 clear, wrap everything else down to the jaw line
+        g.fillRect(0, 0, 160, 372); g.fillRect(352, 0, 160, 372);
+        g.beginPath(); g.moveTo(160, 150); g.quadraticCurveTo(256, 196, 352, 150); g.lineTo(352, 0); g.lineTo(160, 0); g.closePath(); g.fill();
+      }
     }
 
     const p = new Pen(g);
@@ -211,6 +218,10 @@ export class HeroRig25D {
     } else {
       p.ell(exL, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exL - 16, cy], [exL + 16, cy]], 7);
       p.ell(exR, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exR - 16, cy], [exR + 16, cy]], 7);
+    }
+    if (this.style.glasses && !this.style.shades) {
+      p.ell(exL - 2, cy, 27, 24, null, 5); p.ell(exR + 2, cy, 27, 24, null, 5);
+      p.stroke([[exL + 25, cy - 4], [exR - 25, cy - 4]], 5);
     }
     // Brows
     const browLift = expr === "shock" ? -16 : expr === "stern" ? 6 : 0;

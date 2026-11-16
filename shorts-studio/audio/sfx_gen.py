@@ -130,3 +130,150 @@ def amb_highway(dur, r, rain=False):
         patter = bp(colored(n, r, 0.4), 900, 5200, 1) * 0.38
         out += widen(patter, r, 7, 0.9)
     return fades(out, 0.25, 0.35)
+
+# ---------------- "The Elevator Stranger" foley ----------------
+def _seq(dur, hits, r):
+    """Lay (time_s, mono_signal, gain) hits into one mono buffer."""
+    y = np.zeros(ns(dur))
+    for tm, sig, g in hits:
+        k = ns(tm)
+        m = min(len(sig), len(y) - k)
+        if m > 0:
+            y[k:k + m] += sig[:m] * g
+    return y
+
+def footsteps_run(r, dur=3.0, rate=5.6):
+    hits, tm, i = [], 0.03, 0
+    while tm < dur - 0.15:
+        tl = tt(0.13)
+        heel = np.exp(-tl / 0.012) * np.sin(phase(150 * (1 - 0.4 * tl / 0.13)))
+        slap = bp(r.standard_normal(len(tl)), 900, 5200, 1) * np.exp(-tl / 0.016) * 0.7
+        hits.append((tm, heel + slap, (0.55 + 0.45 * tm / dur) * r.uniform(0.8, 1.0)))
+        tm += 1 / rate * r.uniform(0.92, 1.08)
+        i += 1
+    return fades(widen(_seq(dur, hits, r), r, 9, 0.6), 0.005, 0.1)
+
+def door_slide(r, dur=1.25):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    env = np.clip(t / 0.12, 0, 1) * np.clip((dur - t) / 0.1, 0, 1)
+    motor = np.sin(phase(92 + 26 * np.clip(t / 0.3, 0, 1))) * 0.35 + np.sin(phase(184 + 52 * np.clip(t / 0.3, 0, 1))) * 0.18
+    roll = bp(colored(n, r, 0.9), 240, 2400, 2) * (0.5 + 0.2 * smooth_noise(n, r, 6.0))
+    y = (motor + roll) * env
+    thunk = modal(0.3, [(120, 1.0, 0.05), (310, 0.5, 0.03)], r)
+    k = n - len(thunk)
+    y[k:] += thunk * 1.2
+    return fades(widen(y, r, 10, 0.5), 0.01, 0.05)
+
+def elevator_ding(r):
+    a = modal(1.5, [(1318.5, 1.0, 0.5), (1318.5 * 2.76, 0.35, 0.2), (1318.5 * 5.4, 0.12, 0.08)], r)
+    b = modal(1.5, [(1046.5, 1.0, 0.6), (1046.5 * 2.76, 0.3, 0.22)], r)
+    y = a.copy()
+    k = ns(0.28)
+    y[k:] += b[:len(y) - k] * 0.9
+    return fades(y, 0.001, 0.2)
+
+def floor_tick(r):
+    t = tt(0.16)
+    return fades(np.sin(TAU * 1760 * t) * np.exp(-t / 0.05) * 0.7, 0.002, 0.03)
+
+def elevator_jolt(r):
+    dur = 1.3
+    n = ns(dur)
+    t = np.arange(n) / SR
+    sub = np.exp(-t / 0.16) * np.sin(phase(48 * (1 + 0.6 * np.exp(-t / 0.03)))) * 2.2
+    clank = resbank(bp(r.standard_normal(n), 150, 3800, 2) * np.exp(-t / 0.07), CHASSIS) * 1.1
+    groan_f = 210 * (1 - 0.3 * t / dur) * (1 + 0.03 * smooth_noise(n, r, 9.0))
+    groan = np.sin(phase(groan_f) + 0.8 * np.sin(phase(groan_f * 0.5))) * np.clip(t / 0.1, 0, 1) * np.exp(-t / 0.45) * 0.35
+    rattle = hp(r.standard_normal(n), 2500) * np.exp(-t / 0.2) * (0.5 + 0.5 * np.sin(TAU * 31 * t)) * 0.25
+    return fades(widen(sub + clank + groan + rattle, r, 12, 0.7), 0.001, 0.15)
+
+def alarm_buzz(r, dur=3.6, period=26 / 30):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    gate = (0.5 - 0.5 * np.cos(TAU * t / period)) ** 2
+    ph = phase(np.full(n, 440.0))
+    buzz = np.sign(np.sin(ph)) * 0.5 + np.sin(ph * 1.5) * 0.3
+    return fades(lp(bp(buzz, 300, 3200, 1), 2600, 2) * gate * 0.6, 0.02, 0.2)
+
+def door_pound(r):
+    dur = 0.4
+    t = tt(dur)
+    body = np.exp(-t / 0.05) * np.sin(phase(86 * (1 + 0.5 * np.exp(-t / 0.015)))) * 1.6
+    sheet = modal(dur, [(240, 0.8, 0.09), (415, 0.5, 0.07), (890, 0.3, 0.04)], r)
+    slap = bp(r.standard_normal(len(t)), 700, 4000, 1) * np.exp(-t / 0.008) * 0.6
+    return fades(body + sheet + slap, 0.001, 0.05)
+
+def lights_flicker(r, dur=0.55):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    y = np.sin(TAU * 100 * t) * 0.25 * np.clip(t / 0.3, 0, 1)
+    for tm in (0.02, 0.11, 0.17, 0.3):
+        tl = tt(0.05)
+        tick = hp(r.standard_normal(len(tl)), 3000) * np.exp(-tl / 0.004)
+        k = ns(tm)
+        y[k:k + len(tick)] += tick[:max(0, n - k)] * 0.8
+    return fades(y, 0.002, 0.1)
+
+def bubble_pop(r):
+    dur = 0.2
+    t = tt(dur)
+    blip = np.sin(phase(380 + 900 * np.clip(t / 0.06, 0, 1))) * np.exp(-t / 0.045)
+    click = hp(r.standard_normal(len(t)), 2000) * np.exp(-t / 0.003) * 0.3
+    return fades(blip + click, 0.001, 0.02)
+
+def pencil_scribble(r, dur=0.95):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    strokes = np.abs(np.sin(TAU * 7.5 * t + 0.6 * np.sin(TAU * 2.1 * t))) ** 0.6
+    y = bp(colored(n, r, 0.3), 1800, 7500, 1) * strokes * (0.6 + 0.4 * smooth_noise(n, r, 14.0))
+    return fades(y * 0.7, 0.02, 0.06)
+
+def water_drip(r):
+    dur = 0.3
+    t = tt(dur)
+    plink = np.sin(phase(900 + 1500 * np.exp(-t / 0.02))) * np.exp(-t / 0.05)
+    splat = bp(r.standard_normal(len(t)), 1500, 6000, 1) * np.exp(-t / 0.012) * 0.4
+    return fades(plink + splat, 0.001, 0.03)
+
+def time_whoosh(r, dur=2.0):
+    n = ns(dur)
+    t = np.arange(n) / SR
+    env = np.sin(np.pi * np.clip(t / dur, 0, 1)) ** 0.7
+    chirp = np.sin(phase(300 * 2 ** (2.6 * t / dur)) + 2.5 * np.sin(TAU * 23 * t)) * 0.22
+    tape = bp(colored(n, r, 0.5), 600, 6000, 1) * (0.5 + 0.5 * np.sin(TAU * 17 * t)) * 0.5
+    return fades(widen((chirp + tape) * env, r, 11, 0.8), 0.05, 0.25)
+
+def chair_creak(r):
+    dur = 0.7
+    n = ns(dur)
+    t = np.arange(n) / SR
+    f = 310 * (1 + 0.25 * np.sin(TAU * 2.3 * t)) * (1 + 0.04 * smooth_noise(n, r, 30.0))
+    creak = np.sin(phase(f) + 1.2 * np.sin(phase(f * 2.01))) * np.sin(np.pi * t / dur) ** 2 * 0.3
+    puff = lp(colored(n, r, 1.0), 500, 2) * np.exp(-t / 0.12) * 0.9
+    return fades(creak + puff, 0.01, 0.08)
+
+def cup_set(r):
+    dur = 0.22
+    t = tt(dur)
+    tap = modal(dur, [(520, 0.9, 0.03), (1350, 0.4, 0.015)], r)
+    card = bp(r.standard_normal(len(t)), 900, 4500, 1) * np.exp(-t / 0.01) * 0.5
+    return fades(tap + card, 0.001, 0.02)
+
+def stop_knob(r):
+    dur = 0.45
+    t = tt(dur)
+    clunk = np.exp(-t / 0.035) * np.sin(phase(140 * (1 + 0.4 * np.exp(-t / 0.01)))) * 1.5
+    spring = modal(dur, [(760, 0.7, 0.08), (1580, 0.45, 0.05), (2900, 0.25, 0.03)], r)
+    click = hp(r.standard_normal(len(t)), 2600) * np.exp(-t / 0.004) * 0.6
+    return fades(clunk + spring + click, 0.001, 0.05)
+
+def amb_room(dur, r, hum=True):
+    """Elevator / lobby / office room tone: ventilation air + (elevator) faint mains hum."""
+    n = ns(dur)
+    air = bp(colored(n, r, 1.1), 120, 1800, 1) * (0.3 + 0.08 * smooth_noise(n, r, 0.3))
+    out = widen(air, r, 11, 0.6)
+    if hum:
+        t = np.arange(n) / SR
+        out += st(np.sin(TAU * 100 * t) * 0.06 + np.sin(TAU * 50 * t) * 0.08)
+    return fades(out, min(0.25, dur / 4), min(0.35, dur / 4))

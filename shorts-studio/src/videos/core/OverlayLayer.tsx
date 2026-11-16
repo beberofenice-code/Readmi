@@ -52,6 +52,31 @@ export const DashcamHUD: React.FC<{ mph: number; timestamp?: string }> = ({ mph,
   );
 };
 
+/** Ceiling security-camera overlay (time-lapse shots): REC dot, camera label, fast-forward badge, running clock */
+export const SecurityCamHUD: React.FC<{ clock: string; label?: string; speed?: string }> = ({ clock, label = "LIFT 2  CAM 04", speed = "x64" }) => {
+  const f = useCurrentFrame();
+  const blinkOn = Math.floor(f / 8) % 2 === 0;
+  const shadow = "0 2px 6px rgba(0,0,0,0.95)";
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none", fontFamily: "'Courier New', monospace", color: "#f4f7fa" }}>
+      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%)" }} />
+      <div style={{ position: "absolute", inset: 0, opacity: 0.16, backgroundImage: "repeating-linear-gradient(0deg, rgba(0,0,0,0.9) 0px, rgba(0,0,0,0.9) 2px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 6px)" }} />
+      <div style={{ position: "absolute", top: 72, left: 78, display: "flex", alignItems: "center", gap: 14, fontSize: 34, fontWeight: 700, textShadow: shadow }}>
+        <div style={{ width: 22, height: 22, borderRadius: "50%", backgroundColor: blinkOn ? "#ff2a2a" : "#551111" }} />
+        <span>REC</span>
+      </div>
+      <div style={{ position: "absolute", top: 72, right: 78, fontSize: 30, fontWeight: 700, opacity: 0.9, textShadow: shadow }}>{label}</div>
+      <div style={{ position: "absolute", top: 150, left: 0, right: 0, textAlign: "center", fontSize: 76, fontWeight: 700, color: "#ffd24c", textShadow: shadow }}>
+        {"\u25B6\u25B6 "}{speed}
+      </div>
+      <div style={{ position: "absolute", bottom: 76, left: 78, right: 78, display: "flex", justifyContent: "space-between", fontSize: 40, fontWeight: 700, textShadow: shadow }}>
+        <span>{clock}</span>
+        <span style={{ color: "#aef7c6" }}>FLOOR 11.5</span>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 export const PopCaptions: React.FC<{ words: WordItem[]; enabled?: boolean }> = ({ words, enabled = false }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
