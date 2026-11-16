@@ -602,7 +602,8 @@ export class MultiSetWorld {
     const pullK = id === 18 ? smooth((f - (STOP_PULL - 2)) / 5) : pulled ? 1 : 0;
     this.knob.position.set(1.04 - 0.06 * pullK, 1.0, -0.45);
     this.stopLed.color.setRGB(pullK > 0.9 ? 3.2 : 0.25, pullK > 0.9 ? 0.2 : 0.03, pullK > 0.9 ? 0.15 : 0.03);
-    this.indIn.map = id === 2 ? indicatorTex("1", false) : id === 4 ? indicatorTex(f < 372 ? "10" : "11", f < 414 && Math.floor(f / 6) % 2 === 0) : indicatorTex("11", false);
+    this.indIn.map = id === 2 ? indicatorTex("1", false) : id === 4 ? indicatorTex(f < 372 ? "10" : "11", true) : indicatorTex("11", false);
+    this.indIn.color.setScalar(id === 4 ? 0.82 + 0.18 * Math.sin(f * 0.35) : 1);
     this.indOut.map = indicatorTex(id === 14 ? "40" : "1", false);
 
     // 4. Reset per-frame actors & props
@@ -681,7 +682,7 @@ export class MultiSetWorld {
       } else if (f < 812) {
         // "...tastes like regret": she studies her cup
         this.rant(this.dan, f);
-        const look = smooth((f - 790) / 7);
+        const look = smooth((f - 790) / 16);
         this.bossStand(f, { headPitch: 0.3 * look, headYaw: 0.14, expr: "stern", handR: [0.16, 1.1, 0.26], blink: 0 }, 0);
       } else {
         this.rant(this.dan, f, { handR: [0.4, 1.66 + 0.07 * Math.sin(f * 0.5), 0.2], handL: [-0.5, 1.1, 0.3] }, 1.2);
@@ -710,7 +711,14 @@ export class MultiSetWorld {
       let line = 0; for (let i = 0; i < 3; i++) if (pr[i] > 0) line = i;
       const busy = pr[line] > 0 && pr[line] < 1;
       // write head in pad-local coordinates (x right, y up on the page)
-      const lx = -0.094 + 0.184 * (pr[line] > 0 ? pr[line] : 0), ly = 0.137 - (266 + line * 148) / 704 * 0.275 + 0.012;
+      const STARTS = [1078, 1124, 1170];
+      const rowY = (i: number) => 0.137 - (266 + i * 148) / 704 * 0.275 + 0.012;
+      let lx = -0.094 + 0.184 * (pr[line] > 0 ? pr[line] : 0), ly = rowY(line);
+      if (line < 2 && pr[line] >= 1) {
+        // carriage return: glide from the end of this line to the start of the next
+        const k = smooth((f - (STARTS[line + 1] - 13)) / 13);
+        lx = lerp(lx, -0.094, k); ly = lerp(ly, rowY(line + 1), k);
+      }
       const tip = pg.localToWorld(this.tmpV.set(lx + (busy ? 0.004 * Math.sin(f * 2.1) : 0), ly + (busy ? 0.006 * Math.sin(f * 2.9) : 0), 0.014));
       const dir = this.tmpV2.set(0.5, -0.45, 0.75).normalize().transformDirection(pg.matrixWorld);
       this.pencil.position.copy(tip).addScaledVector(dir, 0.075);
@@ -731,7 +739,7 @@ export class MultiSetWorld {
       this.heldPad();
     } else if (id === 13) {
       // Security camera, forty minutes in fast-forward: Dan paces and flails, she barely moves
-      const px = -0.58 + 0.24 * Math.sin(f * 0.47), pz = 0.05 + 0.45 * Math.sin(f * 0.71 + 1);
+      const px = -0.58 + 0.24 * Math.sin(f * 0.47), pz = 0.0 + 0.32 * Math.sin(f * 0.58 + 1);
       const yaw = Math.PI + 0.9 * Math.sin(f * 0.39);
       this.dan.pose({ pos: [px, 0, pz], yaw, lean: 0.06, expr: "stern", mouthOpen: yap(f, 1.9), headYaw: -0.3 * Math.sin(f * 0.6),
         handL: [-0.45, 1.25 + 0.3 * Math.sin(f * 1.3), 0.25], handR: [0.45, 1.25 + 0.3 * Math.sin(f * 1.3 + 2.4), 0.25], ...this.stride(f * 1.6, 0.16, 0.08, false) });

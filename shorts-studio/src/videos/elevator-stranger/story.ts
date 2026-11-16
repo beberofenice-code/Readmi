@@ -286,6 +286,7 @@ export const KICKS: [number, number][] = [
   [57 / FPS, 0.3],    // hook bubble 1
   [78 / FPS, 0.3],    // hook bubble 2
   [92 / FPS, 0.35],   // hook bubble 3
+  [372 / FPS, 0.2],   // floor indicator ticks 10 -> 11
   [428 / FPS, 0.9],   // elevator shudder
   [444 / FPS, 0.7],   // second shudder
   [459 / FPS, 1.5],   // hard stop
@@ -296,6 +297,7 @@ export const KICKS: [number, number][] = [
   [708 / FPS, 0.3],   // rant bubble: elevators
   [759 / FPS, 0.3],   // rant bubble: coffee
   [820 / FPS, 0.3],   // rant bubble: boss
+  [985 / FPS, 0.15],  // Dan deflates: shock -> shrug
   [1250 / FPS, 0.3],  // ceiling drip
   [1700 / FPS, 0.9],  // emergency stop pulled
   [1752 / FPS, 0.25], // candidate bubbles
