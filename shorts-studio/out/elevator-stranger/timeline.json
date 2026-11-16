@@ -1,0 +1,625 @@
+{
+  "fps": 30,
+  "total_frames": 1965,
+  "duration_s": 65.5,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 140,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 140,
+      "b": 246,
+      "set": "lobby",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 246,
+      "b": 346,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 346,
+      "b": 428,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 428,
+      "b": 484,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 6,
+      "a": 484,
+      "b": 593,
+      "set": "elevator",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 593,
+      "b": 704,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 704,
+      "b": 905,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 905,
+      "b": 963,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 963,
+      "b": 1066,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1066,
+      "b": 1202,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 1202,
+      "b": 1275,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 1275,
+      "b": 1339,
+      "set": "elevator",
+      "light": "interior",
+      "xfade": 8,
+      "hud": "cctv"
+    },
+    {
+      "id": 14,
+      "a": 1339,
+      "b": 1445,
+      "set": "lobby",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 15,
+      "a": 1445,
+      "b": 1529,
+      "set": "office",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 16,
+      "a": 1529,
+      "b": 1593,
+      "set": "office",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 17,
+      "a": 1593,
+      "b": 1665,
+      "set": "elevator",
+      "light": "rain",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 18,
+      "a": 1665,
+      "b": 1748,
+      "set": "elevator",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 19,
+      "a": 1748,
+      "b": 1858,
+      "set": "elevator",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 20,
+      "a": 1858,
+      "b": 1965,
+      "set": "office",
+      "light": "day",
+      "xfade": 6,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 57,
+      "time_s": 1.9,
+      "type": "bubble_pop",
+      "gain": 0.7,
+      "pan": 0.2,
+      "desc": "Hook rant bubble 1 (broken elevator)"
+    },
+    {
+      "frame": 78,
+      "time_s": 2.6,
+      "type": "bubble_pop",
+      "gain": 0.7,
+      "pan": 0.2,
+      "desc": "Hook rant bubble 2 (coffee)"
+    },
+    {
+      "frame": 92,
+      "time_s": 3.0667,
+      "type": "bubble_pop",
+      "gain": 0.75,
+      "pan": 0.2,
+      "desc": "Hook rant bubble 3 (the boss)"
+    },
+    {
+      "frame": 146,
+      "time_s": 4.8667,
+      "type": "footsteps_run",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Dan sprints across the marble lobby"
+    },
+    {
+      "frame": 206,
+      "time_s": 6.8667,
+      "type": "door_slide",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Elevator doors start closing on him"
+    },
+    {
+      "frame": 250,
+      "time_s": 8.3333,
+      "type": "elevator_ding",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Doors shut, car departs"
+    },
+    {
+      "frame": 372,
+      "time_s": 12.4,
+      "type": "floor_tick",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Floor indicator 10 -> 11"
+    },
+    {
+      "frame": 428,
+      "time_s": 14.2667,
+      "type": "elevator_jolt",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Car shudders between 11 and 12"
+    },
+    {
+      "frame": 459,
+      "time_s": 15.3,
+      "type": "elevator_jolt",
+      "gain": 1.2,
+      "pan": 0.1,
+      "desc": "Car slams to a stop"
+    },
+    {
+      "frame": 484,
+      "time_s": 16.1333,
+      "type": "alarm_buzz",
+      "gain": 0.8,
+      "pan": -0.25,
+      "desc": "Red emergency lamp buzzer"
+    },
+    {
+      "frame": 541,
+      "time_s": 18.0333,
+      "type": "door_pound",
+      "gain": 1,
+      "pan": 0.15,
+      "desc": "Dan pounds on the doors 1"
+    },
+    {
+      "frame": 549,
+      "time_s": 18.3,
+      "type": "door_pound",
+      "gain": 0.9,
+      "pan": 0.05,
+      "desc": "Dan pounds on the doors 2"
+    },
+    {
+      "frame": 556,
+      "time_s": 18.5333,
+      "type": "door_pound",
+      "gain": 1,
+      "pan": 0.15,
+      "desc": "Dan pounds on the doors 3"
+    },
+    {
+      "frame": 566,
+      "time_s": 18.8667,
+      "type": "door_pound",
+      "gain": 1.1,
+      "pan": 0.05,
+      "desc": "Dan pounds on the doors 4"
+    },
+    {
+      "frame": 593,
+      "time_s": 19.7667,
+      "type": "lights_flicker",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Ceiling panel flickers back on"
+    },
+    {
+      "frame": 708,
+      "time_s": 23.6,
+      "type": "bubble_pop",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Rant bubble: elevators break every week"
+    },
+    {
+      "frame": 759,
+      "time_s": 25.3,
+      "type": "bubble_pop",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Rant bubble: coffee tastes like regret"
+    },
+    {
+      "frame": 820,
+      "time_s": 27.3333,
+      "type": "bubble_pop",
+      "gain": 0.85,
+      "pan": 0.1,
+      "desc": "Rant bubble: the boss never listens"
+    },
+    {
+      "frame": 1080,
+      "time_s": 36,
+      "type": "pencil_scribble",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Notepad line 1: fire the consultants"
+    },
+    {
+      "frame": 1126,
+      "time_s": 37.5333,
+      "type": "pencil_scribble",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Notepad line 2: fix the elevators"
+    },
+    {
+      "frame": 1172,
+      "time_s": 39.0667,
+      "type": "pencil_scribble",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Notepad line 3: ask the janitors"
+    },
+    {
+      "frame": 1250,
+      "time_s": 41.6667,
+      "type": "water_drip",
+      "gain": 0.9,
+      "pan": 0.2,
+      "desc": "Ceiling drip lands on Dan's head"
+    },
+    {
+      "frame": 1275,
+      "time_s": 42.5,
+      "type": "time_whoosh",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Security-cam fast-forward: forty minutes"
+    },
+    {
+      "frame": 1339,
+      "time_s": 44.6333,
+      "type": "elevator_ding",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Arrival chime on the 40th floor"
+    },
+    {
+      "frame": 1343,
+      "time_s": 44.7667,
+      "type": "door_slide",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "Doors finally open"
+    },
+    {
+      "frame": 1374,
+      "time_s": 45.8,
+      "type": "footsteps_run",
+      "gain": 0.8,
+      "pan": 0.25,
+      "desc": "Dan bolts for the interview room"
+    },
+    {
+      "frame": 1445,
+      "time_s": 48.1667,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out on the empty chair"
+    },
+    {
+      "frame": 1546,
+      "time_s": 51.5333,
+      "type": "chair_creak",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "The stranger sits in the boss's chair"
+    },
+    {
+      "frame": 1575,
+      "time_s": 52.5,
+      "type": "cup_set",
+      "gain": 0.8,
+      "pan": 0.1,
+      "desc": "Paper cup set on the desk"
+    },
+    {
+      "frame": 1593,
+      "time_s": 53.1,
+      "type": "music_resolve",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Warm reveal pad enters on 'You see'"
+    },
+    {
+      "frame": 1700,
+      "time_s": 56.6667,
+      "type": "stop_knob",
+      "gain": 1,
+      "pan": -0.2,
+      "desc": "Flashback: she pulls the emergency stop"
+    },
+    {
+      "frame": 1704,
+      "time_s": 56.8,
+      "type": "elevator_jolt",
+      "gain": 0.6,
+      "pan": 0,
+      "desc": "Flashback: car halts on cue"
+    },
+    {
+      "frame": 1752,
+      "time_s": 58.4,
+      "type": "bubble_pop",
+      "gain": 0.6,
+      "pan": 0.2,
+      "desc": "Candidate 1 rant bubble"
+    },
+    {
+      "frame": 1789,
+      "time_s": 59.6333,
+      "type": "bubble_pop",
+      "gain": 0.6,
+      "pan": 0.2,
+      "desc": "Candidate 2 rant bubble"
+    },
+    {
+      "frame": 1826,
+      "time_s": 60.8667,
+      "type": "bubble_pop",
+      "gain": 0.6,
+      "pan": 0.2,
+      "desc": "Candidate 3 rant bubble"
+    },
+    {
+      "frame": 1906,
+      "time_s": 63.5333,
+      "type": "cup_set",
+      "gain": 0.7,
+      "pan": 0.1,
+      "desc": "She slides the coffee across the desk"
+    }
+  ],
+  "xfade": [
+    [
+      1275,
+      1283
+    ],
+    [
+      1593,
+      1601
+    ],
+    [
+      1858,
+      1864
+    ]
+  ],
+  "planned": [
+    [
+      531,
+      531
+    ],
+    [
+      790,
+      790
+    ],
+    [
+      812,
+      812
+    ],
+    [
+      1275,
+      1275
+    ],
+    [
+      1339,
+      1339
+    ],
+    [
+      1445,
+      1445
+    ],
+    [
+      1475,
+      1475
+    ],
+    [
+      1529,
+      1529
+    ],
+    [
+      1665,
+      1665
+    ],
+    [
+      1748,
+      1748
+    ],
+    [
+      1785,
+      1785
+    ],
+    [
+      1822,
+      1822
+    ],
+    [
+      1922,
+      1922
+    ],
+    [
+      57,
+      65
+    ],
+    [
+      78,
+      86
+    ],
+    [
+      92,
+      100
+    ],
+    [
+      372,
+      380
+    ],
+    [
+      428,
+      436
+    ],
+    [
+      444,
+      452
+    ],
+    [
+      459,
+      467
+    ],
+    [
+      541,
+      549
+    ],
+    [
+      549,
+      557
+    ],
+    [
+      556,
+      564
+    ],
+    [
+      566,
+      574
+    ],
+    [
+      708,
+      716
+    ],
+    [
+      759,
+      767
+    ],
+    [
+      820,
+      828
+    ],
+    [
+      985,
+      993
+    ],
+    [
+      1250,
+      1258
+    ],
+    [
+      1700,
+      1708
+    ],
+    [
+      1752,
+      1760
+    ],
+    [
+      1789,
+      1797
+    ],
+    [
+      1826,
+      1834
+    ]
+  ]
+}

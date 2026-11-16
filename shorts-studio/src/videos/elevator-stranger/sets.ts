@@ -642,7 +642,7 @@ export class MultiSetWorld {
         handR: lerp3([0.16, 0.66, 0.22], [0.26, 0.74, 0.12], up),
       });
       const glance = smooth((f - 250) / 12) * (1 - smooth((f - 284) / 14));
-      this.bossStand(f, { headYaw: 0.55 * glance }, smooth((f - 312) / 12) * (1 - smooth((f - 338) / 10)));
+      this.bossStand(f, { headYaw: 0.55 * glance }, smooth((f - 312) / 12) * (1 - smooth((f - 326) / 19)));
     } else if (id === 5) {
       // The car shudders and stops: Dan flails for balance, the stranger does not spill a drop
       const env = f < 459 ? 1 : Math.exp(-(f - 459) / 7);
