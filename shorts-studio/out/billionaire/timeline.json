@@ -1,0 +1,454 @@
+{
+  "fps": 30,
+  "total_frames": 1985,
+  "duration_s": 66.1667,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 130,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": "bank"
+    },
+    {
+      "id": 2,
+      "a": 130,
+      "b": 295,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 295,
+      "b": 382,
+      "set": "estate",
+      "light": "day",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 382,
+      "b": 494,
+      "set": "estate",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 494,
+      "b": 636,
+      "set": "bedroom",
+      "light": "night",
+      "xfade": 8,
+      "hud": "phone"
+    },
+    {
+      "id": 6,
+      "a": 636,
+      "b": 738,
+      "set": "estate",
+      "light": "night",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 738,
+      "b": 878,
+      "set": "boardroom",
+      "light": "interior",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 878,
+      "b": 1075,
+      "set": "boardroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 1075,
+      "b": 1198,
+      "set": "boardroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 1198,
+      "b": 1294,
+      "set": "boardroom",
+      "light": "interior",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1294,
+      "b": 1442,
+      "set": "estate",
+      "light": "golden",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 1442,
+      "b": 1560,
+      "set": "street",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 1560,
+      "b": 1660,
+      "set": "street",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 1660,
+      "b": 1708,
+      "set": "street",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 15,
+      "a": 1708,
+      "b": 1856,
+      "set": "street",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 16,
+      "a": 1856,
+      "b": 1985,
+      "set": "street",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 40,
+      "time_s": 1.3333,
+      "type": "cash_register",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Bank banner: balance one billion"
+    },
+    {
+      "frame": 140,
+      "time_s": 4.6667,
+      "type": "alarm_ring",
+      "gain": 0.9,
+      "pan": -0.25,
+      "desc": "Twin-bell alarm clock rattling on the silver tray"
+    },
+    {
+      "frame": 298,
+      "time_s": 9.9333,
+      "type": "heli_whir",
+      "gain": 0.8,
+      "pan": -0.3,
+      "desc": "Helicopter rotor warming up on the lawn"
+    },
+    {
+      "frame": 394,
+      "time_s": 13.1333,
+      "type": "car_whoosh",
+      "gain": 0.9,
+      "pan": -0.4,
+      "desc": "Gold supercar zooms in"
+    },
+    {
+      "frame": 405,
+      "time_s": 13.5,
+      "type": "tire_screech",
+      "gain": 0.6,
+      "pan": -0.1,
+      "desc": "Supercar skids to a stop"
+    },
+    {
+      "frame": 411,
+      "time_s": 13.7,
+      "type": "cash_register",
+      "gain": 0.85,
+      "pan": 0.15,
+      "desc": "Ka-ching on the purchase"
+    },
+    {
+      "frame": 457,
+      "time_s": 15.2333,
+      "type": "yacht_horn",
+      "gain": 0.9,
+      "pan": 0.3,
+      "desc": "Yacht horn blast"
+    },
+    {
+      "frame": 506,
+      "time_s": 16.8667,
+      "type": "phone_buzz",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Phone buzz 1"
+    },
+    {
+      "frame": 532,
+      "time_s": 17.7333,
+      "type": "phone_buzz",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Phone buzz 2"
+    },
+    {
+      "frame": 556,
+      "time_s": 18.5333,
+      "type": "phone_buzz",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "Phone buzz 3"
+    },
+    {
+      "frame": 574,
+      "time_s": 19.1333,
+      "type": "phone_buzz",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Phone buzz 4"
+    },
+    {
+      "frame": 590,
+      "time_s": 19.6667,
+      "type": "phone_buzz",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Phone buzz 5"
+    },
+    {
+      "frame": 602,
+      "time_s": 20.0667,
+      "type": "phone_buzz",
+      "gain": 0.95,
+      "pan": 0,
+      "desc": "Phone buzz 6"
+    },
+    {
+      "frame": 642,
+      "time_s": 21.4,
+      "type": "gate_rattle",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Cousins rattle the gold gate"
+    },
+    {
+      "frame": 748,
+      "time_s": 24.9333,
+      "type": "crowd_laugh",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Board laughs at the joke"
+    },
+    {
+      "frame": 800,
+      "time_s": 26.6667,
+      "type": "crowd_laugh",
+      "gain": 0.95,
+      "pan": 0.15,
+      "desc": "Laughs at the bad joke"
+    },
+    {
+      "frame": 840,
+      "time_s": 28,
+      "type": "crowd_laugh",
+      "gain": 1.15,
+      "pan": -0.1,
+      "desc": "Roars at the worst joke"
+    },
+    {
+      "frame": 999,
+      "time_s": 33.3,
+      "type": "stamp",
+      "gain": 1,
+      "pan": 0,
+      "desc": "FUNDED stamp on the big screen"
+    },
+    {
+      "frame": 1003,
+      "time_s": 33.4333,
+      "type": "cash_register",
+      "gain": 0.9,
+      "pan": 0.1,
+      "desc": "Billion-dollar ka-ching"
+    },
+    {
+      "frame": 1110,
+      "time_s": 37,
+      "type": "door_open",
+      "gain": 0.8,
+      "pan": -0.35,
+      "desc": "Boardroom door swings open"
+    },
+    {
+      "frame": 1166,
+      "time_s": 38.8667,
+      "type": "record_scratch",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Record scratch: lampshade reveal"
+    },
+    {
+      "frame": 1180,
+      "time_s": 39.3333,
+      "type": "applause",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Board applauds the lampshade"
+    },
+    {
+      "frame": 1296,
+      "time_s": 43.2,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out for the You see pivot"
+    },
+    {
+      "frame": 1444,
+      "time_s": 48.1333,
+      "type": "music_resume",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Soft night theme at the hot-dog cart"
+    },
+    {
+      "frame": 1565,
+      "time_s": 52.1667,
+      "type": "sizzle",
+      "gain": 0.8,
+      "pan": 0.1,
+      "desc": "Hot dogs sizzling on the cart grill"
+    },
+    {
+      "frame": 1796,
+      "time_s": 59.8667,
+      "type": "pen_scribble",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Scribbling the million-dollar check"
+    },
+    {
+      "frame": 1838,
+      "time_s": 61.2667,
+      "type": "paper_tear",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Tearing the check out of the book"
+    },
+    {
+      "frame": 1934,
+      "time_s": 64.4667,
+      "type": "final_sting",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Button sting on terrible"
+    }
+  ],
+  "xfade": [
+    [
+      295,
+      301
+    ],
+    [
+      494,
+      502
+    ],
+    [
+      636,
+      642
+    ],
+    [
+      738,
+      744
+    ],
+    [
+      1198,
+      1206
+    ],
+    [
+      1294,
+      1302
+    ],
+    [
+      1442,
+      1450
+    ]
+  ],
+  "planned": [
+    [
+      130,
+      130
+    ],
+    [
+      382,
+      382
+    ],
+    [
+      1075,
+      1075
+    ],
+    [
+      1560,
+      1560
+    ],
+    [
+      1660,
+      1660
+    ],
+    [
+      1708,
+      1708
+    ],
+    [
+      1856,
+      1856
+    ],
+    [
+      40,
+      48
+    ],
+    [
+      409,
+      417
+    ],
+    [
+      999,
+      1007
+    ],
+    [
+      1166,
+      1174
+    ]
+  ],
+  "score_style": "bouncy"
+}
