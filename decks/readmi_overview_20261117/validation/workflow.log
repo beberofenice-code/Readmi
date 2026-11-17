@@ -1,0 +1,10 @@
+
+=== 2026-11-17T22:06:08.515Z NOTE id=35cab03ad9e9 ===
+Project initialized: profile=default; path=/home/user/Readmi/decks/readmi_overview_20261117
+
+=== 2026-11-17T22:06:11.237Z PYTHON run=4075b0034a75 ===
+cwd: /home/user/Readmi/decks
+argv: ["/usr/local/bin/python3", "/home/user/Readmi/.claude/skills/ppt-master/scripts/project_manager.py", "import-sources", "/home/user/Readmi/decks/readmi_overview_20261117", "/home/user/Readmi/decks/_src/readmi_repo_brief.md"]
+stdout:
+  [OK] Imported sources into: /home/user/Readmi/decks/readmi_overview_20261117
+=== 2026-11-17T22:06:11.632Z END run=4075b0034a75 elapsed_ms=394 output_lines=5 retained=1 omitted=4 ===
