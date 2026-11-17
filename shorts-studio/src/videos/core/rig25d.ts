@@ -21,6 +21,7 @@ export type RigPose = {
   footR?: [number, number, number];
   brace?: boolean;    // foam neck brace (scammer after his "injury")
   cap?: boolean;      // police cap (trooper)
+  armsFollowLean?: boolean; // shoulders/elbows ride the torso lean (lying in bed); default keeps v2 behaviour
 };
 
 const outlineMat = new THREE.MeshBasicMaterial({ color: INK, side: THREE.BackSide });
@@ -51,6 +52,9 @@ export type RigStyle = {
   tie?: string;
   hair?: string;
   shades?: boolean;    // gold/dark sunglasses for Shot 6 cash mountain
+  moustache?: string;  // bushy moustache colour (drawn on the face decal)
+  stripes?: string;    // vertical pyjama stripes on the torso
+  apron?: string;      // full-front apron panel (hot-dog vendor)
 };
 
 export class HeroRig25D {
@@ -161,6 +165,15 @@ export class HeroRig25D {
     const g = cv.getContext("2d")!;
     g.fillStyle = st.jacket;
     g.fillRect(0, 0, 256, 256);
+    if (st.stripes) {
+      g.fillStyle = st.stripes;
+      for (let x = 6; x < 256; x += 32) g.fillRect(x, 0, 12, 256);
+    }
+    if (st.apron) {
+      g.fillStyle = st.apron;
+      g.fillRect(84, 60, 88, 196);
+      g.fillRect(70, 120, 116, 136);
+    }
     if (st.vest) {
       g.fillStyle = st.vest;
       g.fillRect(0, 30, 102, 200);
@@ -182,7 +195,7 @@ export class HeroRig25D {
   }
 
   private redrawFace(expr: Expr, blink: number, mouthOpen: number) {
-    const key = `${expr}|${blink.toFixed(1)}|${Math.round(mouthOpen * 6)}|${this.style.shades ? 1 : 0}`;
+    const key = `${expr}|${blink.toFixed(1)}|${Math.round(mouthOpen * 6)}|${this.style.shades ? 1 : 0}|${this.style.moustache ?? ""}`;
     if (key === this.lastFaceKey) return;
     this.lastFaceKey = key;
     const g = this.faceCanvas.getContext("2d")!;
@@ -202,6 +215,12 @@ export class HeroRig25D {
       p.poly([[192, cy - 18], [250, cy - 18], [246, cy + 16], [196, cy + 16]], "#181622", 6);
       p.poly([[262, cy - 18], [320, cy - 18], [316, cy + 16], [266, cy + 16]], "#181622", 6);
       p.stroke([[250, cy - 8], [262, cy - 8]], 6, "#e8c45a");
+    } else if (expr === "laugh" || expr === "smile_closed") {
+      p.arc(exL, cy + 6, 16, 14, 200, 340, 8); // happy closed "^ ^" eyes
+      p.arc(exR, cy + 6, 16, 14, 200, 340, 8);
+    } else if (expr === "dazed") {
+      p.stroke([[exL - 18, cy - 2], [exL + 16, cy + 3]], 8); // suspicious squint
+      p.stroke([[exR - 16, cy + 3], [exR + 18, cy - 2]], 8);
     } else if (blink >= 0.8 || expr === "pained") {
       p.stroke([[exL - 16, cy], [exL + 16, cy]], 8);
       p.stroke([[exR - 16, cy], [exR + 16, cy]], 8);
@@ -213,18 +232,23 @@ export class HeroRig25D {
       p.ell(exR, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exR - 16, cy], [exR + 16, cy]], 7);
     }
     // Brows
-    const browLift = expr === "shock" ? -16 : expr === "stern" ? 6 : 0;
+    const browLift = expr === "shock" ? -16 : expr === "stern" || expr === "dazed" ? 6 : 0;
     p.stroke([[exL - 18, cy - 32 + browLift], [exL + 16, cy - 34]], 9);
     p.stroke([[exR - 16, cy - 34], [exR + 18, cy - 32 + browLift]], 9);
 
     // Mouth (driven by mouthOpen or expression)
     const my = cy + 44;
+    if (this.style.moustache) {
+      g.fillStyle = this.style.moustache;
+      g.beginPath(); g.ellipse(238, my - 18, 30, 13, 0.25, 0, Math.PI * 2); g.fill();
+      g.beginPath(); g.ellipse(274, my - 18, 30, 13, -0.25, 0, Math.PI * 2); g.fill();
+    }
     if (mouthOpen > 0.25 || expr === "shock" || expr === "laugh") {
       const ry = 8 + mouthOpen * 18;
       p.ell(256, my, 20, ry, "#5a1e28", 6);
     } else if (expr === "pained") {
       p.poly([[232, my - 8], [280, my - 8], [278, my + 8], [234, my + 8]], "#ffffff", 5);
-    } else if (expr === "grin" || expr === "smile") {
+    } else if (expr === "grin" || expr === "smile" || expr === "smile_closed") {
       p.arc(256, my - 4, 18, 9, 20, 160, 7);
     } else {
       p.stroke([[244, my], [268, my - 2]], 7);
@@ -250,6 +274,10 @@ export class HeroRig25D {
 
     // Local-space limb endpoints relative to root
     const shL = new THREE.Vector3(-0.20, 1.12, 0), shR = new THREE.Vector3(0.20, 1.12, 0);
+    if (p.armsFollowLean && p.lean) {
+      const pivot = new THREE.Vector3(0, 0.72, 0), q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), p.lean);
+      for (const sh of [shL, shR]) sh.sub(pivot).applyQuaternion(q).add(pivot);
+    }
     const hL = p.handL ? new THREE.Vector3(...p.handL) : new THREE.Vector3(-0.26, 0.72, 0.12);
     const hR = p.handR ? new THREE.Vector3(...p.handR) : new THREE.Vector3(0.26, 0.72, 0.12);
     const elL = shL.clone().lerp(hL, 0.5).add(new THREE.Vector3(-0.08, -0.06, -0.05));

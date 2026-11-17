@@ -32,6 +32,19 @@ def build_sfx(tl, N, v_ref):
             if np.isfinite(cur):
                 bed *= dbg((v_ref - 24.0) - cur)
             place(out, bed, t0)
+        else:
+            amb = {
+                "bedroom": lambda: G.amb_room(dur, r),
+                "boardroom": lambda: G.amb_room(dur, r),
+                "estate": lambda: G.amb_night(dur, r) if s["light"] == "night" else (G.amb_water(dur, r) if s["light"] == "golden" else G.amb_birds(dur, r)),
+                "street": lambda: G.amb_night(dur, r, city=True),
+            }.get(s["set"])
+            if amb:
+                bed = amb()
+                cur = integrated(bed)
+                if np.isfinite(cur):
+                    bed *= dbg((v_ref - 27.0) - cur)
+                place(out, bed, t0)
 
     # Discrete timeline events
     dispatch = {
@@ -47,6 +60,20 @@ def build_sfx(tl, N, v_ref):
         "siren_chirp":   (lambda: G.siren_chirp(r), -9.5),
         "wiper_sweep":   (lambda: G.wiper_sweep(r), -12.0),
         "camera_beep":   (lambda: G.camera_beep(r), -7.5),
+        "alarm_ring":    (lambda: G.alarm_ring(r), -9.0),
+        "heli_whir":     (lambda: G.heli_whir(r), -12.0),
+        "car_whoosh":    (lambda: G.car_whoosh(r), -8.0),
+        "yacht_horn":    (lambda: G.yacht_horn(r), -9.0),
+        "phone_buzz":    (lambda: G.phone_buzz(r), -11.0),
+        "gate_rattle":   (lambda: G.gate_rattle(r), -10.0),
+        "crowd_laugh":   (lambda: G.crowd_laugh(r), -10.0),
+        "stamp":         (lambda: G.stamp(r), -6.5),
+        "door_open":     (lambda: G.door_open(r), -10.0),
+        "record_scratch":(lambda: G.record_scratch(r), -8.0),
+        "applause":      (lambda: G.applause(r), -10.0),
+        "sizzle":        (lambda: G.sizzle(r), -16.0),
+        "pen_scribble":  (lambda: G.pen_scribble(r), -12.0),
+        "paper_tear":    (lambda: G.paper_tear(r), -10.0),
     }
 
     for ev in tl["events"]:
@@ -69,7 +96,52 @@ def build_sfx(tl, N, v_ref):
     out += 0.45 * convolve_st(send, ir)
     return hp(out, 28, 2)
 
+def build_score_bouncy(tl, N):
+    """playful major-key pizzicato + glock top line (~112 BPM), drops out at music_stop, soft night vibes from
+    music_resume, final two-note button on final_sting"""
+    r = rng(1212)
+    out = np.zeros((2, N))
+    ev = {e["type"]: e["time_s"] for e in tl["events"]}
+    stop = ev.get("music_stop", tl["duration_s"])
+    resume = ev.get("music_resume")
+    sting = ev.get("final_sting")
+    beat = 60 / 112
+    bass = [43, 43, 47, 50, 45, 45, 48, 52, 50, 50, 54, 57, 43, 47, 50, 55]   # G - Am - D - G walk
+    mel = [79, None, 76, 79, 81, None, 79, 76, 78, None, 81, 78, 79, 83, 81, None]
+    k, t = 0, 0.05
+    while t < stop - 0.05:
+        place(out, pan(I.pluck(I.m2f(bass[k % 16]), 0.8, r, dur=0.4, bright=0.55), -0.1), t)
+        m = mel[k % 16]
+        if m is not None and k >= 8:
+            place(out, pan(I.glock(I.m2f(m), 0.35, r, dur=0.9), 0.25), t)
+        if k % 2 == 1:
+            place(out, pan(I.snare(0.25, r, dur=0.14, snappy=0.6), 0.1), t)
+        else:
+            place(out, pan(I.brush(0.3, r, dur=0.16), -0.2), t + beat * 0.5)
+        t += beat
+        k += 1
+    out[:, ns(stop):] = 0.0
+    if resume is not None:
+        end = sting if sting is not None else tl["duration_s"]
+        chords = [[55, 59, 62], [52, 55, 59], [48, 52, 55], [50, 54, 57]]
+        t, i = resume, 0
+        while t < end - 0.2:
+            dur = min(2.0, end - t)
+            place(out, I.pad([I.m2f(m) for m in chords[i % 4]], dur + 0.4, 0.3, r, att=0.3, rel=0.4), t)
+            for j, m in enumerate(chords[i % 4]):
+                place(out, pan(I.vibes(I.m2f(m + 12), 0.3, r, dur=1.4), 0.2 * (j - 1)), t + j * 0.33)
+            t += 2.0
+            i += 1
+    if sting is not None:
+        place(out, pan(I.pluck(I.m2f(43), 0.9, r, dur=0.6), 0), sting)
+        place(out, pan(I.glock(I.m2f(79), 0.5, r, dur=1.2), 0.15), sting)
+        place(out, pan(I.pluck(I.m2f(38), 0.9, r, dur=0.8), 0), sting + 0.28)
+        place(out, pan(I.glock(I.m2f(74), 0.5, r, dur=1.4), -0.15), sting + 0.28)
+    return hp(out, 32, 2)
+
 def build_score(tl, N):
+    if tl.get("score_style") == "bouncy":
+        return build_score_bouncy(tl, N)
     r = rng(909)
     out = np.zeros((2, N))
     dur_s = tl["duration_s"]

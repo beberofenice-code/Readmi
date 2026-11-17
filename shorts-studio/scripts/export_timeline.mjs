@@ -10,6 +10,7 @@ const src = fs.readFileSync(storyPath, "utf8");
 const fps = Number(src.match(/FPS\s*=\s*(\d+)/)?.[1] ?? 30);
 const total = Number(src.match(/TOTAL\s*=\s*(\d+)/)?.[1] ?? 1867);
 const flash = Number(src.match(/FLASH_AT\s*=\s*(-?\d+)/)?.[1] ?? -1);
+const scoreStyle = src.match(/SCORE_STYLE\s*=\s*"([^"]+)"/)?.[1] ?? null;
 
 // Parse SHOTS
 const shots = [];
@@ -71,6 +72,7 @@ const payload = {
   xfade,
   ...(flash >= 0 ? { flash: [flash, flash + 4] } : {}),
   planned: [...cuts, ...kicks],
+  ...(scoreStyle ? { score_style: scoreStyle } : {}),
 };
 
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
