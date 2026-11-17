@@ -1,0 +1,94 @@
+{
+  "roles": {
+    "body": {
+      "family": "Segoe UI",
+      "size": 18.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 5.2,
+      "latin_chars_per_100px": 11.8,
+      "caps_chars_per_100px": 10.0,
+      "digits_chars_per_100px": 9.7,
+      "citation_chars_per_100px": 11.3,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "title": {
+      "family": "Segoe UI",
+      "size": 40.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 2.4,
+      "latin_chars_per_100px": 5.3,
+      "caps_chars_per_100px": 4.5,
+      "digits_chars_per_100px": 4.4,
+      "citation_chars_per_100px": 5.1,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "annotation": {
+      "family": "Segoe UI",
+      "size": 14.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 6.7,
+      "latin_chars_per_100px": 15.2,
+      "caps_chars_per_100px": 12.9,
+      "digits_chars_per_100px": 12.5,
+      "citation_chars_per_100px": 14.5,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "cover": {
+      "family": "Segoe UI",
+      "size": 60.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 1.6,
+      "latin_chars_per_100px": 3.6,
+      "caps_chars_per_100px": 3.0,
+      "digits_chars_per_100px": 2.9,
+      "citation_chars_per_100px": 3.4,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "hero": {
+      "family": "Segoe UI",
+      "size": 56.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 1.7,
+      "latin_chars_per_100px": 3.8,
+      "caps_chars_per_100px": 3.2,
+      "digits_chars_per_100px": 3.1,
+      "citation_chars_per_100px": 3.6,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "label": {
+      "family": "Consolas",
+      "size": 14.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 6.7,
+      "latin_chars_per_100px": 12.1,
+      "caps_chars_per_100px": 11.6,
+      "digits_chars_per_100px": 12.3,
+      "citation_chars_per_100px": 12.1,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "lead": {
+      "family": "Segoe UI",
+      "size": 24.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 3.9,
+      "latin_chars_per_100px": 8.9,
+      "caps_chars_per_100px": 7.5,
+      "digits_chars_per_100px": 7.3,
+      "citation_chars_per_100px": 8.5,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    }
+  },
+  "script_samples": {},
+  "source": "--role",
+  "generated_at": "2026-11-17T22:10:04Z",
+  "notes": [
+    "every role is measured at normal weight; recalibrate a role realized as bold deck-wide with --role NAME:FAMILY:SIZE:bold: bold widens Latin and digits about 7%, while the bundled advance table gives CJK one width for both weights"
+  ]
+}

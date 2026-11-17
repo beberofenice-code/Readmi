@@ -1,0 +1,458 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "early",
+  "target": "/home/user/Readmi/decks/readmi_deck_ppt169_20261117",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "7940e9f540690cb3315b202db563b8acaeffa6c1d8dbbb16104b38eef4655b4e",
+    "file_count": 5,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "d4436e2b20ea58a7c90eb2d330085ecad393b8568962e7acc9208e25b9263bb9"
+      },
+      {
+        "file": "02_inside.svg",
+        "sha256": "5a7ad7d20a972a470e8f44df32e5df29dced814916322c675a314ed1a8cfba0b"
+      },
+      {
+        "file": "03_dashcam_story.svg",
+        "sha256": "5c1e19066334122b947e2c4d1072821016bebc85b05967e8cecc3a2c04b6772d"
+      },
+      {
+        "file": "04_pipeline.svg",
+        "sha256": "a9ecbca6a4136371d032d43b256234ec6898dd2ce9ce27ae25ea48219977ee47"
+      },
+      {
+        "file": "05_engine.svg",
+        "sha256": "a2ab69c92fe100737105a499d73023ebf5c526eee7f11939f64805f1ddd85b97"
+      }
+    ]
+  },
+  "summary": {
+    "total": 5,
+    "passed": 3,
+    "warnings": 0,
+    "errors": 2
+  },
+  "issue_types": {
+    "Other": 2
+  },
+  "categories": {
+    "blocking": {
+      "count": 2,
+      "issues": [
+        {
+          "file": "01_cover.svg",
+          "message": "<g id=\"hero-stills\"> data-pptx-bounds overlaps <g id=\"cover-title\"> data-pptx-bounds by 12.0px x 170.0px; keep ordinary direct-root module zones disjoint beyond the 1px tolerance"
+        },
+        {
+          "file": "05_engine.svg",
+          "message": "<tspan> cannot use text-anchor on <tspan>; place it on the containing <text> or an ancestor group"
+        }
+      ]
+    },
+    "introduced": {
+      "count": 2,
+      "issues": [
+        {
+          "file": "05_engine.svg",
+          "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (14 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): g[12]:fill None -> '#E6E9F2'; text[13]:fill '#E6E9F2' -> None; text[15]:fill '#E6E9F2' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+        },
+        {
+          "file": "05_engine.svg",
+          "message": "Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=84, y=330; text='toon.ts909'), <text> (x=84, y=372; text='paint.ts720'), <text> (x=84, y=414; text='ink.ts393'), +8 more; use supported explicit text positioning when page fit matters (continuation <tspan> lines repeat the parent x; a hanging indent needs its own <text>)"
+        }
+      ]
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {},
+    "fonts": {},
+    "sizes": {}
+  },
+  "carrier_receipt": {
+    "scope": "informational-not-a-quota",
+    "pages": 5,
+    "totals": {
+      "text_elements": 89,
+      "image_placements": 5,
+      "icons": 3,
+      "svg_geometry_elements": 15,
+      "preset_shapes": 8,
+      "page_frame_elements": 5,
+      "marker_uses": 0,
+      "inline_emphasis_runs": 0,
+      "gradient_uses": 2,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "pages_with": {
+      "images": 2,
+      "icons": 1,
+      "presets": 1,
+      "charts": 0,
+      "tables": 0,
+      "formulas": 0,
+      "inline_emphasis_runs": 0,
+      "gradient_uses": 1,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "relationship_pages": null,
+    "geometry_elements": {
+      "circle": 0,
+      "ellipse": 0,
+      "line": 2,
+      "path": 0,
+      "polygon": 0,
+      "polyline": 0,
+      "rect": 13
+    },
+    "preset_names": {
+      "chevron": 8
+    },
+    "native_objects": {
+      "chart": 0,
+      "formula_block": 0,
+      "formula_inline": 0,
+      "other": 0,
+      "table": 0
+    },
+    "image_page_max_frame_share_range": [
+      0.0625,
+      0.2344
+    ]
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "/home/user/Readmi/decks/readmi_deck_ppt169_20261117/svg_output/01_cover.svg",
+      "exists": true,
+      "errors": [
+        "<g id=\"hero-stills\"> data-pptx-bounds overlaps <g id=\"cover-title\"> data-pptx-bounds by 12.0px x 170.0px; keep ordinary direct-root module zones disjoint beyond the 1px tolerance"
+      ],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 5,
+          "images": {
+            "placements": 2,
+            "files": [
+              "shot_10_f1397.jpg",
+              "shot_12_f1756.jpg"
+            ],
+            "max_frame_share": 0.2344
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 2,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 3,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Segoe UI, Arial, sans-serif"
+        ],
+        "text_elements": 5,
+        "tspan_elements": 3
+      },
+      "passed": false,
+      "source_sha256": "d4436e2b20ea58a7c90eb2d330085ecad393b8568962e7acc9208e25b9263bb9"
+    },
+    {
+      "file": "02_inside.svg",
+      "path": "/home/user/Readmi/decks/readmi_deck_ppt169_20261117/svg_output/02_inside.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 14,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 3,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 4,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Segoe UI, Arial, sans-serif"
+        ],
+        "text_elements": 14,
+        "tspan_elements": 15
+      },
+      "passed": true,
+      "source_sha256": "5a7ad7d20a972a470e8f44df32e5df29dced814916322c675a314ed1a8cfba0b"
+    },
+    {
+      "file": "03_dashcam_story.svg",
+      "path": "/home/user/Readmi/decks/readmi_deck_ppt169_20261117/svg_output/03_dashcam_story.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 17,
+          "images": {
+            "placements": 3,
+            "files": [
+              "shot_03_f210.jpg",
+              "shot_07_f1010.jpg",
+              "shot_12_f1756.jpg"
+            ],
+            "max_frame_share": 0.0625
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 1,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 2,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Segoe UI, Arial, sans-serif"
+        ],
+        "text_elements": 17,
+        "tspan_elements": 11
+      },
+      "passed": true,
+      "source_sha256": "5c1e19066334122b947e2c4d1072821016bebc85b05967e8cecc3a2c04b6772d"
+    },
+    {
+      "file": "04_pipeline.svg",
+      "path": "/home/user/Readmi/decks/readmi_deck_ppt169_20261117/svg_output/04_pipeline.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 29,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 1,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 8,
+            "preset_names": {
+              "chevron": 8
+            },
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Segoe UI, Arial, sans-serif"
+        ],
+        "text_elements": 29,
+        "tspan_elements": 8
+      },
+      "passed": true,
+      "source_sha256": "a9ecbca6a4136371d032d43b256234ec6898dd2ce9ce27ae25ea48219977ee47"
+    },
+    {
+      "file": "05_engine.svg",
+      "path": "/home/user/Readmi/decks/readmi_deck_ppt169_20261117/svg_output/05_engine.svg",
+      "exists": true,
+      "errors": [
+        "<tspan> cannot use text-anchor on <tspan>; place it on the containing <text> or an ancestor group"
+      ],
+      "warnings": [
+        "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (14 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): g[12]:fill None -> '#E6E9F2'; text[13]:fill '#E6E9F2' -> None; text[15]:fill '#E6E9F2' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)",
+        "Cannot verify root viewBox bounds for visible text with unsupported or unresolved geometry: <text> (x=84, y=330; text='toon.ts909'), <text> (x=84, y=372; text='paint.ts720'), <text> (x=84, y=414; text='ink.ts393'), +8 more; use supported explicit text positioning when page fit matters (continuation <tspan> lines repeat the parent x; a hanging indent needs its own <text>)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 24,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 4,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Segoe UI, Arial, sans-serif"
+        ],
+        "text_elements": 24,
+        "tspan_elements": 17
+      },
+      "passed": false,
+      "source_sha256": "a2ab69c92fe100737105a499d73023ebf5c526eee7f11939f64805f1ddd85b97"
+    }
+  ]
+}

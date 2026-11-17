@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="en" font-family="Segoe UI, Arial, sans-serif" data-pptx-page-role="ending">
+  <defs>
+    <linearGradient id="accentRule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFB547"/>
+      <stop offset="100%" stop-color="#3DD6F5"/>
+    </linearGradient>
+  </defs>
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#0B1020"/>
+  <g id="header" data-pptx-bounds="60 40 1160 110">
+    <text x="60" y="72" font-family="Consolas, monospace" font-size="14" fill="#3DD6F5" letter-spacing="2">MAKE THE NEXT ONE</text>
+    <text x="60" y="124" font-size="40" font-weight="bold" fill="#FFFFFF">A new short is a new story folder</text>
+  </g>
+  <g id="takeaway" data-pptx-bounds="60 160 560 200">
+    <rect x="60" y="168" width="200" height="4" fill="url(#accentRule)"/>
+    <text x="60" y="214" font-size="24" fill="#FFFFFF">Write the script, the shot table<tspan x="60" dy="34">and the sets. The engine, audio</tspan><tspan x="60" dy="34">and QA tools are already done.</tspan></text>
+  </g>
+  <g id="stack" data-pptx-bounds="60 400 560 260">
+    <text x="60" y="424" font-family="Consolas, monospace" font-size="14" fill="#9AA3B8">BUILT WITH</text>
+    <g id="stack-three">
+      <use data-icon="simple-icons/threedotjs" x="60" y="446" width="32" height="32" fill="#FFFFFF"/>
+      <text x="104" y="470" font-size="18" fill="#E6E9F2">Three.js</text>
+    </g>
+    <g id="stack-react">
+      <use data-icon="simple-icons/react" x="240" y="446" width="32" height="32" fill="#61DAFB"/>
+      <text x="284" y="470" font-size="18" fill="#E6E9F2">React + Remotion</text>
+    </g>
+    <g id="stack-ts">
+      <use data-icon="simple-icons/typescript" x="60" y="506" width="32" height="32" fill="#3178C6"/>
+      <text x="104" y="530" font-size="18" fill="#E6E9F2">TypeScript</text>
+    </g>
+    <g id="stack-python">
+      <use data-icon="simple-icons/python" x="240" y="506" width="32" height="32" fill="#FFD43B"/>
+      <text x="284" y="530" font-size="18" fill="#E6E9F2">Python audio tools</text>
+    </g>
+    <g id="stack-eleven">
+      <use data-icon="simple-icons/elevenlabs" x="60" y="566" width="32" height="32" fill="#FFFFFF"/>
+      <text x="104" y="590" font-size="18" fill="#E6E9F2">ElevenLabs</text>
+    </g>
+    <g id="stack-ffmpeg">
+      <use data-icon="simple-icons/ffmpeg" x="240" y="566" width="32" height="32" fill="#5CB85C"/>
+      <text x="284" y="590" font-size="18" fill="#E6E9F2">FFmpeg</text>
+    </g>
+  </g>
+  <g id="commands" data-pptx-bounds="660 160 560 500">
+    <rect x="660" y="168" width="560" height="480" rx="10" fill="#141B2E" stroke="#2A3350" stroke-width="1"/>
+    <text x="688" y="206" font-family="Consolas, monospace" font-size="14" fill="#9AA3B8">cd shorts-studio</text>
+    <g font-family="Consolas, monospace" font-size="15">
+      <text x="688" y="252" fill="#3DD6F5"># preview in the browser</text>
+      <text x="688" y="278" fill="#E6E9F2">npm run dev</text>
+      <text x="688" y="324" fill="#3DD6F5"># story.ts → timeline.json</text>
+      <text x="688" y="350" fill="#E6E9F2">npm run timeline</text>
+      <text x="688" y="396" fill="#3DD6F5"># one review still per shot</text>
+      <text x="688" y="422" fill="#E6E9F2">npm run stills</text>
+      <text x="688" y="468" fill="#3DD6F5"># mix audio, render, run QA</text>
+      <text x="688" y="494" fill="#E6E9F2">python audio/mix.py …</text>
+      <text x="688" y="520" fill="#E6E9F2">node scripts/render.mjs render-shots …</text>
+      <text x="688" y="546" fill="#E6E9F2">python scripts/short_qa.py …</text>
+    </g>
+    <text x="688" y="610" font-size="16" fill="#C9CFDD">Or ask Claude: /short3d runs all eight stages.</text>
+  </g>
+</svg>

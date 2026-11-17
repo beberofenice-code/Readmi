@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="en" font-family="Segoe UI, Arial, sans-serif" data-pptx-page-role="cover">
+  <defs>
+    <linearGradient id="coverScrim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0B1020" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#0B1020" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0B1020" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="accentRule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFB547"/>
+      <stop offset="100%" stop-color="#3DD6F5"/>
+    </linearGradient>
+  </defs>
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#0B1020"/>
+  <g id="hero-stills" data-pptx-bounds="700 0 580 720">
+    <image href="../images/shot_07_f1010.jpg" x="700" y="0" width="300" height="720" preserveAspectRatio="xMidYMid slice"/>
+    <image href="../images/shot_12_f1756.jpg" x="990" y="0" width="290" height="720" preserveAspectRatio="xMidYMid slice"/>
+    <rect x="700" y="0" width="420" height="720" fill="url(#coverScrim)"/>
+    <text x="1262" y="700" font-family="Consolas, monospace" font-size="14" fill="#E6E9F2" text-anchor="end">DashcamShort · shots 7 and 12</text>
+  </g>
+  <g id="cover-kicker" data-pptx-bounds="72 150 600 30">
+    <text x="72" y="172" font-family="Consolas, monospace" font-size="16" fill="#3DD6F5" letter-spacing="2">BEBEROFENICE-CODE / READMI</text>
+  </g>
+  <g id="cover-title" data-pptx-bounds="72 196 620 170">
+    <text x="72" y="256" font-size="60" font-weight="bold" fill="#FFFFFF">Code that makes<tspan x="72" dy="74">cartoons</tspan></text>
+  </g>
+  <g id="cover-rule" data-pptx-bounds="72 384 240 8">
+    <rect x="72" y="386" width="200" height="4" fill="url(#accentRule)"/>
+  </g>
+  <g id="cover-subtitle" data-pptx-bounds="72 410 600 110">
+    <text x="72" y="440" font-size="24" fill="#C9CFDD">shorts-studio turns a script into a finished<tspan x="72" dy="36">60-second 2.5D cartoon, using Three.js,</tspan><tspan x="72" dy="36">Remotion and Python.</tspan></text>
+  </g>
+  <g id="cover-stats" data-pptx-bounds="72 580 600 40">
+    <text x="72" y="606" font-family="Consolas, monospace" font-size="16" fill="#FFB547">62.2 s  ·  1,867 frames  ·  12 shots  ·  5 sets</text>
+  </g>
+</svg>

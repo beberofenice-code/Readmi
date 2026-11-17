@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="en" font-family="Segoe UI, Arial, sans-serif" data-pptx-page-role="content">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#0B1020"/>
+  <g id="header" data-pptx-bounds="60 40 1160 110">
+    <text x="60" y="72" font-family="Consolas, monospace" font-size="14" fill="#3DD6F5" letter-spacing="2">THE PIPELINE</text>
+    <text x="60" y="124" font-size="40" font-weight="bold" fill="#FFFFFF">Eight stages from script to finished MP4</text>
+  </g>
+  <g id="row-label-plan" data-pptx-bounds="60 160 600 36">
+    <text x="60" y="186" font-family="Consolas, monospace" font-size="14" fill="#8C8FFF">WRITE AND BUILD</text>
+  </g>
+  <g id="stage-1" data-pptx-bounds="60 200 288 190">
+    <g id="p04-stage-1-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="60 206 292 60" data-pptx-av-adj="val 32000" fill="#3B3F8F" stroke="none">
+<path d="M 60 206 L 332.8 206 L 352 236 L 332.8 266 L 60 266 L 79.2 236 Z"/>
+</g>
+    <text x="100" y="244" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">01</text>
+    <text x="72" y="304" font-size="18" font-weight="bold" fill="#FFFFFF">Script and beat sheet</text>
+    <text x="72" y="332" font-size="16" fill="#C9CFDD">SCRIPT.md, written to a<tspan x="72" dy="24">measured hook-to-payoff formula</tspan></text>
+  </g>
+  <g id="stage-2" data-pptx-bounds="348 200 288 190">
+    <g id="p04-stage-2-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="348 206 292 60" data-pptx-av-adj="val 32000" fill="#3B3F8F" stroke="none">
+<path d="M 348 206 L 620.8 206 L 640 236 L 620.8 266 L 348 266 L 367.2 236 Z"/>
+</g>
+    <text x="388" y="244" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">02</text>
+    <text x="360" y="304" font-size="18" font-weight="bold" fill="#FFFFFF">Voice</text>
+    <text x="360" y="332" font-size="16" fill="#C9CFDD">ElevenLabs TTS → voice.wav<tspan x="360" dy="24">plus word timings</tspan></text>
+  </g>
+  <g id="stage-3" data-pptx-bounds="636 200 288 190">
+    <g id="p04-stage-3-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="636 206 292 60" data-pptx-av-adj="val 32000" fill="#3B3F8F" stroke="none">
+<path d="M 636 206 L 908.8 206 L 928 236 L 908.8 266 L 636 266 L 655.2 236 Z"/>
+</g>
+    <text x="676" y="244" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">03</text>
+    <text x="648" y="304" font-size="18" font-weight="bold" fill="#FFFFFF">Timeline</text>
+    <text x="648" y="332" font-size="16" fill="#C9CFDD">story.ts shot table exported<tspan x="648" dy="24">to timeline.json</tspan></text>
+  </g>
+  <g id="stage-4" data-pptx-bounds="924 200 296 190">
+    <g id="p04-stage-4-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="924 206 292 60" data-pptx-av-adj="val 32000" fill="#3B3F8F" stroke="none">
+<path d="M 924 206 L 1196.8 206 L 1216 236 L 1196.8 266 L 924 266 L 943.2 236 Z"/>
+</g>
+    <text x="964" y="244" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">04</text>
+    <text x="936" y="304" font-size="18" font-weight="bold" fill="#FFFFFF">Sets and characters</text>
+    <text x="936" y="332" font-size="16" fill="#C9CFDD">sets.ts painted 3D sets,<tspan x="936" dy="24">rig25d bean-head characters</tspan></text>
+  </g>
+  <g id="row-label-render" data-pptx-bounds="60 400 600 36">
+    <text x="60" y="426" font-family="Consolas, monospace" font-size="14" fill="#3DD6F5">RENDER AND CHECK</text>
+  </g>
+  <g id="stage-5" data-pptx-bounds="60 440 288 190">
+    <g id="p04-stage-5-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="60 446 292 60" data-pptx-av-adj="val 32000" fill="#1F5F7A" stroke="none">
+<path d="M 60 446 L 332.8 446 L 352 476 L 332.8 506 L 60 506 L 79.2 476 Z"/>
+</g>
+    <text x="100" y="484" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">05</text>
+    <text x="72" y="544" font-size="18" font-weight="bold" fill="#FFFFFF">Review stills</text>
+    <text x="72" y="572" font-size="16" fill="#C9CFDD">render.mjs draws one<tspan x="72" dy="24">midpoint still per shot</tspan></text>
+  </g>
+  <g id="stage-6" data-pptx-bounds="348 440 288 190">
+    <g id="p04-stage-6-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="348 446 292 60" data-pptx-av-adj="val 32000" fill="#1F5F7A" stroke="none">
+<path d="M 348 446 L 620.8 446 L 640 476 L 620.8 506 L 348 506 L 367.2 476 Z"/>
+</g>
+    <text x="388" y="484" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">06</text>
+    <text x="360" y="544" font-size="18" font-weight="bold" fill="#FFFFFF">Audio mix</text>
+    <text x="360" y="572" font-size="16" fill="#C9CFDD">Foley, 120 BPM score and<tspan x="360" dy="24">voice mastered to mix.wav</tspan></text>
+  </g>
+  <g id="stage-7" data-pptx-bounds="636 440 288 190">
+    <g id="p04-stage-7-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="636 446 292 60" data-pptx-av-adj="val 32000" fill="#1F5F7A" stroke="none">
+<path d="M 636 446 L 908.8 446 L 928 476 L 908.8 506 L 636 506 L 655.2 476 Z"/>
+</g>
+    <text x="676" y="484" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">07</text>
+    <text x="648" y="544" font-size="18" font-weight="bold" fill="#FFFFFF">Render and stitch</text>
+    <text x="648" y="572" font-size="16" fill="#C9CFDD">Per-shot render, crossfades,<tspan x="648" dy="24">audio muxed into the MP4</tspan></text>
+  </g>
+  <g id="stage-8" data-pptx-bounds="924 440 296 190">
+    <g id="p04-stage-8-chevron" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="924 446 292 60" data-pptx-av-adj="val 32000" fill="#1F5F7A" stroke="none">
+<path d="M 924 446 L 1196.8 446 L 1216 476 L 1196.8 506 L 924 506 L 943.2 476 Z"/>
+</g>
+    <text x="964" y="484" font-family="Consolas, monospace" font-size="18" font-weight="bold" fill="#FFFFFF">08</text>
+    <text x="936" y="544" font-size="18" font-weight="bold" fill="#FFFFFF">QA report</text>
+    <text x="936" y="572" font-size="16" fill="#C9CFDD">short_qa.py checks loudness,<tspan x="936" dy="24">black frames, pops, freezes</tspan></text>
+  </g>
+  <g id="footnote" data-pptx-bounds="60 650 1160 36">
+    <text x="60" y="676" font-family="Consolas, monospace" font-size="14" fill="#9AA3B8">Driven end to end by the /short3d skill · runs on desktop, Linux and Android (Termux)</text>
+  </g>
+</svg>

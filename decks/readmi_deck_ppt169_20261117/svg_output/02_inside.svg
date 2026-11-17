@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="en" font-family="Segoe UI, Arial, sans-serif" data-pptx-page-role="content">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#0B1020"/>
+  <g id="header" data-pptx-bounds="60 40 1160 110">
+    <text x="60" y="72" font-family="Consolas, monospace" font-size="14" fill="#3DD6F5" letter-spacing="2">WHAT'S IN THE REPO</text>
+    <text x="60" y="124" font-size="40" font-weight="bold" fill="#FFFFFF">Three parts: an engine, a film, and the skills</text>
+  </g>
+  <g id="part-engine" data-pptx-bounds="60 190 360 470">
+    <rect x="60" y="190" width="360" height="470" rx="10" fill="#141B2E" stroke="#3B3F8F" stroke-width="1.5"/>
+    <use data-icon="tabler-outline/building-castle" x="88" y="220" width="40" height="40" fill="#8C8FFF" stroke-width="2"/>
+    <text x="88" y="300" font-size="24" font-weight="bold" fill="#FFFFFF">The engine</text>
+    <text x="88" y="330" font-family="Consolas, monospace" font-size="14" fill="#8C8FFF">shorts-studio/</text>
+    <text x="88" y="374" font-size="18" fill="#C9CFDD">A Remotion project that renders<tspan x="88" dy="28">painted 3D sets, flat 2.5D</tspan><tspan x="88" dy="28">characters and ink outlines with</tspan><tspan x="88" dy="28">Three.js, plus Python tools that</tspan><tspan x="88" dy="28">generate and master the audio.</tspan></text>
+    <text x="88" y="560" font-family="Consolas, monospace" font-size="14" fill="#9AA3B8">src/videos/core · audio/<tspan x="88" dy="24">scripts/ · voice/</tspan></text>
+  </g>
+  <g id="part-film" data-pptx-bounds="460 190 360 470">
+    <rect x="460" y="190" width="360" height="470" rx="10" fill="#141B2E" stroke="#FFB547" stroke-width="1.5"/>
+    <use data-icon="tabler-outline/movie" x="488" y="220" width="40" height="40" fill="#FFB547" stroke-width="2"/>
+    <text x="488" y="300" font-size="24" font-weight="bold" fill="#FFFFFF">The film</text>
+    <text x="488" y="330" font-family="Consolas, monospace" font-size="14" fill="#FFB547">DashcamShort</text>
+    <text x="488" y="374" font-size="18" fill="#C9CFDD">“How the Dashcam Was Invented”,<tspan x="488" dy="28">the worked example: story,</tspan><tspan x="488" dy="28">sets, ElevenLabs voiceover, the</tspan><tspan x="488" dy="28">final MP4, per-shot stills and a</tspan><tspan x="488" dy="28">QA report.</tspan></text>
+    <text x="488" y="560" font-family="Consolas, monospace" font-size="14" fill="#9AA3B8">src/videos/dashcam/<tspan x="488" dy="24">out/dashcam/final-short.mp4</tspan></text>
+  </g>
+  <g id="part-skills" data-pptx-bounds="860 190 360 470">
+    <rect x="860" y="190" width="360" height="470" rx="10" fill="#141B2E" stroke="#3DD6F5" stroke-width="1.5"/>
+    <use data-icon="tabler-outline/terminal-2" x="888" y="220" width="40" height="40" fill="#3DD6F5" stroke-width="2"/>
+    <text x="888" y="300" font-size="24" font-weight="bold" fill="#FFFFFF">The skills</text>
+    <text x="888" y="330" font-family="Consolas, monospace" font-size="14" fill="#3DD6F5">.claude/skills/</text>
+    <text x="888" y="374" font-size="18" fill="#C9CFDD">Instructions that let Claude run<tspan x="888" dy="28">the whole pipeline:</tspan><tspan x="888" dy="28">cartoon-3d-short-v2 and /short3d</tspan><tspan x="888" dy="28">for films, ppt-master for decks</tspan><tspan x="888" dy="28">like this one.</tspan></text>
+    <text x="888" y="560" font-family="Consolas, monospace" font-size="14" fill="#9AA3B8">cartoon-3d-short-v2<tspan x="888" dy="24">short3d · ppt-master</tspan></text>
+  </g>
+</svg>
