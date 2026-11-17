@@ -1,0 +1,599 @@
+{
+  "fps": 30,
+  "total_frames": 1875,
+  "duration_s": 62.5,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 112,
+      "set": "kitchen",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 112,
+      "b": 253,
+      "set": "bedroom",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 253,
+      "b": 380,
+      "set": "kitchen",
+      "light": "interior",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 380,
+      "b": 503,
+      "set": "study",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 503,
+      "b": 638,
+      "set": "study",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 6,
+      "a": 638,
+      "b": 904,
+      "set": "office",
+      "light": "interior",
+      "xfade": 6,
+      "hud": "clock"
+    },
+    {
+      "id": 7,
+      "a": 904,
+      "b": 979,
+      "set": "office",
+      "light": "interior",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 979,
+      "b": 1039,
+      "set": "street",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 1039,
+      "b": 1179,
+      "set": "terrace",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 1179,
+      "b": 1365,
+      "set": "street",
+      "light": "day",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1365,
+      "b": 1441,
+      "set": "street",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 1441,
+      "b": 1577,
+      "set": "bedroom",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 1577,
+      "b": 1691,
+      "set": "kitchen",
+      "light": "interior",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 1691,
+      "b": 1875,
+      "set": "kitchen",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 4,
+      "time_s": 0.1333,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen wall clock tick (hook)"
+    },
+    {
+      "frame": 34,
+      "time_s": 1.1333,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen wall clock tick"
+    },
+    {
+      "frame": 64,
+      "time_s": 2.1333,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen wall clock tick"
+    },
+    {
+      "frame": 94,
+      "time_s": 3.1333,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen wall clock tick"
+    },
+    {
+      "frame": 114,
+      "time_s": 3.8,
+      "type": "alarm_ring",
+      "gain": 0.75,
+      "pan": -0.3,
+      "desc": "Bedside alarm clock rings at 7:00"
+    },
+    {
+      "frame": 147,
+      "time_s": 4.9,
+      "type": "whoosh",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Milo bolts upright, mind spinning up to x100"
+    },
+    {
+      "frame": 257,
+      "time_s": 8.5667,
+      "type": "score_fast",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score switches to racing sixteenth-note glock"
+    },
+    {
+      "frame": 262,
+      "time_s": 8.7333,
+      "type": "coffee_pour",
+      "gain": 0.7,
+      "pan": 0.35,
+      "desc": "Coffee machine gurgle, stream hanging in the air"
+    },
+    {
+      "frame": 306,
+      "time_s": 10.2,
+      "type": "page_flutter",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Whole book riffled in two seconds"
+    },
+    {
+      "frame": 366,
+      "time_s": 12.2,
+      "type": "book_shut",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Book snaps shut, finished"
+    },
+    {
+      "frame": 428,
+      "time_s": 14.2667,
+      "type": "chess_clack",
+      "gain": 0.9,
+      "pan": 0.1,
+      "desc": "Chess move 1"
+    },
+    {
+      "frame": 434,
+      "time_s": 14.4667,
+      "type": "chess_clack",
+      "gain": 0.9,
+      "pan": -0.1,
+      "desc": "Chess move 2"
+    },
+    {
+      "frame": 440,
+      "time_s": 14.6667,
+      "type": "chess_clack",
+      "gain": 0.9,
+      "pan": 0.1,
+      "desc": "Chess move 3"
+    },
+    {
+      "frame": 446,
+      "time_s": 14.8667,
+      "type": "chess_clack",
+      "gain": 1,
+      "pan": -0.1,
+      "desc": "Chess move 4, checkmate"
+    },
+    {
+      "frame": 452,
+      "time_s": 15.0667,
+      "type": "king_topple",
+      "gain": 0.9,
+      "pan": -0.2,
+      "desc": "Grandmaster's king falls over"
+    },
+    {
+      "frame": 512,
+      "time_s": 17.0667,
+      "type": "chalk_scribble",
+      "gain": 0.85,
+      "pan": 0.1,
+      "desc": "Chalk racing across the blackboard"
+    },
+    {
+      "frame": 560,
+      "time_s": 18.6667,
+      "type": "chalk_scribble",
+      "gain": 0.85,
+      "pan": -0.1,
+      "desc": "More chalk"
+    },
+    {
+      "frame": 606,
+      "time_s": 20.2,
+      "type": "sneeze",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Ah... CHOO (proof finished mid-sneeze)"
+    },
+    {
+      "frame": 638,
+      "time_s": 21.2667,
+      "type": "score_slow",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops to a trudging half-time"
+    },
+    {
+      "frame": 644,
+      "time_s": 21.4667,
+      "type": "door_open",
+      "gain": 0.8,
+      "pan": -0.5,
+      "desc": "Office door creaks open"
+    },
+    {
+      "frame": 664,
+      "time_s": 22.1333,
+      "type": "footstep",
+      "gain": 0.7,
+      "pan": -0.45,
+      "desc": "Boss step 1"
+    },
+    {
+      "frame": 682,
+      "time_s": 22.7333,
+      "type": "footstep",
+      "gain": 0.7,
+      "pan": -0.35,
+      "desc": "Boss step 2"
+    },
+    {
+      "frame": 700,
+      "time_s": 23.3333,
+      "type": "footstep",
+      "gain": 0.7,
+      "pan": -0.25,
+      "desc": "Boss step 3"
+    },
+    {
+      "frame": 740,
+      "time_s": 24.6667,
+      "type": "clock_tick",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Office clock, one second"
+    },
+    {
+      "frame": 770,
+      "time_s": 25.6667,
+      "type": "clock_tick",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Office clock, two seconds"
+    },
+    {
+      "frame": 800,
+      "time_s": 26.6667,
+      "type": "clock_tick",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Office clock, three seconds"
+    },
+    {
+      "frame": 944,
+      "time_s": 31.4667,
+      "type": "counter_flip",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "Meeting calendar flips to DAY 2"
+    },
+    {
+      "frame": 954,
+      "time_s": 31.8,
+      "type": "counter_flip",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "Meeting calendar flips to DAY 3"
+    },
+    {
+      "frame": 964,
+      "time_s": 32.1333,
+      "type": "counter_flip",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Meeting calendar flips to DAY 4"
+    },
+    {
+      "frame": 984,
+      "time_s": 32.8,
+      "type": "crosswalk_beep",
+      "gain": 0.7,
+      "pan": -0.2,
+      "desc": "Don't-walk signal chirping at the red light"
+    },
+    {
+      "frame": 1046,
+      "time_s": 34.8667,
+      "type": "glass_clink",
+      "gain": 0.7,
+      "pan": 0.2,
+      "desc": "Wine glasses on the terrace"
+    },
+    {
+      "frame": 1300,
+      "time_s": 43.3333,
+      "type": "pigeon_flap",
+      "gain": 0.75,
+      "pan": 0.3,
+      "desc": "Pigeon overtakes Milo at normal speed"
+    },
+    {
+      "frame": 1414,
+      "time_s": 47.1333,
+      "type": "pigeon_flap",
+      "gain": 0.7,
+      "pan": 0.1,
+      "desc": "Pigeon comes in to land"
+    },
+    {
+      "frame": 1420,
+      "time_s": 47.3333,
+      "type": "stone_thud",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Pigeon lands on the statue's head"
+    },
+    {
+      "frame": 1470,
+      "time_s": 49,
+      "type": "clock_tick",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "Bedside clock in the dark"
+    },
+    {
+      "frame": 1500,
+      "time_s": 50,
+      "type": "clock_tick",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "Bedside clock in the dark"
+    },
+    {
+      "frame": 1530,
+      "time_s": 51,
+      "type": "clock_tick",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "Bedside clock in the dark"
+    },
+    {
+      "frame": 1560,
+      "time_s": 52,
+      "type": "clock_tick",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "Bedside clock in the dark"
+    },
+    {
+      "frame": 1689,
+      "time_s": 56.3,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out; only the kitchen clock is left"
+    },
+    {
+      "frame": 1700,
+      "time_s": 56.6667,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen clock tick"
+    },
+    {
+      "frame": 1730,
+      "time_s": 57.6667,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen clock tick"
+    },
+    {
+      "frame": 1760,
+      "time_s": 58.6667,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen clock tick"
+    },
+    {
+      "frame": 1790,
+      "time_s": 59.6667,
+      "type": "clock_tick",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Kitchen clock tick"
+    },
+    {
+      "frame": 1834,
+      "time_s": 61.1333,
+      "type": "toaster_pop",
+      "gain": 1.1,
+      "pan": 0.15,
+      "desc": "The toast finally pops"
+    },
+    {
+      "frame": 1838,
+      "time_s": 61.2667,
+      "type": "pad_in",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Warm resolve chord under the popped toast"
+    }
+  ],
+  "xfade": [
+    [
+      253,
+      259
+    ],
+    [
+      638,
+      644
+    ],
+    [
+      904,
+      910
+    ],
+    [
+      1039,
+      1047
+    ],
+    [
+      1179,
+      1187
+    ],
+    [
+      1441,
+      1449
+    ],
+    [
+      1577,
+      1585
+    ]
+  ],
+  "planned": [
+    [
+      503,
+      503
+    ],
+    [
+      826,
+      826
+    ],
+    [
+      979,
+      979
+    ],
+    [
+      1365,
+      1365
+    ],
+    [
+      1691,
+      1691
+    ],
+    [
+      147,
+      155
+    ],
+    [
+      366,
+      374
+    ],
+    [
+      428,
+      436
+    ],
+    [
+      434,
+      442
+    ],
+    [
+      440,
+      448
+    ],
+    [
+      446,
+      454
+    ],
+    [
+      452,
+      460
+    ],
+    [
+      616,
+      624
+    ],
+    [
+      944,
+      952
+    ],
+    [
+      954,
+      962
+    ],
+    [
+      964,
+      972
+    ],
+    [
+      1420,
+      1428
+    ],
+    [
+      1834,
+      1842
+    ]
+  ]
+}

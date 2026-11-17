@@ -82,8 +82,12 @@ async function run() {
 
   if (mode === "stills") {
     fs.mkdirSync(outPath, { recursive: true });
-    for (const s of tl.shots) {
-      const mid = Math.floor((s.a + s.b) / 2);
+    // --frames 10,250,1834 renders those exact frames instead of one midpoint per shot (spot-checks of fast actions)
+    const extra = getArg("--frames", "").split(",").filter(Boolean).map(Number);
+    const jobs = extra.length
+      ? extra.map((fr) => ({ s: tl.shots.find((x) => fr >= x.a && fr < x.b) ?? tl.shots[tl.shots.length - 1], mid: fr }))
+      : tl.shots.map((s) => ({ s, mid: Math.floor((s.a + s.b) / 2) }));
+    for (const { s, mid } of jobs) {
       const file = path.join(outPath, `shot_${String(s.id).padStart(2, "0")}_f${mid}.jpg`);
       await renderStill({
         composition,

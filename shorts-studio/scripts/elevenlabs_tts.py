@@ -38,6 +38,26 @@ def parse_script(path):
     return lines
 
 
+TEMPO_RE = re.compile(r"tts-tempo:\s*([^>\n]+)")
+
+
+def parse_tempos(path):
+    """Optional `<!-- tts-tempo: boss=0.62 giant=0.8 -->` line in SCRIPT.md: per-speaker tape-speed factor
+    (< 1 = slower and lower-pitched slow-motion voice). Word timings are stretched to match."""
+    out = {}
+    for m in TEMPO_RE.finditer(open(path, encoding="utf-8").read()):
+        for sp, k in re.findall(r"([A-Za-z][A-Za-z0-9_-]*)\s*=\s*([0-9.]+)", m.group(1)):
+            out[sp.lower()] = float(k)
+    return out
+
+
+def retime(samples, k):
+    """Tape-speed change of 48 kHz mono s16le bytes: k = 0.62 plays at 62 % speed (longer, lower)."""
+    cmd = ["ffmpeg", "-v", "error", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-",
+           "-af", f"asetrate={int(round(SR * k))},aresample={SR}", "-ac", "1", "-f", "s16le", "-acodec", "pcm_s16le", "-"]
+    return subprocess.run(cmd, input=bytes(samples), capture_output=True, check=True).stdout
+
+
 def voice_for(speaker):
     key = "ELEVENLABS_VOICE_ID_" + re.sub(r"[^A-Z0-9]", "_", speaker.upper())
     return os.environ.get(key) or os.environ.get("ELEVENLABS_VOICE_ID")
@@ -122,6 +142,7 @@ def main():
     args = ap.parse_args()
 
     lines = parse_script(args.script)
+    tempos = parse_tempos(args.script)
     if not lines:
         sys.exit(f"[tts] No [SPEAKER] lines found in {args.script}")
     wav_path, words_path = os.path.join(args.out_dir, "voice.wav"), os.path.join(args.out_dir, "words.json")
@@ -160,8 +181,14 @@ def main():
         else:
             a, b = 0.0, dur
         clip = samples[int(a * SR) * 2:int(b * SR) * 2]
+        k = tempos.get(sp, 1.0)
+        if k != 1.0:
+            clip = retime(clip, k)
         if al:
-            words += words_from_alignment(al, sp, t, a)
+            ws = words_from_alignment(al, sp, 0.0, a)
+            for w in ws:
+                w["s"], w["e"] = round(t + w["s"] / k, 3), round(t + w["e"] / k, 3)
+            words += ws
         pcm += clip
         t += len(clip) / 2 / SR
         if i < len(lines):

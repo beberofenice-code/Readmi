@@ -26,12 +26,21 @@ def build_sfx(tl, N, v_ref):
     for s in tl["shots"]:
         t0 = s["a"] / tl["fps"]
         dur = (s["b"] - s["a"]) / tl["fps"]
-        if s["set"] in ("highway", "car_cabin"):
+        st_name, night = s["set"], s["light"] == "night"
+        if st_name in ("highway", "car_cabin"):
             bed = G.amb_highway(dur, r, rain=(s["light"] == "rain"))
-            cur = integrated(bed)
-            if np.isfinite(cur):
-                bed *= dbg((v_ref - 24.0) - cur)
-            place(out, bed, t0)
+        elif st_name == "street":
+            bed = G.amb_street(dur, r)
+        elif st_name in ("terrace", "pool") or (st_name == "bedroom" and night):
+            bed = G.amb_night(dur, r, murmur=(st_name == "terrace"))
+        elif st_name in ("kitchen", "bedroom", "study", "office"):
+            bed = G.amb_room(dur, r)
+        else:
+            continue
+        cur = integrated(bed)
+        if np.isfinite(cur):
+            bed *= dbg((v_ref - 24.0) - cur)
+        place(out, bed, t0)
 
     # Discrete timeline events
     dispatch = {
@@ -47,6 +56,23 @@ def build_sfx(tl, N, v_ref):
         "siren_chirp":   (lambda: G.siren_chirp(r), -9.5),
         "wiper_sweep":   (lambda: G.wiper_sweep(r), -12.0),
         "camera_beep":   (lambda: G.camera_beep(r), -7.5),
+        "clock_tick":    (lambda: G.clock_tick(r), -17.0),
+        "alarm_ring":    (lambda: G.alarm_ring(r), -11.0),
+        "whoosh":        (lambda: G.whoosh(r), -8.0),
+        "coffee_pour":   (lambda: G.coffee_pour(r), -15.0),
+        "page_flutter":  (lambda: G.page_flutter(r), -11.0),
+        "book_shut":     (lambda: G.book_shut(r), -7.5),
+        "chess_clack":   (lambda: G.chess_clack(r), -12.0),
+        "king_topple":   (lambda: G.king_topple(r), -9.5),
+        "chalk_scribble":(lambda: G.chalk_scribble(r), -12.0),
+        "sneeze":        (lambda: G.sneeze(r), -6.0),
+        "door_open":     (lambda: G.door_open(r), -12.0),
+        "footstep":      (lambda: G.footstep(r), -14.0),
+        "crosswalk_beep":(lambda: G.crosswalk_beep(r), -15.0),
+        "glass_clink":   (lambda: G.glass_clink(r), -13.0),
+        "pigeon_flap":   (lambda: G.pigeon_flap(r), -12.0),
+        "stone_thud":    (lambda: G.stone_thud(r), -9.0),
+        "toaster_pop":   (lambda: G.toaster_pop(r), -4.5),
     }
 
     for ev in tl["events"]:
@@ -73,35 +99,58 @@ def build_score(tl, N):
     r = rng(909)
     out = np.zeros((2, N))
     dur_s = tl["duration_s"]
-    stop_ev = next((e["time_s"] for e in tl["events"] if e["type"] == "music_stop"), 49.5)
+    ev_t = lambda tp, default: next((e["time_s"] for e in tl["events"] if e["type"] == tp), default)
+    stop_ev = ev_t("music_stop", 49.5)
+    # optional score cues (absent in older timelines -> classic behaviour):
+    #   score_fast: racing sixteenth-note glock arpeggio joins the groove (a mind running hot)
+    #   score_slow: groove drops to a trudging half-time with a low tuba (the world at 1x)
+    #   pad_in:     start of the warm resolve chord (default 55.0 s)
+    fast_ev, slow_ev = ev_t("score_fast", None), ev_t("score_slow", None)
+    pad_ev = ev_t("pad_in", 55.0)
 
-    # 120 BPM driving sneaky bassline + snare groove up to `music_stop`, then warm resolve chord at 55.0s
+    # 120 BPM driving sneaky bassline + snare groove up to `music_stop`
     beat = 0.5
     notes = [38, 38, 41, 43, 38, 38, 45, 43] # D minor sneaky pulse
+    arp = [74, 77, 81, 86, 81, 77, 74, 69, 74, 77, 84, 86, 84, 81, 77, 72]
     k = 0
     t = 0.0
     while t < stop_ev - 0.05:
+        slow = slow_ev is not None and t >= slow_ev - 1e-6
+        step = beat * 2 if slow else beat
         m = notes[k % len(notes)]
         f = I.m2f(m)
-        bass = I.pluck(f, 0.78, r, dur=0.44, bright=0.65)
+        bass = I.pluck(f, 0.78, r, dur=0.44 if not slow else 0.8, bright=0.65 if not slow else 0.4)
         place(out, pan(bass, -0.05), t)
-        if k % 2 == 1:
+        if slow:
+            if k % 2 == 0:
+                tb = I.brass(I.m2f(m - 12), 0.7, 0.5, r, kind="tuba")
+                place(out, pan(tb, 0.1), t, 0.55)
+            br = I.brush(0.3, r, dur=0.3, swish=True)
+            place(out, pan(br, -0.15), t + step * 0.5)
+        elif k % 2 == 1:
             sn = I.snare(0.45, r, dur=0.22, snappy=0.8)
             place(out, pan(sn, 0.08), t)
         else:
             br = I.brush(0.35, r, dur=0.18)
             place(out, pan(br, -0.15), t + beat * 0.5)
-        t += beat
+        if fast_ev is not None and t >= fast_ev - 1e-6 and not slow:
+            for j in range(4):
+                tj = t + j * beat / 4
+                if tj >= stop_ev - 0.05 or (slow_ev is not None and tj >= slow_ev):
+                    break
+                g = I.glock(I.m2f(arp[(k * 4 + j) % len(arp)]), 0.32 if j else 0.42, r, dur=0.5)
+                place(out, pan(g, 0.35 * np.sin(k * 0.9 + j)), tj, 0.5)
+        t += step
         k += 1
 
-    # Hard stop right before the quiet driver points to the dashcam
+    # Hard stop at `music_stop`
     stop_idx = ns(stop_ev)
     out[:, stop_idx:] = 0.0
 
-    # Payoff reveal pad (54.8s -> end)
-    if dur_s > 55.0:
-        pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - 55.0, 0.48, r, att=0.4, rel=0.5)
-        place(out, pad, 55.0)
+    # Payoff reveal pad (pad_in -> end)
+    if dur_s > pad_ev + 0.3:
+        pad = I.pad([I.m2f(50), I.m2f(57), I.m2f(62), I.m2f(65)], dur_s - pad_ev, 0.48, r, att=0.4, rel=0.5)
+        place(out, pad, pad_ev)
 
     return hp(out, 32, 2)
 
