@@ -1,0 +1,603 @@
+{
+  "profile": "future",
+  "fps": 30,
+  "total_frames": 1950,
+  "duration_s": 65,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 56,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 56,
+      "b": 126,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 126,
+      "b": 170,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 170,
+      "b": 224,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 224,
+      "b": 300,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 6,
+      "a": 300,
+      "b": 345,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 345,
+      "b": 404,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 404,
+      "b": 460,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 460,
+      "b": 582,
+      "set": "apartment",
+      "light": "night",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 582,
+      "b": 692,
+      "set": "apartment",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 692,
+      "b": 843,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 843,
+      "b": 870,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 870,
+      "b": 912,
+      "set": "hospital",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 912,
+      "b": 980,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 15,
+      "a": 980,
+      "b": 1060,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 16,
+      "a": 1060,
+      "b": 1158,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 17,
+      "a": 1158,
+      "b": 1256,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 18,
+      "a": 1256,
+      "b": 1340,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 19,
+      "a": 1340,
+      "b": 1410,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 20,
+      "a": 1410,
+      "b": 1465,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 21,
+      "a": 1465,
+      "b": 1532,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 22,
+      "a": 1532,
+      "b": 1566,
+      "set": "city",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 23,
+      "a": 1566,
+      "b": 1665,
+      "set": "city",
+      "light": "golden",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 24,
+      "a": 1665,
+      "b": 1767,
+      "set": "city",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 25,
+      "a": 1767,
+      "b": 1950,
+      "set": "city",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 6,
+      "time_s": 0.2,
+      "type": "eye_pop",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Cartoon eye-pop as your eyes snap open"
+    },
+    {
+      "frame": 12,
+      "time_s": 0.4,
+      "type": "whoosh",
+      "gain": 0.8,
+      "pan": -0.2,
+      "desc": "Bolt upright in the hospital bed"
+    },
+    {
+      "frame": 134,
+      "time_s": 4.4667,
+      "type": "beard_rustle",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Ten years of beard rustling over the blanket"
+    },
+    {
+      "frame": 170,
+      "time_s": 5.6667,
+      "type": "robot_hover",
+      "gain": 0.85,
+      "pan": 0.4,
+      "desc": "Nurse-bot hovers in, servo whir"
+    },
+    {
+      "frame": 198,
+      "time_s": 6.6,
+      "type": "robot_beep",
+      "gain": 0.7,
+      "pan": 0.2,
+      "desc": "Pulse check beep"
+    },
+    {
+      "frame": 316,
+      "time_s": 10.5333,
+      "type": "dramatic_sting",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Dun-dun-DUN on 'ten years'"
+    },
+    {
+      "frame": 350,
+      "time_s": 11.6667,
+      "type": "hover_pass",
+      "gain": 0.8,
+      "pan": -0.5,
+      "desc": "Flying car swooshes past the window"
+    },
+    {
+      "frame": 372,
+      "time_s": 12.4,
+      "type": "hover_pass",
+      "gain": 0.7,
+      "pan": 0.5,
+      "desc": "Flying car the other way"
+    },
+    {
+      "frame": 392,
+      "time_s": 13.0667,
+      "type": "hover_pass",
+      "gain": 0.6,
+      "pan": -0.2,
+      "desc": "Distant flying car"
+    },
+    {
+      "frame": 408,
+      "time_s": 13.6,
+      "type": "drone_buzz",
+      "gain": 0.9,
+      "pan": 0.1,
+      "desc": "Pizza drone buzzing toward camera"
+    },
+    {
+      "frame": 452,
+      "time_s": 15.0667,
+      "type": "flashback_swell",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Reverse-cymbal swell into the flashback"
+    },
+    {
+      "frame": 474,
+      "time_s": 15.8,
+      "type": "keyboard_typing",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Late-night typing"
+    },
+    {
+      "frame": 530,
+      "time_s": 17.6667,
+      "type": "keyboard_typing",
+      "gain": 0.6,
+      "pan": 0,
+      "desc": "More typing"
+    },
+    {
+      "frame": 655,
+      "time_s": 21.8333,
+      "type": "mouse_click",
+      "gain": 0.9,
+      "pan": 0.05,
+      "desc": "Click BUY"
+    },
+    {
+      "frame": 660,
+      "time_s": 22,
+      "type": "coin_ding",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "PotatoCoin purchase ding"
+    },
+    {
+      "frame": 684,
+      "time_s": 22.8,
+      "type": "flashback_swell",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Swell back to the present"
+    },
+    {
+      "frame": 746,
+      "time_s": 24.8667,
+      "type": "app_chime",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Phone app opens: chart rockets"
+    },
+    {
+      "frame": 750,
+      "time_s": 25,
+      "type": "slot_riser",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Rising tone as the chart climbs"
+    },
+    {
+      "frame": 843,
+      "time_s": 28.1,
+      "type": "jackpot",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Slot-machine jackpot on 'four million'"
+    },
+    {
+      "frame": 899,
+      "time_s": 29.9667,
+      "type": "iv_rip",
+      "gain": 1,
+      "pan": -0.2,
+      "desc": "Tape rip + IV line pop"
+    },
+    {
+      "frame": 904,
+      "time_s": 30.1333,
+      "type": "whoosh",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Leap out of bed"
+    },
+    {
+      "frame": 914,
+      "time_s": 30.4667,
+      "type": "run_steps",
+      "gain": 0.8,
+      "pan": 0.1,
+      "desc": "Bare feet slapping the sidewalk"
+    },
+    {
+      "frame": 982,
+      "time_s": 32.7333,
+      "type": "run_steps",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "Bare feet slapping the sidewalk"
+    },
+    {
+      "frame": 1012,
+      "time_s": 33.7333,
+      "type": "hover_pass",
+      "gain": 1.1,
+      "pan": 0,
+      "desc": "Flying taxi swoops overhead"
+    },
+    {
+      "frame": 1026,
+      "time_s": 34.2,
+      "type": "car_horn",
+      "gain": 0.9,
+      "pan": 0.3,
+      "desc": "Futuristic taxi horn"
+    },
+    {
+      "frame": 1088,
+      "time_s": 36.2667,
+      "type": "screen_tap",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Slap the ATM touchscreen"
+    },
+    {
+      "frame": 1137,
+      "time_s": 37.9,
+      "type": "atm_confirm",
+      "gain": 0.9,
+      "pan": 0.2,
+      "desc": "ATM: SOLD"
+    },
+    {
+      "frame": 1160,
+      "time_s": 38.6667,
+      "type": "cash_pour",
+      "gain": 1,
+      "pan": 0.25,
+      "desc": "Bricks of cash thudding out of the ATM"
+    },
+    {
+      "frame": 1205,
+      "time_s": 40.1667,
+      "type": "choir_ahh",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Heavenly choir as you hug the cash"
+    },
+    {
+      "frame": 1296,
+      "time_s": 43.2,
+      "type": "door_chime",
+      "gain": 0.7,
+      "pan": 0.3,
+      "desc": "Future Beans kiosk chime"
+    },
+    {
+      "frame": 1345,
+      "time_s": 44.8333,
+      "type": "robot_beep",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "Barista-bot greeting beep"
+    },
+    {
+      "frame": 1368,
+      "time_s": 45.6,
+      "type": "cup_place",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Tiny cup set on the counter"
+    },
+    {
+      "frame": 1447,
+      "time_s": 48.2333,
+      "type": "record_scratch",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Record scratch on 'four million'"
+    },
+    {
+      "frame": 1448,
+      "time_s": 48.2667,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score cuts dead"
+    },
+    {
+      "frame": 1451,
+      "time_s": 48.3667,
+      "type": "register_ching",
+      "gain": 0.9,
+      "pan": 0.2,
+      "desc": "Register display flips to $4,000,000.00"
+    },
+    {
+      "frame": 1548,
+      "time_s": 51.6,
+      "type": "error_buzz",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Robot's flat disapproving buzz"
+    },
+    {
+      "frame": 1700,
+      "time_s": 56.6667,
+      "type": "register_ching",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "Somebody else pays four million"
+    },
+    {
+      "frame": 1866,
+      "time_s": 62.2,
+      "type": "sip",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Long slurp of the four-million-dollar coffee"
+    },
+    {
+      "frame": 1896,
+      "time_s": 63.2,
+      "type": "sad_trombone",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Wah-wah-wah-waaah"
+    }
+  ],
+  "xfade": [
+    [
+      460,
+      468
+    ],
+    [
+      692,
+      700
+    ],
+    [
+      1566,
+      1572
+    ]
+  ],
+  "planned": [
+    [
+      6,
+      14
+    ],
+    [
+      843,
+      851
+    ],
+    [
+      899,
+      907
+    ],
+    [
+      1026,
+      1034
+    ],
+    [
+      1205,
+      1213
+    ],
+    [
+      1451,
+      1459
+    ],
+    [
+      256,
+      256
+    ],
+    [
+      660,
+      660
+    ],
+    [
+      746,
+      746
+    ],
+    [
+      1137,
+      1137
+    ]
+  ]
+}
