@@ -9,7 +9,7 @@ import { LIGHTS, LOOK } from "../core/lights";
 import { NOINK } from "../core/ink";
 import { HeroRig25D } from "../core/rig25d";
 import {
-  FPS, SHOTS, IN0, R_H, SHIP, astroPos, burnK, camAt, fireK, redK, sh, smooth, stretchS, clamp01, V3,
+  Cam, FPS, SHOTS, IN0, R_H, SHIP, astroPos, burnK, camAt, fireK, redK, sh, smooth, stretchS, clamp01, V3,
 } from "./story";
 
 const box = (w: number, h: number, d: number, mat: THREE.Material, x = 0, y = 0, z = 0) => {
@@ -281,7 +281,7 @@ export class BlackHoleWorld {
   private ash: THREE.InstancedMesh;
   private embers: THREE.InstancedMesh;
   private exterior: THREE.Group;
-  private astro: HeroRig25D;
+  astro: HeroRig25D;
   private helmet: THREE.Group;
   private backpack: THREE.Mesh;
   // ship set
@@ -565,13 +565,13 @@ export class BlackHoleWorld {
     }
   }
 
-  update(id: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene): THREE.Vector3 {
+  update(id: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene, camOverride?: Cam): THREE.Vector3 {
     const s = SHOTS[id - 1], L = LIGHTS[s.light], K = LOOK[s.light], t = f / FPS;
 
     for (const [k, grp] of Object.entries(this.sets)) grp.visible = k === s.set;
 
     // camera
-    const c = camAt(id, f);
+    const c = camOverride ?? camAt(id, f);
     cam.position.set(...c.pos); cam.up.set(0, 1, 0); cam.lookAt(...c.look); cam.rotateZ(c.roll);
     cam.fov = c.fov; cam.near = 0.1; cam.far = 1200; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     cam.layers.enable(NOINK);
