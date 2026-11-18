@@ -86,6 +86,7 @@ export type RigStyle = {
   grime?: boolean;     // ketchup splats, coffee-ground smudges and stuck-on bandages (torso + face)
   seed?: number;       // varies tears / splats between cast members
   bib?: string;        // pinned race-bib number on the chest (charity-walk entrants)
+  beard?: string;      // full beard + moustache painted round the mouth (pair with a 3D beard mesh on headPivot)
 };
 
 export class HeroRig25D {
@@ -307,6 +308,16 @@ export class HeroRig25D {
 
     // Mouth (driven by mouthOpen or expression)
     const my = cy + 44;
+    if (this.style.beard) {
+      // cheek-to-chin beard with a moustache; the mouth is painted on top so it stays readable
+      g.fillStyle = this.style.beard;
+      g.beginPath(); g.moveTo(150, cy + 4); g.quadraticCurveTo(150, 512, 256, 512); g.quadraticCurveTo(362, 512, 362, cy + 4);
+      g.lineTo(340, cy + 18); g.quadraticCurveTo(256, cy + 30, 172, cy + 18); g.closePath(); g.fill();
+      g.strokeStyle = "rgba(0,0,0,0.18)"; g.lineWidth = 3;
+      for (let x = 166; x < 350; x += 14) { g.beginPath(); g.moveTo(x, cy + 30); g.quadraticCurveTo(x + 6, cy + 120, x - 4, 500); g.stroke(); }
+      g.fillStyle = this.style.beard;
+      g.beginPath(); g.ellipse(232, my - 15, 30, 11, 0.18, 0, Math.PI * 2); g.ellipse(280, my - 15, 30, 11, -0.18, 0, Math.PI * 2); g.fill();
+    }
     if (zombie && mouthOpen <= 0.25 && expr !== "shock") {
       // crooked slack mouth with two teeth
       p.poly([[234, my - 4], [282, my - 10], [276, my + 10], [240, my + 8]], "#5a1e28", 5);

@@ -1,0 +1,1136 @@
+[
+ {
+  "w": "You",
+  "s": 0.0,
+  "e": 0.158,
+  "speaker": "narrator"
+ },
+ {
+  "w": "wake",
+  "s": 0.211,
+  "e": 0.401,
+  "speaker": "narrator"
+ },
+ {
+  "w": "up",
+  "s": 0.433,
+  "e": 0.527,
+  "speaker": "narrator"
+ },
+ {
+  "w": "ten",
+  "s": 0.581,
+  "e": 0.76,
+  "speaker": "narrator"
+ },
+ {
+  "w": "years",
+  "s": 0.824,
+  "e": 1.055,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 1.087,
+  "e": 1.14,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 1.161,
+  "e": 1.225,
+  "speaker": "narrator"
+ },
+ {
+  "w": "future",
+  "s": 1.277,
+  "e": 1.594,
+  "speaker": "narrator"
+ },
+ {
+  "w": "as",
+  "s": 1.625,
+  "e": 1.689,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 1.742,
+  "e": 1.763,
+  "speaker": "narrator"
+ },
+ {
+  "w": "millionaire,",
+  "s": 1.847,
+  "e": 2.47,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 2.555,
+  "e": 2.67,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you're",
+  "s": 2.713,
+  "e": 2.871,
+  "speaker": "narrator"
+ },
+ {
+  "w": "completely",
+  "s": 2.903,
+  "e": 3.377,
+  "speaker": "narrator"
+ },
+ {
+  "w": "broke.",
+  "s": 3.43,
+  "e": 4.095,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Your",
+  "s": 4.212,
+  "e": 4.434,
+  "speaker": "narrator"
+ },
+ {
+  "w": "beard",
+  "s": 4.486,
+  "e": 4.75,
+  "speaker": "narrator"
+ },
+ {
+  "w": "reaches",
+  "s": 4.814,
+  "e": 5.077,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 5.119,
+  "e": 5.235,
+  "speaker": "narrator"
+ },
+ {
+  "w": "knees,",
+  "s": 5.267,
+  "e": 5.563,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 5.595,
+  "e": 5.679,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 5.742,
+  "e": 5.764,
+  "speaker": "narrator"
+ },
+ {
+  "w": "robot",
+  "s": 5.816,
+  "e": 6.165,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 6.206,
+  "e": 6.27,
+  "speaker": "narrator"
+ },
+ {
+  "w": "checking",
+  "s": 6.323,
+  "e": 6.618,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 6.661,
+  "e": 6.755,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pulse.",
+  "s": 6.808,
+  "e": 7.378,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Welcome",
+  "s": 7.492,
+  "e": 7.904,
+  "speaker": "robot"
+ },
+ {
+  "w": "back.",
+  "s": 7.936,
+  "e": 8.442,
+  "speaker": "robot"
+ },
+ {
+  "w": "You",
+  "s": 8.79,
+  "e": 8.938,
+  "speaker": "robot"
+ },
+ {
+  "w": "have",
+  "s": 9.012,
+  "e": 9.149,
+  "speaker": "robot"
+ },
+ {
+  "w": "been",
+  "s": 9.191,
+  "e": 9.339,
+  "speaker": "robot"
+ },
+ {
+  "w": "asleep",
+  "s": 9.392,
+  "e": 9.846,
+  "speaker": "robot"
+ },
+ {
+  "w": "for",
+  "s": 10.099,
+  "e": 10.278,
+  "speaker": "robot"
+ },
+ {
+  "w": "ten",
+  "s": 10.342,
+  "e": 10.564,
+  "speaker": "robot"
+ },
+ {
+  "w": "years.",
+  "s": 10.627,
+  "e": 11.418,
+  "speaker": "robot"
+ },
+ {
+  "w": "Outside",
+  "s": 11.527,
+  "e": 11.949,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 11.97,
+  "e": 12.033,
+  "speaker": "narrator"
+ },
+ {
+  "w": "window,",
+  "s": 12.076,
+  "e": 12.571,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cars",
+  "s": 12.614,
+  "e": 12.889,
+  "speaker": "narrator"
+ },
+ {
+  "w": "are",
+  "s": 12.92,
+  "e": 13.026,
+  "speaker": "narrator"
+ },
+ {
+  "w": "flying,",
+  "s": 13.057,
+  "e": 13.448,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 13.48,
+  "e": 13.606,
+  "speaker": "narrator"
+ },
+ {
+  "w": "drones",
+  "s": 13.67,
+  "e": 14.018,
+  "speaker": "narrator"
+ },
+ {
+  "w": "are",
+  "s": 14.05,
+  "e": 14.134,
+  "speaker": "narrator"
+ },
+ {
+  "w": "delivering",
+  "s": 14.155,
+  "e": 14.514,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pizza.",
+  "s": 14.577,
+  "e": 15.284,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then",
+  "s": 15.399,
+  "e": 15.588,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 15.641,
+  "e": 15.705,
+  "speaker": "narrator"
+ },
+ {
+  "w": "remember:",
+  "s": 15.779,
+  "e": 16.253,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 16.39,
+  "e": 16.486,
+  "speaker": "narrator"
+ },
+ {
+  "w": "night",
+  "s": 16.549,
+  "e": 16.708,
+  "speaker": "narrator"
+ },
+ {
+  "w": "before",
+  "s": 16.749,
+  "e": 17.15,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 17.193,
+  "e": 17.33,
+  "speaker": "narrator"
+ },
+ {
+  "w": "accident,",
+  "s": 17.383,
+  "e": 17.805,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 17.848,
+  "e": 17.921,
+  "speaker": "narrator"
+ },
+ {
+  "w": "put",
+  "s": 17.995,
+  "e": 18.153,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 18.196,
+  "e": 18.311,
+  "speaker": "narrator"
+ },
+ {
+  "w": "entire",
+  "s": 18.364,
+  "e": 18.755,
+  "speaker": "narrator"
+ },
+ {
+  "w": "savings,",
+  "s": 18.808,
+  "e": 19.336,
+  "speaker": "narrator"
+ },
+ {
+  "w": "two",
+  "s": 19.494,
+  "e": 19.631,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hundred",
+  "s": 19.694,
+  "e": 19.937,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dollars,",
+  "s": 19.968,
+  "e": 20.412,
+  "speaker": "narrator"
+ },
+ {
+  "w": "into",
+  "s": 20.528,
+  "e": 20.697,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 20.76,
+  "e": 20.781,
+  "speaker": "narrator"
+ },
+ {
+  "w": "joke",
+  "s": 20.845,
+  "e": 21.088,
+  "speaker": "narrator"
+ },
+ {
+  "w": "crypto",
+  "s": 21.14,
+  "e": 21.53,
+  "speaker": "narrator"
+ },
+ {
+  "w": "called",
+  "s": 21.605,
+  "e": 21.848,
+  "speaker": "narrator"
+ },
+ {
+  "w": "PotatoCoin.",
+  "s": 21.91,
+  "e": 22.998,
+  "speaker": "narrator"
+ },
+ {
+  "w": "You",
+  "s": 23.113,
+  "e": 23.25,
+  "speaker": "narrator"
+ },
+ {
+  "w": "check",
+  "s": 23.314,
+  "e": 23.482,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 23.514,
+  "e": 23.619,
+  "speaker": "narrator"
+ },
+ {
+  "w": "phone.",
+  "s": 23.64,
+  "e": 23.999,
+  "speaker": "narrator"
+ },
+ {
+  "w": "PotatoCoin",
+  "s": 24.189,
+  "e": 24.728,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 24.77,
+  "e": 24.833,
+  "speaker": "narrator"
+ },
+ {
+  "w": "up",
+  "s": 24.886,
+  "e": 24.97,
+  "speaker": "narrator"
+ },
+ {
+  "w": "two",
+  "s": 25.023,
+  "e": 25.16,
+  "speaker": "narrator"
+ },
+ {
+  "w": "million",
+  "s": 25.213,
+  "e": 25.435,
+  "speaker": "narrator"
+ },
+ {
+  "w": "percent.",
+  "s": 25.488,
+  "e": 26.195,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Your",
+  "s": 26.299,
+  "e": 26.521,
+  "speaker": "narrator"
+ },
+ {
+  "w": "two",
+  "s": 26.573,
+  "e": 26.7,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hundred",
+  "s": 26.763,
+  "e": 26.985,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dollars",
+  "s": 27.016,
+  "e": 27.313,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 27.365,
+  "e": 27.449,
+  "speaker": "narrator"
+ },
+ {
+  "w": "now",
+  "s": 27.503,
+  "e": 27.661,
+  "speaker": "narrator"
+ },
+ {
+  "w": "worth",
+  "s": 27.734,
+  "e": 27.998,
+  "speaker": "narrator"
+ },
+ {
+  "w": "four",
+  "s": 28.103,
+  "e": 28.368,
+  "speaker": "narrator"
+ },
+ {
+  "w": "million.",
+  "s": 28.431,
+  "e": 28.916,
+  "speaker": "narrator"
+ },
+ {
+  "w": "So",
+  "s": 29.027,
+  "e": 29.185,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 29.238,
+  "e": 29.311,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rip",
+  "s": 29.386,
+  "e": 29.554,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out",
+  "s": 29.608,
+  "e": 29.744,
+  "speaker": "narrator"
+ },
+ {
+  "w": "your",
+  "s": 29.798,
+  "e": 29.913,
+  "speaker": "narrator"
+ },
+ {
+  "w": "IV",
+  "s": 29.988,
+  "e": 30.23,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 30.42,
+  "e": 30.504,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sprint",
+  "s": 30.568,
+  "e": 30.863,
+  "speaker": "narrator"
+ },
+ {
+  "w": "into",
+  "s": 30.895,
+  "e": 31.021,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 31.074,
+  "e": 31.138,
+  "speaker": "narrator"
+ },
+ {
+  "w": "street",
+  "s": 31.179,
+  "e": 31.444,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 31.486,
+  "e": 31.538,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 31.57,
+  "e": 31.602,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hospital",
+  "s": 31.676,
+  "e": 32.045,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gown,",
+  "s": 32.098,
+  "e": 32.509,
+  "speaker": "narrator"
+ },
+ {
+  "w": "beard",
+  "s": 32.668,
+  "e": 32.964,
+  "speaker": "narrator"
+ },
+ {
+  "w": "flapping,",
+  "s": 33.017,
+  "e": 33.523,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dodging",
+  "s": 33.681,
+  "e": 34.04,
+  "speaker": "narrator"
+ },
+ {
+  "w": "flying",
+  "s": 34.125,
+  "e": 34.43,
+  "speaker": "narrator"
+ },
+ {
+  "w": "taxis.",
+  "s": 34.483,
+  "e": 35.233,
+  "speaker": "narrator"
+ },
+ {
+  "w": "At",
+  "s": 35.341,
+  "e": 35.478,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 35.51,
+  "e": 35.573,
+  "speaker": "narrator"
+ },
+ {
+  "w": "first",
+  "s": 35.636,
+  "e": 35.858,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cash",
+  "s": 35.911,
+  "e": 36.164,
+  "speaker": "narrator"
+ },
+ {
+  "w": "machine,",
+  "s": 36.206,
+  "e": 36.639,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 36.776,
+  "e": 36.861,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sell",
+  "s": 36.934,
+  "e": 37.135,
+  "speaker": "narrator"
+ },
+ {
+  "w": "every",
+  "s": 37.209,
+  "e": 37.525,
+  "speaker": "narrator"
+ },
+ {
+  "w": "single",
+  "s": 37.578,
+  "e": 37.873,
+  "speaker": "narrator"
+ },
+ {
+  "w": "coin.",
+  "s": 37.916,
+  "e": 38.549,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Bricks",
+  "s": 38.653,
+  "e": 38.895,
+  "speaker": "narrator"
+ },
+ {
+  "w": "of",
+  "s": 38.937,
+  "e": 38.98,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cash",
+  "s": 39.044,
+  "e": 39.296,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pour",
+  "s": 39.328,
+  "e": 39.518,
+  "speaker": "narrator"
+ },
+ {
+  "w": "out,",
+  "s": 39.582,
+  "e": 39.782,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 39.887,
+  "e": 39.993,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 40.035,
+  "e": 40.109,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hug",
+  "s": 40.173,
+  "e": 40.32,
+  "speaker": "narrator"
+ },
+ {
+  "w": "them",
+  "s": 40.352,
+  "e": 40.447,
+  "speaker": "narrator"
+ },
+ {
+  "w": "like",
+  "s": 40.479,
+  "e": 40.605,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 40.637,
+  "e": 40.658,
+  "speaker": "narrator"
+ },
+ {
+  "w": "newborn",
+  "s": 40.711,
+  "e": 41.059,
+  "speaker": "narrator"
+ },
+ {
+  "w": "baby.",
+  "s": 41.112,
+  "e": 41.777,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Time",
+  "s": 41.872,
+  "e": 42.114,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 42.135,
+  "e": 42.188,
+  "speaker": "narrator"
+ },
+ {
+  "w": "celebrate",
+  "s": 42.231,
+  "e": 42.611,
+  "speaker": "narrator"
+ },
+ {
+  "w": "with",
+  "s": 42.632,
+  "e": 42.737,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 42.769,
+  "e": 42.833,
+  "speaker": "narrator"
+ },
+ {
+  "w": "fanciest",
+  "s": 42.938,
+  "e": 43.497,
+  "speaker": "narrator"
+ },
+ {
+  "w": "coffee",
+  "s": 43.539,
+  "e": 43.824,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 43.856,
+  "e": 43.919,
+  "speaker": "narrator"
+ },
+ {
+  "w": "town.",
+  "s": 43.983,
+  "e": 44.574,
+  "speaker": "narrator"
+ },
+ {
+  "w": "One",
+  "s": 44.689,
+  "e": 44.963,
+  "speaker": "barista"
+ },
+ {
+  "w": "small",
+  "s": 45.016,
+  "e": 45.375,
+  "speaker": "barista"
+ },
+ {
+  "w": "coffee.",
+  "s": 45.46,
+  "e": 46.272,
+  "speaker": "barista"
+ },
+ {
+  "w": "That",
+  "s": 47.032,
+  "e": 47.338,
+  "speaker": "barista"
+ },
+ {
+  "w": "will",
+  "s": 47.391,
+  "e": 47.602,
+  "speaker": "barista"
+ },
+ {
+  "w": "be",
+  "s": 47.654,
+  "e": 47.94,
+  "speaker": "barista"
+ },
+ {
+  "w": "four",
+  "s": 48.362,
+  "e": 48.721,
+  "speaker": "barista"
+ },
+ {
+  "w": "million",
+  "s": 48.826,
+  "e": 49.238,
+  "speaker": "barista"
+ },
+ {
+  "w": "dollars.",
+  "s": 49.302,
+  "e": 50.262,
+  "speaker": "barista"
+ },
+ {
+  "w": "You",
+  "s": 50.362,
+  "e": 50.51,
+  "speaker": "narrator"
+ },
+ {
+  "w": "laugh.",
+  "s": 50.573,
+  "e": 50.932,
+  "speaker": "narrator"
+ },
+ {
+  "w": "The",
+  "s": 51.069,
+  "e": 51.163,
+  "speaker": "narrator"
+ },
+ {
+  "w": "robot",
+  "s": 51.216,
+  "e": 51.502,
+  "speaker": "narrator"
+ },
+ {
+  "w": "doesn't.",
+  "s": 51.554,
+  "e": 52.093,
+  "speaker": "narrator"
+ },
+ {
+  "w": "You",
+  "s": 52.201,
+  "e": 52.338,
+  "speaker": "narrator"
+ },
+ {
+  "w": "see,",
+  "s": 52.402,
+  "e": 52.686,
+  "speaker": "narrator"
+ },
+ {
+  "w": "ten",
+  "s": 52.75,
+  "e": 52.94,
+  "speaker": "narrator"
+ },
+ {
+  "w": "years",
+  "s": 52.982,
+  "e": 53.151,
+  "speaker": "narrator"
+ },
+ {
+  "w": "ago,",
+  "s": 53.183,
+  "e": 53.446,
+  "speaker": "narrator"
+ },
+ {
+  "w": "everybody",
+  "s": 53.478,
+  "e": 53.837,
+  "speaker": "narrator"
+ },
+ {
+  "w": "else",
+  "s": 53.89,
+  "e": 54.048,
+  "speaker": "narrator"
+ },
+ {
+  "w": "bought",
+  "s": 54.08,
+  "e": 54.301,
+  "speaker": "narrator"
+ },
+ {
+  "w": "PotatoCoin",
+  "s": 54.333,
+  "e": 54.85,
+  "speaker": "narrator"
+ },
+ {
+  "w": "too.",
+  "s": 54.903,
+  "e": 55.409,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Now",
+  "s": 55.514,
+  "e": 55.725,
+  "speaker": "narrator"
+ },
+ {
+  "w": "everyone's",
+  "s": 55.798,
+  "e": 56.168,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 56.2,
+  "e": 56.221,
+  "speaker": "narrator"
+ },
+ {
+  "w": "millionaire,",
+  "s": 56.306,
+  "e": 56.907,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 56.97,
+  "e": 57.107,
+  "speaker": "narrator"
+ },
+ {
+  "w": "money",
+  "s": 57.171,
+  "e": 57.361,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 57.403,
+  "e": 57.477,
+  "speaker": "narrator"
+ },
+ {
+  "w": "basically",
+  "s": 57.561,
+  "e": 58.026,
+  "speaker": "narrator"
+ },
+ {
+  "w": "worthless.",
+  "s": 58.078,
+  "e": 58.807,
+  "speaker": "narrator"
+ },
+ {
+  "w": "So",
+  "s": 58.913,
+  "e": 59.082,
+  "speaker": "narrator"
+ },
+ {
+  "w": "you",
+  "s": 59.145,
+  "e": 59.229,
+  "speaker": "narrator"
+ },
+ {
+  "w": "slept",
+  "s": 59.293,
+  "e": 59.547,
+  "speaker": "narrator"
+ },
+ {
+  "w": "ten",
+  "s": 59.578,
+  "e": 59.789,
+  "speaker": "narrator"
+ },
+ {
+  "w": "years",
+  "s": 59.863,
+  "e": 60.117,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 60.148,
+  "e": 60.2,
+  "speaker": "narrator"
+ },
+ {
+  "w": "become",
+  "s": 60.253,
+  "e": 60.475,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 60.496,
+  "e": 60.528,
+  "speaker": "narrator"
+ },
+ {
+  "w": "millionaire,",
+  "s": 60.57,
+  "e": 61.172,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 61.308,
+  "e": 61.468,
+  "speaker": "narrator"
+ },
+ {
+  "w": "blew",
+  "s": 61.509,
+  "e": 61.688,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 61.72,
+  "e": 61.784,
+  "speaker": "narrator"
+ },
+ {
+  "w": "all",
+  "s": 61.826,
+  "e": 61.974,
+  "speaker": "narrator"
+ },
+ {
+  "w": "on",
+  "s": 62.038,
+  "e": 62.111,
+  "speaker": "narrator"
+ },
+ {
+  "w": "one",
+  "s": 62.185,
+  "e": 62.364,
+  "speaker": "narrator"
+ },
+ {
+  "w": "coffee.",
+  "s": 62.418,
+  "e": 63.05,
+  "speaker": "narrator"
+ }
+]
