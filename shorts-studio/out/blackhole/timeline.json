@@ -1,0 +1,436 @@
+{
+  "fps": 30,
+  "total_frames": 1935,
+  "duration_s": 64.5,
+  "score": "space",
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 148,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 148,
+      "b": 325,
+      "set": "space",
+      "light": "night",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 325,
+      "b": 478,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 478,
+      "b": 603,
+      "set": "ship",
+      "light": "interior",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 603,
+      "b": 689,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": "scope"
+    },
+    {
+      "id": 6,
+      "a": 689,
+      "b": 742,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 742,
+      "b": 899,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": "scope"
+    },
+    {
+      "id": 8,
+      "a": 899,
+      "b": 1102,
+      "set": "space",
+      "light": "golden",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 1102,
+      "b": 1305,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 1305,
+      "b": 1393,
+      "set": "space",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 1393,
+      "b": 1549,
+      "set": "inside",
+      "light": "night",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 1549,
+      "b": 1744,
+      "set": "space",
+      "light": "night",
+      "xfade": 8,
+      "hud": "split"
+    },
+    {
+      "id": 13,
+      "a": 1744,
+      "b": 1866,
+      "set": "ship",
+      "light": "interior",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 1866,
+      "b": 1935,
+      "set": "inside",
+      "light": "night",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 52,
+      "time_s": 1.7333,
+      "type": "sting_hit",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Hook stinger on 'die twice'"
+    },
+    {
+      "frame": 246,
+      "time_s": 8.2,
+      "type": "shimmer",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Starlight bends around the black hole like a lens"
+    },
+    {
+      "frame": 362,
+      "time_s": 12.0667,
+      "type": "deep_boom",
+      "gain": 1,
+      "pan": 0,
+      "desc": "EVENT HORIZON label ring lights up"
+    },
+    {
+      "frame": 418,
+      "time_s": 13.9333,
+      "type": "photon_zap",
+      "gain": 0.7,
+      "pan": -0.3,
+      "desc": "Photon 1 spirals in and vanishes"
+    },
+    {
+      "frame": 436,
+      "time_s": 14.5333,
+      "type": "photon_zap",
+      "gain": 0.7,
+      "pan": 0.3,
+      "desc": "Photon 2 spirals in and vanishes"
+    },
+    {
+      "frame": 452,
+      "time_s": 15.0667,
+      "type": "photon_zap",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Photon 3 fails to climb back out"
+    },
+    {
+      "frame": 474,
+      "time_s": 15.8,
+      "type": "whoosh",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Dissolve to the ship"
+    },
+    {
+      "frame": 548,
+      "time_s": 18.2667,
+      "type": "scope_servo",
+      "gain": 0.8,
+      "pan": 0.25,
+      "desc": "Friend racks the telescope focus"
+    },
+    {
+      "frame": 601,
+      "time_s": 20.0333,
+      "type": "radio_click",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Comms open: friend talks"
+    },
+    {
+      "frame": 606,
+      "time_s": 20.2,
+      "type": "clock_slow",
+      "gain": 0.75,
+      "pan": 0,
+      "desc": "Suit clock ticks slowing toward the freeze"
+    },
+    {
+      "frame": 687,
+      "time_s": 22.9,
+      "type": "radio_click",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Astronaut keys his radio"
+    },
+    {
+      "frame": 827,
+      "time_s": 27.5667,
+      "type": "freeze_hit",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Astronaut freezes at the edge like a photo"
+    },
+    {
+      "frame": 905,
+      "time_s": 30.1667,
+      "type": "fire_roar",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Firewall of radiation flares up at the horizon"
+    },
+    {
+      "frame": 1016,
+      "time_s": 33.8667,
+      "type": "burn_whoomp",
+      "gain": 1.1,
+      "pan": 0,
+      "desc": "Astronaut flashes and burns"
+    },
+    {
+      "frame": 1032,
+      "time_s": 34.4,
+      "type": "ash_scatter",
+      "gain": 0.9,
+      "pan": 0.1,
+      "desc": "Ash drifts over the horizon surface"
+    },
+    {
+      "frame": 1140,
+      "time_s": 38,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Score drops out on 'Nothing.'"
+    },
+    {
+      "frame": 1206,
+      "time_s": 40.2,
+      "type": "soft_chime",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Astronaut glides through the horizon membrane"
+    },
+    {
+      "frame": 1357,
+      "time_s": 45.2333,
+      "type": "music_resume",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Ominous score returns on 'It does, later.'"
+    },
+    {
+      "frame": 1359,
+      "time_s": 45.3,
+      "type": "low_rumble",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Ominous rumble"
+    },
+    {
+      "frame": 1393,
+      "time_s": 46.4333,
+      "type": "whoosh",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Plunge deep inside"
+    },
+    {
+      "frame": 1436,
+      "time_s": 47.8667,
+      "type": "stretch_creak",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Feet pulled harder than the head"
+    },
+    {
+      "frame": 1520,
+      "time_s": 50.6667,
+      "type": "boing",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Full spaghettification twang"
+    },
+    {
+      "frame": 1549,
+      "time_s": 51.6333,
+      "type": "whoosh",
+      "gain": 0.7,
+      "pan": 0,
+      "desc": "Pull back to both sides"
+    },
+    {
+      "frame": 1600,
+      "time_s": 53.3333,
+      "type": "shimmer",
+      "gain": 0.6,
+      "pan": -0.3,
+      "desc": "OUTSIDE label appears"
+    },
+    {
+      "frame": 1640,
+      "time_s": 54.6667,
+      "type": "shimmer",
+      "gain": 0.6,
+      "pan": 0.3,
+      "desc": "INSIDE label appears"
+    },
+    {
+      "frame": 1748,
+      "time_s": 58.2667,
+      "type": "bell_toll",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "Funeral bell on the ship"
+    },
+    {
+      "frame": 1866,
+      "time_s": 62.2,
+      "type": "music_resolve",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Playful music-box button"
+    },
+    {
+      "frame": 1881,
+      "time_s": 62.7,
+      "type": "boing",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Noodle astronaut waves"
+    }
+  ],
+  "xfade": [
+    [
+      148,
+      154
+    ],
+    [
+      478,
+      486
+    ],
+    [
+      1393,
+      1399
+    ],
+    [
+      1549,
+      1557
+    ],
+    [
+      1744,
+      1750
+    ]
+  ],
+  "planned": [
+    [
+      325,
+      325
+    ],
+    [
+      603,
+      603
+    ],
+    [
+      689,
+      689
+    ],
+    [
+      742,
+      742
+    ],
+    [
+      899,
+      899
+    ],
+    [
+      1102,
+      1102
+    ],
+    [
+      1146,
+      1146
+    ],
+    [
+      1305,
+      1305
+    ],
+    [
+      1866,
+      1866
+    ],
+    [
+      52,
+      60
+    ],
+    [
+      827,
+      835
+    ],
+    [
+      1016,
+      1024
+    ],
+    [
+      1520,
+      1528
+    ]
+  ]
+}

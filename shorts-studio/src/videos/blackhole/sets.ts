@@ -158,7 +158,7 @@ const makeMembrane = () => new THREE.ShaderMaterial({
       float grid = max(g1, g2);
       float fres = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.0);
       float dh = length(vW - hit);
-      float ripple = hitT > 0.0 ? sin(dh * 3.0 - hitT * 9.0) * exp(-dh * 0.45) * exp(-hitT * 0.9) : 0.0;
+      float ripple = hitT > 0.0 ? sin(dh * 3.0 - hitT * 9.0) * exp(-dh * 0.45) * exp(-hitT * 0.9) * smoothstep(0.0, 0.5, hitT) : 0.0;
       float fade = smoothstep(0.0, 6.0, length(vV));
       vec3 c = vec3(0.25, 0.9, 1.3) * (grid * 0.5 + fres * 0.06) * fade + vec3(0.6, 1.6, 2.0) * max(ripple, 0.0) * 0.6;
       gl_FragColor = vec4(c * gain, 1.0);
@@ -557,9 +557,9 @@ export class BlackHoleWorld {
       this.astro.pose({ pos: [a[0], a[1] + bob, a[2]], yaw: faceCam - 0.35, expr: f < 1146 ? "neutral" : "smile", headYaw: look, ...floatFeet,
         handL: [-0.36, 0.95 + 0.04 * Math.sin(t * 1.2), 0.12], handR: [0.36, 0.95 + 0.04 * Math.sin(t * 1.4), 0.12] });
     } else if (id === 10) {
-      const huh = f >= 1359;
-      this.astro.pose({ pos: [a[0], a[1] + bob, a[2]], yaw: faceCam, expr: huh ? "shock" : "neutral", headPitch: huh ? 0.08 : 0, ...floatFeet,
-        headYaw: huh ? 0 : 0.12 * Math.sin(t * 0.8),
+      const huh = f >= 1359, hk = smooth((f - 1352) / 14);
+      this.astro.pose({ pos: [a[0], a[1] + bob, a[2]], yaw: faceCam, expr: huh ? "shock" : "neutral", headPitch: 0.08 * hk, ...floatFeet,
+        headYaw: (1 - hk) * 0.12 * Math.sin(t * 0.8),
         mouthOpen: f >= 1305 && f < 1358 ? 0.5 * Math.abs(Math.sin(t * 12)) : 0,
         handL: [-0.3, 0.86, 0.24], handR: [0.3, 1.05, 0.3] });
     }
