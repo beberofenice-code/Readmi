@@ -26,8 +26,16 @@ def build_sfx(tl, N, v_ref):
     for s in tl["shots"]:
         t0 = s["a"] / tl["fps"]
         dur = (s["b"] - s["a"]) / tl["fps"]
+        bed = None
         if s["set"] in ("highway", "car_cabin"):
             bed = G.amb_highway(dur, r, rain=(s["light"] == "rain"))
+        elif s["set"] == "space":
+            bed = G.amb_space(dur, r)
+        elif s["set"] == "ship":
+            bed = G.amb_ship(dur, r)
+        elif s["set"] == "inside":
+            bed = G.amb_inside(dur, r)
+        if bed is not None:
             cur = integrated(bed)
             if np.isfinite(cur):
                 bed *= dbg((v_ref - 24.0) - cur)
@@ -47,6 +55,24 @@ def build_sfx(tl, N, v_ref):
         "siren_chirp":   (lambda: G.siren_chirp(r), -9.5),
         "wiper_sweep":   (lambda: G.wiper_sweep(r), -12.0),
         "camera_beep":   (lambda: G.camera_beep(r), -7.5),
+        # blackhole short
+        "sting_hit":     (lambda: G.sting_hit(r), -6.0),
+        "shimmer":       (lambda: G.shimmer(r), -13.0),
+        "deep_boom":     (lambda: G.deep_boom(r), -6.5),
+        "photon_zap":    (lambda: G.photon_zap(r), -12.0),
+        "whoosh":        (lambda: G.whoosh(r), -11.0),
+        "scope_servo":   (lambda: G.scope_servo(r), -13.0),
+        "radio_click":   (lambda: G.radio_click(r), -12.0),
+        "clock_slow":    (lambda: G.clock_slow(r), -13.0),
+        "freeze_hit":    (lambda: G.freeze_hit(r), -7.0),
+        "fire_roar":     (lambda: G.fire_roar(r), -9.0),
+        "burn_whoomp":   (lambda: G.burn_whoomp(r), -6.0),
+        "ash_scatter":   (lambda: G.ash_scatter(r), -14.0),
+        "soft_chime":    (lambda: G.soft_chime(r), -11.0),
+        "low_rumble":    (lambda: G.low_rumble(r), -8.0),
+        "stretch_creak": (lambda: G.stretch_creak(r), -11.0),
+        "boing":         (lambda: G.boing(r), -9.0),
+        "bell_toll":     (lambda: G.bell_toll(r), -9.0),
     }
 
     for ev in tl["events"]:
@@ -69,7 +95,52 @@ def build_sfx(tl, N, v_ref):
     out += 0.45 * convolve_st(send, ir)
     return hp(out, 28, 2)
 
+def build_score_space(tl, N):
+    """slow cosmic pad progression + heartbeat sub-pulse; drops out at music_stop, returns darker at music_resume,
+    and ends on a playful music-box button at music_resolve"""
+    r = rng(4242)
+    out = np.zeros((2, N))
+    ev = {e["type"]: e["time_s"] for e in tl["events"]}
+    dur_s = tl["duration_s"]
+    stop_t = ev.get("music_stop", dur_s)
+    resume_t = ev.get("music_resume", dur_s)
+    resolve_t = ev.get("music_resolve", dur_s)
+    chords = [[45, 52, 57, 60, 64], [41, 48, 57, 60, 65], [43, 50, 55, 59, 62], [40, 47, 55, 59, 64]]
+    seg = 4.0
+    t, k = 0.0, 0
+    while t < stop_t - 0.5:
+        d = min(seg, stop_t - t)
+        place(out, I.pad([I.m2f(m) for m in chords[k % 4]], d, 0.42, r, att=1.2, rel=1.4, warm=1200), t)
+        t += seg; k += 1
+    beat = 60 / 64.0
+    t = 2.0
+    while t < stop_t - 0.3:
+        place(out, pan(I.timpani(I.m2f(33), 0.45, r, dur=1.0), 0.0), t)
+        place(out, pan(I.timpani(I.m2f(33), 0.25, r, dur=0.8), 0.0), t + 0.28)
+        t += beat * 2
+    fire = ev.get("fire_roar")
+    if fire is not None and fire < stop_t:
+        place(out, I.cymbal(0.4, r, dur=3.0, bright=0.6), fire)
+    out[:, ns(stop_t):] *= 0.0
+    # darker return (minor, low) until the resolve
+    t, k = resume_t, 0
+    dark = [[38, 45, 50, 53, 57], [37, 44, 49, 52, 56], [36, 43, 48, 51, 55]]
+    while t < resolve_t - 0.5:
+        d = min(4.5, resolve_t - t)
+        place(out, I.pad([I.m2f(m) for m in dark[k % 3]], d, 0.45, r, att=0.8, rel=1.0, warm=800), t)
+        t += 4.5; k += 1
+    t = resume_t + 0.5
+    while t < resolve_t - 0.4:
+        place(out, pan(I.timpani(I.m2f(31), 0.55, r, dur=1.2), 0.0), t)
+        t += 60 / 72.0
+    for i, m in enumerate([72, 76, 79, 84, 83, 79]):
+        place(out, pan(I.musicbox(I.m2f(m), 0.6, r, dur=1.6), (-0.3 + 0.12 * i)), resolve_t + 0.16 + i * 0.2)
+    place(out, I.pad([I.m2f(m) for m in [48, 55, 60, 64]], max(0.5, dur_s - resolve_t - 0.6), 0.3, r, att=0.3, rel=0.6), resolve_t)
+    return hp(out, 30, 2)
+
 def build_score(tl, N):
+    if tl.get("score") == "space":
+        return build_score_space(tl, N)
     r = rng(909)
     out = np.zeros((2, N))
     dur_s = tl["duration_s"]

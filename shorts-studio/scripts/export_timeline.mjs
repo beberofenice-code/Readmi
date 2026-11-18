@@ -9,6 +9,7 @@ const src = fs.readFileSync(storyPath, "utf8");
 
 const fps = Number(src.match(/FPS\s*=\s*(\d+)/)?.[1] ?? 30);
 const total = Number(src.match(/TOTAL\s*=\s*(\d+)/)?.[1] ?? 1867);
+const score = src.match(/SCORE\s*=\s*"([^"]+)"/)?.[1] ?? null;
 const flash = Number(src.match(/FLASH_AT\s*=\s*(-?\d+)/)?.[1] ?? -1);
 
 // Parse SHOTS
@@ -66,6 +67,7 @@ const payload = {
   fps,
   total_frames: total,
   duration_s: Number((total / fps).toFixed(4)),
+  ...(score ? { score } : {}),
   shots,
   events,
   xfade,
