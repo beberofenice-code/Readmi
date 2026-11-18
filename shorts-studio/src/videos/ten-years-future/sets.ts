@@ -675,6 +675,7 @@ export class MultiSetWorld {
     adL.g.rotation.y = Math.PI / 2; adL.g.position.set(-9.9, 7.5, 40); S.add(adL.g);
     // futuristic lamps + planters
     for (let z = -20; z < 140; z += 16) for (const sx of [-1, 1]) {
+      if (sx > 0 && z + 8 === 20) continue; // shot 15's tracking camera runs along x = 5.6 and would drive through this pole
       S.add(cyl(0.07, 0.09, 4.6, col("tf_pole", "#3a3f4a"), sx * 5.6, 2.45, z + (sx > 0 ? 8 : 0), 10));
       const ring = new THREE.Mesh(new THREE.TorusGeometry(0.35, 0.06, 8, 20), glow(0.7, 1.6, 2.0)); ring.rotation.x = Math.PI / 2;
       ring.position.set(sx * 5.6, 4.8, z + (sx > 0 ? 8 : 0)); ring.layers.set(NOINK); S.add(ring);
@@ -794,7 +795,7 @@ export class MultiSetWorld {
       }
     }
     this.hero.pose(p);
-    this.beardPose(t, id === 13 && f > 903 ? 0.4 : 0);
+    this.beardPose(t, id === 13 ? 0.4 * smooth((f - 903) / 9) : 0); // sweep back with the leap, not a step
     // IV line from the bag to your left wrist (until you rip it out)
     if (!(id === 13 && f >= 899)) { this.hero.handWorld("L", this.tmpV); this.rod(this.ivLine, this.ivBag, this.tmpV.clone()); }
     // phone (Shot 11 insert / Shot 12)
@@ -938,13 +939,15 @@ export class MultiSetWorld {
     } else if (id >= 19 && id <= 22) {
       const laugh = id === 21 && f >= 1510;
       const shock = (id === 21 && f < 1510) || id === 20;
-      // the stack goes on the counter as you order
-      const onCounter = f >= 1395;
-      this.hero.pose({ pos: HERO_KIOSK, yaw: Math.PI / 2, lean: laugh ? -0.08 : 0.03, expr: laugh ? "laugh" : shock ? "shock" : "grin",
-        mouthOpen: laugh ? 0.55 + 0.3 * Math.abs(Math.sin(t * 14)) : shock ? 0.6 : 0, headPitch: laugh ? -0.15 : 0,
-        handL: onCounter ? [-0.24, 0.8, 0.18] : [-0.15, 0.95, 0.3], handR: onCounter ? (laugh ? [0.2, 1.0, 0.35] : [0.24, 0.8, 0.18]) : [0.15, 0.95, 0.3] });
-      if (onCounter) { this.heroStack.position.set(8.95, 1.25, 45.25); this.heroStack.rotation.set(0, Math.PI / 2, 0); this.heroStack.visible = true; }
-      else this.holdBetween(this.hero, this.heroStack, Math.PI / 2, 0.04, -0.12);
+      // the stack slides from your hands onto the counter as you order (f1389-1397); the laugh tips your head back over 6 frames
+      const place = smooth((f - 1389) / 8), lk = id === 21 ? smooth((f - 1507) / 6) : 0;
+      const mix = (a: V3, b: V3, k: number): V3 => [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k)];
+      const handR = mix(mix([0.15, 0.95, 0.3], [0.24, 0.8, 0.18], place), [0.2, 1.0, 0.35], lk);
+      this.hero.pose({ pos: HERO_KIOSK, yaw: Math.PI / 2, lean: lerp(0.03, -0.08, lk), expr: laugh ? "laugh" : shock ? "shock" : "grin",
+        mouthOpen: laugh ? 0.55 + 0.3 * Math.abs(Math.sin(t * 14)) : shock ? 0.6 : 0, headPitch: -0.15 * lk,
+        handL: mix([-0.15, 0.95, 0.3], [-0.24, 0.8, 0.18], place), handR });
+      this.holdBetween(this.hero, this.heroStack, Math.PI / 2, 0.04, -0.12);
+      if (place > 0) this.heroStack.position.lerp(new THREE.Vector3(8.95, 1.25, 45.25), place);
       this.beardPose(t, 0);
     } else if (id === 25) {
       // the payoff: on the curb in the gown, one tiny coffee; sip on "coffee" (f1862-1890)

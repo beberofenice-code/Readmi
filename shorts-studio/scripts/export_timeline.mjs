@@ -59,6 +59,10 @@ if (kickBlock) {
   }
 }
 
+// Optional deliberate instant swaps (diegetic screen state changes): export const PLANNED_SWAPS: number[] = [f, ...];
+const swapBlock = src.match(/PLANNED_SWAPS[^=]*=\s*\[([^\]]*)\]/);
+const swaps = swapBlock ? [...swapBlock[1].matchAll(/\d+/g)].map((m) => [Number(m[0]), Number(m[0])]) : [];
+
 const xfade = shots
   .filter((s) => s.xfade > 0)
   // render.mjs dissolves over the incoming shot's first xfade frames (the outgoing chunk carries a tail handle)
@@ -73,7 +77,7 @@ const payload = {
   events,
   xfade,
   ...(flash >= 0 ? { flash: [flash, flash + 4] } : {}),
-  planned: [...cuts, ...kicks],
+  planned: [...cuts, ...kicks, ...swaps],
 };
 
 fs.mkdirSync(path.dirname(outPath), { recursive: true });

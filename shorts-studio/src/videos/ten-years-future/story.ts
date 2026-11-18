@@ -218,7 +218,7 @@ export const CAMS: Record<number, CamKey[]> = {
   // 19: over-the-shoulder onto the barista-bot: "One small coffee."
   19: [{ f: 1340, s: (f) => dolly([7.4, 1.8, 43.95], [9.7, 1.55, 45.6], pushK(f, 1340, 0.0026), { fov: 42 }) }],
   // 20: register insert: price flips to $4,000,000.00 on "four"
-  20: [{ f: 1410, s: (f) => dolly([8.35, 1.42, 46.3], [9.12, 1.28, 46.42], pushK(f, 1410, 0.0024, 0.006, 24), { fov: 40 }) }],
+  20: [{ f: 1410, s: (f) => dolly([8.35, 1.45, 46.27], [9.12, 1.28, 46.42], pushK(f, 1410, 0.0024, 0.006, 24), { fov: 40 }) }],
   // 21: your face: shock -> laugh
   21: [{ f: 1465, s: (f) => dolly([9.2, 1.5, 44.9], [8.25, 1.38, 45.15], pushK(f, 1465, 0.0028), { fov: 40 }) }],
   // 22: the robot doesn't laugh
@@ -233,6 +233,10 @@ export const CAMS: Record<number, CamKey[]> = {
     { f: 1884, dur: 40, s: (f) => dolly([2.3, 1.55, 46.6], [5.0, 2.3, 54.0], pushK(f, 1884, 0.0016), { fov: 48 }) },
   ],
 };
+
+// Deliberate one-frame state swaps on diegetic screens (QA treats these frames as planned, like cuts and kicks):
+// nurse-bot face talk -> smile, BUY -> ORDER FILLED, Loading -> +2,000,000% chart, ATM SELL ALL -> SOLD!
+export const PLANNED_SWAPS: number[] = [256, 660, 746, 1137];
 
 // 7-frame sign-alternating impact kicks ([time_s, amplitude])
 export const KICKS: [number, number][] = [
