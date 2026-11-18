@@ -142,25 +142,47 @@ async function run() {
 }
 
 function stitchChunks(chunks, fps, audioFile, finalOut, totalFrames) {
-  // Each chunk i holds shot i plus a tail handle of `nextXfade` frames. Hard cuts are joined with concat; real
-  // dissolves with xfade (offset = frames accumulated so far - handle). Every input is normalised first
-  // (Remotion chunks are full-range yuvj420p: convert range, SAR, timebase, fps), otherwise xfade stops the chain early
-  // or ffmpeg fails with "Error reinitializing filters".
-  fs.mkdirSync(path.dirname(finalOut), { recursive: true });
-  const inputs = chunks.flatMap((c) => ["-reinit_filter", "0", "-i", c.file]);
-  const parts = chunks.map((_, i) => `[${i}:v]scale=in_range=pc:out_range=tv,format=yuv420p,setsar=1,setpts=PTS-STARTPTS,fps=${fps},settb=1/${fps}[n${i}]`);
-  let acc = "[n0]";
-  let cumulativeFrames = chunks[0].durFrames;
-  for (let i = 1; i < chunks.length; i++) {
-    const xf = chunks[i].shot.xfade || 0;
-    const out = `[v${i}]`;
-    if (xf > 0) {
-      parts.push(`${acc}[n${i}]xfade=transition=fade:duration=${(xf / fps).toFixed(6)}:offset=${((cumulativeFrames - xf) / fps).toFixed(6)},settb=1/${fps}${out}`);
-      cumulativeFrames += chunks[i].durFrames - xf;
+  // Each chunk i holds shot i plus a tail handle of `nextXfade` frames. Consecutive hard-cut chunks (xfade === 0)
+  // are coalesced via FFmpeg's concat demuxer so only (1 + #dissolves) decoders are open at once — avoiding OOM on
+  // 20+ shot shorts under 8 GB VMs or Termux. Every segment is normalised (yuvj420p pc->tv, SAR, fps, timebase)
+  // before xfade dissolves are applied.
+  const outDir = path.dirname(finalOut);
+  fs.mkdirSync(outDir, { recursive: true });
+
+  const segments = [];
+  for (const c of chunks) {
+    const xf = c.shot.xfade || 0;
+    if (segments.length === 0 || xf > 0) {
+      segments.push({ xfade: xf, items: [c], durFrames: c.durFrames });
     } else {
-      parts.push(`${acc}[n${i}]concat=n=2:v=1:a=0,settb=1/${fps}${out}`); // concat outputs 1/1000000; xfade needs equal timebases
-      cumulativeFrames += chunks[i].durFrames;
+      const cur = segments[segments.length - 1];
+      cur.items.push(c);
+      cur.durFrames += c.durFrames;
     }
+  }
+
+  const tmpLists = [];
+  const inputs = [];
+  segments.forEach((seg, idx) => {
+    if (seg.items.length === 1) {
+      inputs.push("-threads", "2", "-reinit_filter", "0", "-i", seg.items[0].file);
+    } else {
+      const listFile = path.join(outDir, `.concat_seg_${idx}.txt`);
+      const body = seg.items.map((it) => `file '${path.resolve(it.file).replace(/'/g, "'\\''")}'`).join("\n") + "\n";
+      fs.writeFileSync(listFile, body);
+      tmpLists.push(listFile);
+      inputs.push("-threads", "2", "-reinit_filter", "0", "-f", "concat", "-safe", "0", "-i", listFile);
+    }
+  });
+
+  const parts = segments.map((_, i) => `[${i}:v]scale=in_range=pc:out_range=tv,format=yuv420p,setsar=1,settb=1/${fps},setpts=N[n${i}]`);
+  let acc = "[n0]";
+  let cumulativeFrames = segments[0].durFrames;
+  for (let i = 1; i < segments.length; i++) {
+    const xf = segments[i].xfade;
+    const out = `[v${i}]`;
+    parts.push(`${acc}[n${i}]xfade=transition=fade:duration=${(xf / fps).toFixed(6)}:offset=${((cumulativeFrames - xf) / fps).toFixed(6)},settb=1/${fps},setpts=N${out}`);
+    cumulativeFrames += segments[i].durFrames - xf;
     acc = out;
   }
   const frames = totalFrames ?? cumulativeFrames;
@@ -173,12 +195,16 @@ function stitchChunks(chunks, fps, audioFile, finalOut, totalFrames) {
   if (withAudio) ffArgs.push("-i", audioFile);
   ffArgs.push("-filter_complex", parts.join(";"), "-map", acc);
   // 256k: at 192k the AAC encode overshot a -1.2 dBTP master to 0 dBFS
-  if (withAudio) ffArgs.push("-map", `${chunks.length}:a:0`, "-c:a", "aac", "-b:a", "256k");
+  if (withAudio) ffArgs.push("-map", `${segments.length}:a:0`, "-c:a", "aac", "-b:a", "256k");
   else ffArgs.push("-an");
   ffArgs.push("-frames:v", String(frames), "-t", (frames / fps).toFixed(6), "-r", String(fps),
-    "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", finalOut);
-  console.log(`[stitch] ${chunks.length} chunks -> ${frames} frames (${(frames / fps).toFixed(2)} s) -> ${finalOut}`);
-  execFileSync("ffmpeg", ["-v", "warning", ...ffArgs], { stdio: "inherit" });
+    "-threads", "2", "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", finalOut);
+  console.log(`[stitch] ${chunks.length} chunks (${segments.length} segments) -> ${frames} frames (${(frames / fps).toFixed(2)} s) -> ${finalOut}`);
+  try {
+    execFileSync("ffmpeg", ["-v", "warning", ...ffArgs], { stdio: "inherit" });
+  } finally {
+    for (const f of tmpLists) fs.rmSync(f, { force: true });
+  }
 }
 
 run().catch((err) => {

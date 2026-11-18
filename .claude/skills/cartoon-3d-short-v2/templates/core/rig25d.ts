@@ -21,6 +21,7 @@ export type RigPose = {
   footR?: [number, number, number];
   brace?: boolean;    // foam neck brace (scammer after his "injury")
   cap?: boolean;      // police cap (trooper)
+  armsFollowLean?: boolean; // shoulders follow the torso lean (lying in bed, deep crouch); default keeps them upright
 };
 
 const outlineMat = new THREE.MeshBasicMaterial({ color: INK, side: THREE.BackSide });
@@ -44,6 +45,34 @@ const addPlumHull = (mesh: THREE.Mesh, thickness = 1.05) => {
   mesh.add(hull);
 };
 
+/** deterministic 0..1 sequence (stable across renders / chunks) */
+const seeded = (seed: number) => {
+  let s = Math.floor(seed * 7919 + 104729) % 2147483647 || 1;
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+};
+
+/** survival grime: ketchup splats with drips, coffee-ground speckles, stuck-on bandage strips. k scales to the canvas. */
+const grime = (g: CanvasRenderingContext2D, R: () => number, size: number, k: number, nSplat = 5, nBand = 2) => {
+  for (let i = 0; i < nSplat; i++) {
+    const x = R() * size, y = size * (0.15 + R() * 0.7), r = (10 + R() * 16) * k;
+    g.fillStyle = "#c8262c";
+    g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
+    for (let d = 0; d < 4; d++) { const a = R() * Math.PI * 2; g.beginPath(); g.arc(x + Math.cos(a) * r * 1.4, y + Math.sin(a) * r * 1.4, r * 0.3, 0, Math.PI * 2); g.fill(); }
+    g.fillRect(x - r * 0.18, y, r * 0.36, r * (1.2 + R() * 1.4)); // drip
+  }
+  g.fillStyle = "#4a3222";
+  for (let i = 0; i < 90; i++) { g.beginPath(); g.arc(R() * size, R() * size, (1.5 + R() * 2.5) * k, 0, Math.PI * 2); g.fill(); }
+  for (let i = 0; i < nBand; i++) {
+    g.save();
+    g.translate(size * (0.2 + R() * 0.6), size * (0.2 + R() * 0.6)); g.rotate((R() - 0.5) * 1.6);
+    g.fillStyle = "#efe6cf"; g.fillRect(-46 * k, -11 * k, 92 * k, 22 * k);
+    g.strokeStyle = "rgba(150,120,90,0.6)"; g.lineWidth = 2 * k;
+    for (let x = -40; x <= 40; x += 10) { g.beginPath(); g.moveTo(x * k, -11 * k); g.lineTo((x + 6) * k, 11 * k); g.stroke(); }
+    g.fillStyle = "rgba(200,60,50,0.55)"; g.beginPath(); g.arc(0, 0, 7 * k, 0, Math.PI * 2); g.fill();
+    g.restore();
+  }
+};
+
 export type RigStyle = {
   skin?: string;
   jacket: string;
@@ -51,6 +80,12 @@ export type RigStyle = {
   tie?: string;
   hair?: string;
   shades?: boolean;    // gold/dark sunglasses for Shot 6 cash mountain
+  stripes?: string;    // horizontal pajama stripes over the jacket colour
+  torn?: boolean;      // ripped shirt with skin showing through the tears (zombies)
+  zombie?: boolean;    // blank white eyes with pin pupils, eye bags, stitched cheek, crooked open mouth
+  grime?: boolean;     // ketchup splats, coffee-ground smudges and stuck-on bandages (torso + face)
+  seed?: number;       // varies tears / splats between cast members
+  bib?: string;        // pinned race-bib number on the chest (charity-walk entrants)
 };
 
 export class HeroRig25D {
@@ -176,6 +211,44 @@ export class HeroRig25D {
       g.moveTo(128, 20); g.lineTo(140, 125); g.lineTo(128, 145); g.lineTo(116, 125); g.closePath();
       g.fill();
     }
+    if (st.stripes) {
+      g.fillStyle = st.stripes;
+      for (let y = 18; y < 256; y += 34) g.fillRect(0, y, 256, 11);
+      g.fillStyle = "#f4f1ea"; // pajama buttons down the front
+      for (let y = 40; y < 220; y += 44) { g.beginPath(); g.arc(128, y, 6, 0, Math.PI * 2); g.fill(); }
+    }
+    const R = seeded(st.seed ?? 1);
+    if (st.torn) {
+      // ragged rips showing skin, each with a dark frayed rim; jagged hem along the bottom
+      const skin = st.skin ?? SKIN;
+      for (let k = 0; k < 4; k++) {
+        const cx = 40 + R() * 176, cy = 50 + R() * 150, rx = 14 + R() * 18, ry = 10 + R() * 14;
+        const pts: [number, number][] = [];
+        for (let i = 0; i < 12; i++) {
+          const a = (i / 12) * Math.PI * 2, j = i % 2 ? 0.55 : 1.0;
+          pts.push([cx + Math.cos(a) * rx * j, cy + Math.sin(a) * ry * j]);
+        }
+        const path = () => { g.beginPath(); pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y))); g.closePath(); };
+        path(); g.fillStyle = skin; g.fill();
+        g.lineWidth = 5; g.strokeStyle = "rgba(36,23,38,0.75)"; g.stroke();
+      }
+      g.fillStyle = "rgba(60,40,30,0.28)"; // dirt smudges
+      for (let k = 0; k < 6; k++) { g.beginPath(); g.ellipse(R() * 256, R() * 256, 12 + R() * 20, 8 + R() * 12, R() * 3, 0, Math.PI * 2); g.fill(); }
+      g.fillStyle = skin;
+      g.beginPath(); g.moveTo(0, 256);
+      for (let x = 0; x <= 256; x += 16) g.lineTo(x, x % 32 ? 228 + R() * 10 : 248);
+      g.lineTo(256, 256); g.closePath(); g.fill();
+    }
+    if (st.bib) {
+      g.save(); g.translate(128, 150); g.rotate(-0.06);
+      g.fillStyle = "#f7f7f2"; g.fillRect(-34, -24, 68, 48);
+      g.strokeStyle = "#241726"; g.lineWidth = 3; g.strokeRect(-34, -24, 68, 48);
+      g.fillStyle = "#d23a32"; g.fillRect(-34, -24, 68, 9);
+      g.fillStyle = "#241726"; g.font = "bold 26px sans-serif"; g.textAlign = "center"; g.fillText(st.bib, 0, 16);
+      g.fillStyle = "#b9b9b0"; for (const [x, y] of [[-29, -19], [29, -19], [-29, 19], [29, 19]]) { g.beginPath(); g.arc(x, y, 2.5, 0, Math.PI * 2); g.fill(); }
+      g.restore();
+    }
+    if (st.grime) grime(g, R, 256, 1);
     const tex = new THREE.CanvasTexture(cv);
     tex.colorSpace = THREE.SRGBColorSpace;
     return tex;
@@ -197,6 +270,16 @@ export class HeroRig25D {
 
     const p = new Pen(g);
     const cy = 248, exL = 224, exR = 288;
+    const zombie = !!this.style.zombie;
+    if (zombie) {
+      // sunken purple eye bags + a stitched scar on one cheek
+      g.fillStyle = "rgba(90,50,110,0.45)";
+      g.beginPath(); g.ellipse(exL, cy + 6, 26, 22, 0, 0, Math.PI * 2); g.fill();
+      g.beginPath(); g.ellipse(exR, cy + 6, 26, 22, 0, 0, Math.PI * 2); g.fill();
+      const sx = (this.style.seed ?? 1) % 2 ? 318 : 186;
+      p.stroke([[sx - 18, cy + 30], [sx + 18, cy + 50]], 5);
+      for (let i = 0; i < 4; i++) { const x = sx - 14 + i * 10, y = cy + 33 + i * 5; p.stroke([[x - 4, y + 7], [x + 4, y - 7]], 4); }
+    }
     // Eyes or sunglasses
     if (this.style.shades) {
       p.poly([[192, cy - 18], [250, cy - 18], [246, cy + 16], [196, cy + 16]], "#181622", 6);
@@ -205,6 +288,11 @@ export class HeroRig25D {
     } else if (blink >= 0.8 || expr === "pained") {
       p.stroke([[exL - 16, cy], [exL + 16, cy]], 8);
       p.stroke([[exR - 16, cy], [exR + 16, cy]], 8);
+    } else if (zombie) {
+      // blank mismatched eyes with pin pupils (wider when shocked / stared at)
+      const big = expr === "shock" ? 1.2 : 1;
+      p.ell(exL, cy, 19 * big, 17 * big, "#f4f3e8", 6); p.dot(exL + 5, cy + 3, 4);
+      p.ell(exR, cy - 2, 15 * big, 15 * big, "#f4f3e8", 6); p.dot(exR - 3, cy - 4, 4);
     } else if (expr === "shock") {
       p.ell(exL, cy, 20, 20, "#ffffff", 6); p.dot(exL, cy, 6);
       p.ell(exR, cy, 20, 20, "#ffffff", 6); p.dot(exR, cy, 6);
@@ -212,22 +300,34 @@ export class HeroRig25D {
       p.ell(exL, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exL - 16, cy], [exL + 16, cy]], 7);
       p.ell(exR, cy, 12, 10, INK, 0, 0, 180); p.stroke([[exR - 16, cy], [exR + 16, cy]], 7);
     }
-    // Brows
+    // Brows (zombies: one droops)
     const browLift = expr === "shock" ? -16 : expr === "stern" ? 6 : 0;
-    p.stroke([[exL - 18, cy - 32 + browLift], [exL + 16, cy - 34]], 9);
+    p.stroke([[exL - 18, cy - 32 + browLift + (zombie ? 6 : 0)], [exL + 16, cy - 34]], 9);
     p.stroke([[exR - 16, cy - 34], [exR + 18, cy - 32 + browLift]], 9);
 
     // Mouth (driven by mouthOpen or expression)
     const my = cy + 44;
-    if (mouthOpen > 0.25 || expr === "shock" || expr === "laugh") {
+    if (zombie && mouthOpen <= 0.25 && expr !== "shock") {
+      // crooked slack mouth with two teeth
+      p.poly([[234, my - 4], [282, my - 10], [276, my + 10], [240, my + 8]], "#5a1e28", 5);
+      g.fillStyle = "#f4f1e0"; g.fillRect(246, my - 6, 9, 9); g.fillRect(263, my - 8, 9, 9);
+    } else if (mouthOpen > 0.25 || expr === "shock" || expr === "laugh") {
       const ry = 8 + mouthOpen * 18;
       p.ell(256, my, 20, ry, "#5a1e28", 6);
+      if (zombie) { g.fillStyle = "#f4f1e0"; g.fillRect(246, my - ry + 4, 8, 8); g.fillRect(260, my - ry + 4, 8, 8); }
     } else if (expr === "pained") {
       p.poly([[232, my - 8], [280, my - 8], [278, my + 8], [234, my + 8]], "#ffffff", 5);
     } else if (expr === "grin" || expr === "smile") {
       p.arc(256, my - 4, 18, 9, 20, 160, 7);
     } else {
       p.stroke([[244, my], [268, my - 2]], 7);
+    }
+    if (this.style.grime) {
+      // keep the eyes / mouth readable: grime only on the cheeks, forehead and around the head
+      g.save();
+      g.beginPath(); g.rect(0, 150, 512, 362); g.rect(196, 214, 120, 120); g.clip("evenodd");
+      grime(g, seeded((this.style.seed ?? 1) + 17), 512, 1.1, 4, 1);
+      g.restore();
     }
     this.faceTex.needsUpdate = true;
   }
@@ -250,6 +350,10 @@ export class HeroRig25D {
 
     // Local-space limb endpoints relative to root
     const shL = new THREE.Vector3(-0.20, 1.12, 0), shR = new THREE.Vector3(0.20, 1.12, 0);
+    if (p.armsFollowLean && p.lean) {
+      const c = Math.cos(p.lean), s = Math.sin(p.lean);
+      for (const sh of [shL, shR]) sh.set(sh.x, 0.72 + 0.40 * c, 0.40 * s);
+    }
     const hL = p.handL ? new THREE.Vector3(...p.handL) : new THREE.Vector3(-0.26, 0.72, 0.12);
     const hR = p.handR ? new THREE.Vector3(...p.handR) : new THREE.Vector3(0.26, 0.72, 0.12);
     const elL = shL.clone().lerp(hL, 0.5).add(new THREE.Vector3(-0.08, -0.06, -0.05));

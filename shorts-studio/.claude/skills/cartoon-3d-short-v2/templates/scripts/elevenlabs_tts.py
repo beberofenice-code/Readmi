@@ -12,12 +12,13 @@
 #   ELEVENLABS_VOICE_ID           default voice for every speaker
 #   ELEVENLABS_VOICE_ID_<SPEAKER> optional per-speaker override, e.g. ELEVENLABS_VOICE_ID_AGENT
 #   ELEVENLABS_MODEL_ID           optional, default eleven_multilingual_v2
+#   ELEVENLABS_TEMPO              optional pitch-preserving speed-up (same as --tempo), default 1.0
 #
 # Usage:
 #   python3 scripts/elevenlabs_tts.py --script src/videos/dashcam/SCRIPT.md --out-dir voice/dashcam
 #   python3 scripts/elevenlabs_tts.py --script ... --dry-run     # parse + show plan, no API calls
 # Stdlib only (urllib, wave, json); needs ffmpeg on PATH.
-import argparse, base64, json, os, re, subprocess, sys, tempfile, time, urllib.error, urllib.request, wave
+import argparse, base64, hashlib, json, os, re, subprocess, sys, tempfile, time, urllib.error, urllib.request, wave
 
 API = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps"
 SR = 48000
@@ -66,8 +67,8 @@ def synth(text, voice_id, api_key, model_id, output_format, retries=3):
             sys.exit(f"[tts] Could not reach api.elevenlabs.io ({e.reason}). Is the host allowed by this environment's network?")
 
 
-def to_pcm48k(audio_bytes, suffix):
-    """Decode ElevenLabs audio with ffmpeg -> 48 kHz mono s16le samples (bytes)."""
+def to_pcm48k(audio_bytes, suffix, tempo=1.0):
+    """Decode ElevenLabs audio with ffmpeg -> 48 kHz mono s16le samples (bytes); tempo != 1 applies pitch-preserving atempo."""
     with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as f:
         f.write(audio_bytes)
         src = f.name
@@ -77,6 +78,8 @@ def to_pcm48k(audio_bytes, suffix):
             cmd = ["ffmpeg", "-v", "error", "-f", "s16le", "-ar", str(rate), "-ac", "1", "-i", src]
         else:
             cmd = ["ffmpeg", "-v", "error", "-i", src]
+        if abs(tempo - 1.0) > 1e-3:
+            cmd += ["-af", f"atempo={tempo:.4f}"]
         cmd += ["-ac", "1", "-ar", str(SR), "-f", "s16le", "-acodec", "pcm_s16le", "-"]
         return subprocess.run(cmd, capture_output=True, check=True).stdout
     finally:
@@ -118,6 +121,8 @@ def main():
     ap.add_argument("--gap", type=float, default=0.10, help="silence between lines (s)")
     ap.add_argument("--pad", type=float, default=0.04, help="kept before first / after last aligned char (s)")
     ap.add_argument("--force", action="store_true", help="overwrite an existing voice.wav")
+    ap.add_argument("--tempo", type=float, default=float(os.environ.get("ELEVENLABS_TEMPO", "1.0")),
+                    help="pitch-preserving speed-up (ffmpeg atempo) to fit the read into the 50-68 s budget, e.g. 1.1")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -131,7 +136,7 @@ def main():
 
     missing = sorted({sp for sp, _ in lines if not voice_for(sp)})
     n_words = sum(len(t.split()) for _, t in lines)
-    print(f"[tts] {len(lines)} lines, {n_words} words (~{n_words / 3.7:.1f} s at 3.7 w/s), model={args.model}")
+    print(f"[tts] {len(lines)} lines, {n_words} words (~{n_words / 3.7:.1f} s at 3.7 w/s), model={args.model}, tempo={args.tempo}")
     if args.dry_run:
         for sp, t in lines:
             print(f"  [{sp}] voice={voice_for(sp) or 'UNSET'} :: {t}")
@@ -146,12 +151,26 @@ def main():
     if suffix == ".pcm":
         os.environ["_EL_PCM_RATE"] = args.output_format.split("_")[1]
     os.makedirs(args.out_dir, exist_ok=True)
+    # Raw API responses are cached per (text, voice, model, format), so re-timing (--tempo/--gap) never re-bills the API.
+    cache_dir = os.path.join(args.out_dir, ".tts_cache")
+    os.makedirs(cache_dir, exist_ok=True)
     pcm, words, t = bytearray(), [], 0.0
     gap = b"\x00\x00" * int(round(args.gap * SR))
     for i, (sp, text) in enumerate(lines, 1):
-        res = synth(text, voice_for(sp), api_key, args.model, args.output_format)
+        vid = voice_for(sp)
+        key = hashlib.sha1(json.dumps([text, vid, args.model, args.output_format]).encode()).hexdigest()[:16]
+        cpath = os.path.join(cache_dir, f"{key}.json")
+        if os.path.exists(cpath):
+            res = json.load(open(cpath, encoding="utf-8"))
+        else:
+            res = synth(text, vid, api_key, args.model, args.output_format)
+            json.dump(res, open(cpath, "w", encoding="utf-8"))
         al = res.get("alignment") or res.get("normalized_alignment")
-        samples = to_pcm48k(base64.b64decode(res["audio_base64"]), suffix)
+        if al and abs(args.tempo - 1.0) > 1e-3:
+            al = dict(al)
+            for k in ("character_start_times_seconds", "character_end_times_seconds"):
+                al[k] = [x / args.tempo for x in al[k]]
+        samples = to_pcm48k(base64.b64decode(res["audio_base64"]), suffix, args.tempo)
         dur = len(samples) / 2 / SR
         if al and al.get("character_start_times_seconds"):
             nz = [k for k, c in enumerate(al["characters"]) if not c.isspace()]

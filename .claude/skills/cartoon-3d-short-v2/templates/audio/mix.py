@@ -5,6 +5,7 @@
 # ducks -3 dB under speech spans from words.json (or auto-generates a silent placeholder voice if testing without VO),
 # and masters to -14.5 LUFS integrated / -1.2 dBTP true-peak ceiling.
 import argparse
+import importlib
 import json
 import os
 import numpy as np
@@ -138,8 +139,15 @@ def main():
         v = np.zeros((2, N))
         v_ref = -16.0
 
-    sfx = build_sfx(tl, N, v_ref)
-    mus = build_score(tl, N)
+    # story.ts may set AUDIO_PROFILE = "<name>" -> audio/profile_<name>.py supplies build_sfx / build_score;
+    # "dashcam" (the default) uses the built-in highway foley + 120 BPM score below.
+    profile = tl.get("profile", "dashcam")
+    if profile != "dashcam":
+        P = importlib.import_module(f"profile_{profile}")
+        sfx, mus = P.build_sfx(tl, N, v_ref), P.build_score(tl, N)
+    else:
+        sfx, mus = build_sfx(tl, N, v_ref), build_score(tl, N)
+    print(f"[mix] profile={profile}")
     cur_m = integrated(mus)
     if np.isfinite(cur_m):
         mus *= dbg((v_ref - 10.5) - cur_m)
