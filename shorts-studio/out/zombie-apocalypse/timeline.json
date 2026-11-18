@@ -1,0 +1,543 @@
+{
+  "profile": "zombie",
+  "fps": 30,
+  "total_frames": 1992,
+  "duration_s": 66.4,
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "b": 56,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 2,
+      "a": 56,
+      "b": 128,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 3,
+      "a": 128,
+      "b": 185,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 4,
+      "a": 185,
+      "b": 259,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 5,
+      "a": 259,
+      "b": 338,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 6,
+      "a": 338,
+      "b": 414,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 7,
+      "a": 414,
+      "b": 490,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 8,
+      "a": 490,
+      "b": 565,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 9,
+      "a": 565,
+      "b": 625,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 10,
+      "a": 625,
+      "b": 662,
+      "set": "bedroom",
+      "light": "interior",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 11,
+      "a": 662,
+      "b": 707,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 12,
+      "a": 707,
+      "b": 803,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 13,
+      "a": 803,
+      "b": 845,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 14,
+      "a": 845,
+      "b": 909,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 15,
+      "a": 909,
+      "b": 978,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 16,
+      "a": 978,
+      "b": 1063,
+      "set": "street",
+      "light": "rain",
+      "xfade": 6,
+      "hud": null
+    },
+    {
+      "id": 17,
+      "a": 1063,
+      "b": 1115,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 18,
+      "a": 1115,
+      "b": 1230,
+      "set": "street",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 19,
+      "a": 1230,
+      "b": 1311,
+      "set": "square",
+      "light": "rain",
+      "xfade": 8,
+      "hud": null
+    },
+    {
+      "id": 20,
+      "a": 1311,
+      "b": 1370,
+      "set": "square",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 21,
+      "a": 1370,
+      "b": 1448,
+      "set": "square",
+      "light": "rain",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 22,
+      "a": 1448,
+      "b": 1585,
+      "set": "square",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 23,
+      "a": 1585,
+      "b": 1684,
+      "set": "square",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 24,
+      "a": 1684,
+      "b": 1802,
+      "set": "square",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    },
+    {
+      "id": 25,
+      "a": 1802,
+      "b": 1992,
+      "set": "square",
+      "light": "day",
+      "xfade": 0,
+      "hud": null
+    }
+  ],
+  "events": [
+    {
+      "frame": 0,
+      "time_s": 0,
+      "type": "alarm_clock",
+      "gain": 0.9,
+      "pan": -0.3,
+      "desc": "Bell alarm clock rattling on the nightstand"
+    },
+    {
+      "frame": 134,
+      "time_s": 4.4667,
+      "type": "phone_buzz",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Phone vibrating against the nightstand"
+    },
+    {
+      "frame": 160,
+      "time_s": 5.3333,
+      "type": "phone_buzz",
+      "gain": 0.75,
+      "pan": -0.1,
+      "desc": "Second buzz: 40 missed calls"
+    },
+    {
+      "frame": 188,
+      "time_s": 6.2667,
+      "type": "wind_gust",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Wind across the empty street, paper tumbling"
+    },
+    {
+      "frame": 268,
+      "time_s": 8.9333,
+      "type": "zombie_groan",
+      "gain": 0.85,
+      "pan": 0,
+      "desc": "First zombie groans down the middle of the road"
+    },
+    {
+      "frame": 346,
+      "time_s": 11.5333,
+      "type": "foot_drag",
+      "gain": 0.8,
+      "pan": 0.1,
+      "desc": "Dragged shoe scraping asphalt"
+    },
+    {
+      "frame": 374,
+      "time_s": 12.4667,
+      "type": "foot_drag",
+      "gain": 0.75,
+      "pan": 0.1,
+      "desc": "Dragged shoe scraping asphalt"
+    },
+    {
+      "frame": 402,
+      "time_s": 13.4,
+      "type": "foot_drag",
+      "gain": 0.7,
+      "pan": 0.1,
+      "desc": "Dragged shoe scraping asphalt"
+    },
+    {
+      "frame": 492,
+      "time_s": 16.4,
+      "type": "pan_grab",
+      "gain": 0.8,
+      "pan": 0.15,
+      "desc": "Frying pan whipped up into frame"
+    },
+    {
+      "frame": 538,
+      "time_s": 17.9333,
+      "type": "pot_clang",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Cooking pot clanks down onto the head"
+    },
+    {
+      "frame": 572,
+      "time_s": 19.0667,
+      "type": "couch_drag",
+      "gain": 0.85,
+      "pan": 0.25,
+      "desc": "Couch scraping across the floorboards"
+    },
+    {
+      "frame": 604,
+      "time_s": 20.1333,
+      "type": "couch_thud",
+      "gain": 1,
+      "pan": 0.35,
+      "desc": "Couch slams against the bedroom door"
+    },
+    {
+      "frame": 628,
+      "time_s": 20.9333,
+      "type": "fridge_open",
+      "gain": 0.8,
+      "pan": 0.2,
+      "desc": "Mini fridge door pops open: hum, nothing inside"
+    },
+    {
+      "frame": 666,
+      "time_s": 22.2,
+      "type": "gate_creak",
+      "gain": 0.8,
+      "pan": 0.3,
+      "desc": "Back gate creaks as you sneak out"
+    },
+    {
+      "frame": 724,
+      "time_s": 24.1333,
+      "type": "zombie_groan",
+      "gain": 1,
+      "pan": 0.35,
+      "desc": "Zombie lurches out from behind the car"
+    },
+    {
+      "frame": 866,
+      "time_s": 28.8667,
+      "type": "whoosh",
+      "gain": 0.8,
+      "pan": -0.1,
+      "desc": "Frying-pan swing"
+    },
+    {
+      "frame": 880,
+      "time_s": 29.3333,
+      "type": "pan_bonk",
+      "gain": 1.2,
+      "pan": 0.05,
+      "desc": "BONK: pan meets zombie head"
+    },
+    {
+      "frame": 886,
+      "time_s": 29.5333,
+      "type": "cartoon_tweet",
+      "gain": 0.6,
+      "pan": 0.1,
+      "desc": "Cartoon stars circling the bump"
+    },
+    {
+      "frame": 984,
+      "time_s": 32.8,
+      "type": "crowd_groan",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Dozens of zombies groaning as they shuffle"
+    },
+    {
+      "frame": 1070,
+      "time_s": 35.6667,
+      "type": "whoosh",
+      "gain": 0.85,
+      "pan": 0.2,
+      "desc": "Dive into the dumpster"
+    },
+    {
+      "frame": 1094,
+      "time_s": 36.4667,
+      "type": "dumpster_slam",
+      "gain": 1.15,
+      "pan": 0.25,
+      "desc": "Steel dumpster lid slams shut"
+    },
+    {
+      "frame": 1118,
+      "time_s": 37.2667,
+      "type": "dumpster_creak",
+      "gain": 0.85,
+      "pan": 0.25,
+      "desc": "Lid creaks open again"
+    },
+    {
+      "frame": 1136,
+      "time_s": 37.8667,
+      "type": "trash_squelch",
+      "gain": 0.85,
+      "pan": 0.2,
+      "desc": "Squelchy garbage as you climb out"
+    },
+    {
+      "frame": 1234,
+      "time_s": 41.1333,
+      "type": "crowd_groan",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "The horde in the square"
+    },
+    {
+      "frame": 1322,
+      "time_s": 44.0667,
+      "type": "crowd_turn",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Every head turns at once"
+    },
+    {
+      "frame": 1440,
+      "time_s": 48,
+      "type": "record_scratch",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Record scratch: the reveal"
+    },
+    {
+      "frame": 1441,
+      "time_s": 48.0333,
+      "type": "music_stop",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Tension score cuts dead"
+    },
+    {
+      "frame": 1598,
+      "time_s": 53.2667,
+      "type": "phone_ring",
+      "gain": 0.55,
+      "pan": -0.25,
+      "desc": "Friends' phones still calling you"
+    },
+    {
+      "frame": 1684,
+      "time_s": 56.1333,
+      "type": "mic_feedback",
+      "gain": 0.6,
+      "pan": -0.1,
+      "desc": "PA mic squeal as the host steps up"
+    },
+    {
+      "frame": 1784,
+      "time_s": 59.4667,
+      "type": "crowd_cheer",
+      "gain": 0.9,
+      "pan": 0,
+      "desc": "Crowd cheers for the guy with the pan"
+    },
+    {
+      "frame": 1803,
+      "time_s": 60.1,
+      "type": "confetti_pop",
+      "gain": 0.8,
+      "pan": 0,
+      "desc": "Confetti cannons on stage"
+    },
+    {
+      "frame": 1912,
+      "time_s": 63.7333,
+      "type": "trophy_ding",
+      "gain": 0.7,
+      "pan": 0.1,
+      "desc": "Trophy glint"
+    },
+    {
+      "frame": 1926,
+      "time_s": 64.2,
+      "type": "crowd_cheer",
+      "gain": 1,
+      "pan": 0,
+      "desc": "Big cheer on 'best zombie'"
+    }
+  ],
+  "xfade": [
+    [
+      414,
+      420
+    ],
+    [
+      978,
+      984
+    ],
+    [
+      1230,
+      1238
+    ]
+  ],
+  "planned": [
+    [
+      1448,
+      1448
+    ],
+    [
+      1766,
+      1766
+    ],
+    [
+      538,
+      546
+    ],
+    [
+      604,
+      612
+    ],
+    [
+      880,
+      888
+    ],
+    [
+      1094,
+      1102
+    ],
+    [
+      1803,
+      1811
+    ]
+  ]
+}

@@ -10,6 +10,8 @@ const src = fs.readFileSync(storyPath, "utf8");
 const fps = Number(src.match(/FPS\s*=\s*(\d+)/)?.[1] ?? 30);
 const total = Number(src.match(/TOTAL\s*=\s*(\d+)/)?.[1] ?? 1867);
 const flash = Number(src.match(/FLASH_AT\s*=\s*(-?\d+)/)?.[1] ?? -1);
+// Audio profile for audio/mix.py (foley/ambience/score bank); stories without one keep the original dashcam mix
+const profile = src.match(/AUDIO_PROFILE\s*=\s*"([^"]+)"/)?.[1] ?? "dashcam";
 
 // Parse SHOTS
 const shots = [];
@@ -63,6 +65,7 @@ const xfade = shots
   .map((s) => [s.a, s.a + s.xfade]);
 
 const payload = {
+  profile,
   fps,
   total_frames: total,
   duration_s: Number((total / fps).toFixed(4)),
