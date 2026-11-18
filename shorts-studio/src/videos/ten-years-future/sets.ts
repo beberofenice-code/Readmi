@@ -785,17 +785,17 @@ export class MultiSetWorld {
       if (id === 12) { p.handL = [-0.08, lerp(1.07, 0.95, drop), 0.4]; p.handR = [0.08, lerp(1.07, 0.95, drop), 0.4]; }
     } else if (id === 13) {
       // grab the IV (f878-897), yank (f899), leap out of bed (f903+)
-      const grab = smooth((f - 874) / 12), yank = smooth((f - 899) / 4), leap = smooth((f - 903) / 9);
+      const grab = smooth((f - 874) / 12), yank = smooth((f - 899) / 4), leap = smooth((f - 901) / 12);
       p = { ...base, expr: f < 899 ? "stern" : "grin", mouthOpen: f >= 899 ? 0.5 : 0,
         handL: [-0.3, 0.92, 0.3],
         handR: f < 899 ? [lerp(0.24, -0.22, grab), lerp(0.84, 0.95, grab), lerp(0.34, 0.36, grab)] : [lerp(-0.22, 0.5, yank), lerp(0.95, 1.5, yank), 0.25] };
-      if (f >= 903) {
+      if (f >= 901) {
         p.pos = [lerp(-1.75, -0.95, leap), lerp(-0.12, 0.1, leap) + 0.35 * Math.sin(Math.PI * leap), lerp(1.55, 0.7, leap)];
         p.yaw = Math.PI - 0.7 * leap; p.lean = lerp(0.06, 0.35, leap); p.footL = [-0.12, lerp(0.66, 0.1, leap), lerp(0.85, 0.1, leap)]; p.footR = [0.12, lerp(0.66, 0.25, leap), lerp(0.85, 0.2, leap)];
       }
     }
     this.hero.pose(p);
-    this.beardPose(t, id === 13 ? 0.4 * smooth((f - 903) / 9) : 0); // sweep back with the leap, not a step
+    this.beardPose(t, id === 13 ? 0.4 * smooth((f - 901) / 12) : 0); // sweep back with the leap, not a step
     // IV line from the bag to your left wrist (until you rip it out)
     if (!(id === 13 && f >= 899)) { this.hero.handWorld("L", this.tmpV); this.rod(this.ivLine, this.ivBag, this.tmpV.clone()); }
     // phone (Shot 11 insert / Shot 12)
@@ -939,12 +939,12 @@ export class MultiSetWorld {
     } else if (id >= 19 && id <= 22) {
       const laugh = id === 21 && f >= 1510;
       const shock = (id === 21 && f < 1510) || id === 20;
-      // the stack slides from your hands onto the counter as you order (f1389-1397); the laugh tips your head back over 6 frames
-      const place = smooth((f - 1389) / 8), lk = id === 21 ? smooth((f - 1507) / 6) : 0;
+      // the stack slides from your hands onto the counter as you order (f1383-1399); the laugh tips your head back over 14 frames
+      const place = smooth((f - 1383) / 16), lk = id === 21 ? smooth((f - 1503) / 14) : 0;
       const mix = (a: V3, b: V3, k: number): V3 => [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k)];
       const handR = mix(mix([0.15, 0.95, 0.3], [0.24, 0.8, 0.18], place), [0.2, 1.0, 0.35], lk);
       this.hero.pose({ pos: HERO_KIOSK, yaw: Math.PI / 2, lean: lerp(0.03, -0.08, lk), expr: laugh ? "laugh" : shock ? "shock" : "grin",
-        mouthOpen: laugh ? 0.55 + 0.3 * Math.abs(Math.sin(t * 14)) : shock ? 0.6 : 0, headPitch: -0.15 * lk,
+        mouthOpen: laugh ? lerp(0.6, 0.55 + 0.3 * Math.abs(Math.sin(t * 14)), lk) : shock ? 0.6 : 0, headPitch: -0.15 * lk,
         handL: mix([-0.15, 0.95, 0.3], [-0.24, 0.8, 0.18], place), handR });
       this.holdBetween(this.hero, this.heroStack, Math.PI / 2, 0.04, -0.12);
       if (place > 0) this.heroStack.position.lerp(new THREE.Vector3(8.95, 1.25, 45.25), place);
