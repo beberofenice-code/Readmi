@@ -113,17 +113,6 @@ Author `src/videos/<slug>/story.ts` as the **single source of truth** using `cor
 
 ---
 
-## Stage 5b (optional) — Style-Locked Google Flow Enhancement (`google_flow_mcp`)
-Only `style-locked-flow` exists: Flow enhances our exact Three.js frames and **never invents its own art style**. Text-to-video (`flow-all`) is removed. Full rules: skill `SKILL.md` → "Google Flow Enhancement: `style-locked-flow`".
-1. Mark the shots to enhance in `story.ts`: `source: "flow_clip"`, the real Three.js `set`, and `flowMotion: "<motion only>"`. Shots <= 2.0 s and `beat: "dialogue" | "prop"` stay Three.js automatically.
-2. **Stage A:** `node scripts/short3d_runner.mjs --slug <slug> --comp <CompName> --stage refs` → `assets/flow_refs/shot_XX_start.png` (+ `_end.png` only when the camera or character moves).
-3. **Stage B+C:** `--stage flow-plan` → `out/<slug>/flow_plan.json`: Frames-mode (`start_frame` [+ `end_frame`]) requests whose prompts are wrapped in the mandatory style-lock text. Send these items unchanged to `flow_batch_generate` / `flow_generate_video`. No text-only or Ingredients-only video calls.
-4. **APPROVAL GATE (the one exception to "no manual confirmation"):** show the keyframes and the `dry_run` credit estimate, then wait for the user's go-ahead before spending any video credits.
-5. Download takes to `assets/flow_clips/shot_XX.mp4` → `--stage flow-check`. Failed takes, and any face/limb morph you see on the contact sheets (`--reject <id>:morph`), fall back to the clean Three.js render.
-6. Never ask Flow for readable signs, flip counters, HUD/`● REC` or subtitles. Those stay in Three.js and Remotion (`<DiegeticHUD>`, `<PopCaptions>`).
-
----
-
 ## Stage 6 — 4-Track Multi-Layer Audio & Procedural SFX Mix (`audio/<slug>_mix.wav`)
 1. Run the 4-track FFmpeg audio pipeline (auto-generates any missing WAVs in `assets/sfx/` from `audio/generate_sfx_assets.py` + `assets/sfx/manifest.json` so there are **zero missing-file errors**):
    ```bash

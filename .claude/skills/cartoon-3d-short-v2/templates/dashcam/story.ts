@@ -1,12 +1,10 @@
 // Single-source master timeline for the 62.2 s Dashcam short (1,867 frames @ 30 fps).
 // Exported to out/dashcam/timeline.json via scripts/export_timeline.mjs so Python audio and QA never drift.
 import type { LightMode } from "../core/lights";
-import type { FlowShotFields } from "../core/FlowClip";
 
 export const FPS = 30;
 export const TOTAL = 1867; // 62.23 s
 export type V3 = [number, number, number];
-// Every shot has a real Three.js set: Google Flow only ENHANCES our rendered keyframes (style-locked-flow).
 export type SetName = "car_cabin" | "highway" | "driveway" | "office" | "pool";
 
 export const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
@@ -23,13 +21,8 @@ export type ShotDef = {
   hud?: "dashcam";
   sunAz?: number;
   sunEl?: number;
-} & FlowShotFields; // source: "threejs" (default) | "flow_clip", clip, clipStart, clipRate, clipFit, refStart, refEnd
+};
 
-// Keep every shot object on ONE line with flat fields (scripts/export_timeline.mjs parses this array).
-// style-locked-flow (the only Flow mode). Flow animates our own Three.js keyframes in Frames mode; it never invents a style.
-//   { id: 5, a: 465, b: 815, set: "highway", light: "golden", xfade: 6, source: "flow_clip", clipStart: 0.4, flowMotion: "the stickman leans into the wheel as rain streaks past the windows" },
-// flowMotion = ONLY the motion to add (no text/signs/counters/HUD, no restyle, no camera change). Optional: flowEnd: false|true,
-// flowModel: "Veo 3.1 - Fast", beat: "dialogue" | "prop" (always stays Three.js). Shots <= 2.0 s always stay Three.js.
 export const SHOTS: ShotDef[] = [
   { id: 1,  a: 0,    b: 42,   set: "car_cabin", light: "day" },
   { id: 2,  a: 42,   b: 126,  set: "highway",   light: "day" },

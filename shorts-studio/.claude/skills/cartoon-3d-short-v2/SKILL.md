@@ -1,6 +1,6 @@
 ---
 name: cartoon-3d-short-v2
-description: Build 55-65 s cinema-grade vertical 2.5D/3D animated explainer shorts (expressive 2D-on-3D stickman rigs with emotion state machine & accessories, 4 time-of-day/weather lighting presets, 12 dynamic camera rig presets with 2.0-3.5 s pacing, environmental micro-gags, toggleable diegetic HUD & 1-3 word viral subtitles, and 4-track FFmpeg/BS.1770-4 audio with procedural SFX manifest), rendered fault-tolerantly per shot in Three.js + Remotion across Desktop, Linux, and Android/Termux. Shots can be enhanced by Google Flow (Veo/Omni) via google_flow_mcp ONLY in style-locked-flow mode: Three.js keyframes -> Frames image-to-video -> mandatory style-lock prompt, with automatic Three.js fallback for fast beats and morphed takes; Flow never invents its own art style.
+description: Build 55-65 s cinema-grade vertical 2.5D/3D animated explainer shorts (expressive 2D-on-3D stickman rigs with emotion state machine & accessories, 4 time-of-day/weather lighting presets, 12 dynamic camera rig presets with 2.0-3.5 s pacing, environmental micro-gags, toggleable diegetic HUD & 1-3 word viral subtitles, and 4-track FFmpeg/BS.1770-4 audio with procedural SFX manifest), rendered fault-tolerantly per shot in Three.js + Remotion across Desktop, Linux, and Android/Termux.
 ---
 
 # Shorts-Studio v2 — Cinema Upgrade (Three.js + Remotion + 4-Track Audio)
@@ -82,79 +82,3 @@ Every 55–65 s script (`SCRIPT.md`) MUST follow these non-negotiable retention 
 6. **4-Track Audio Mix (`audio/<slug>_mix.wav`):** Run `node scripts/short3d_runner.mjs --slug <slug> --comp <CompName> --stage audio` (auto-generates `assets/sfx/` WAVs + `manifest.json`, applies telephone bandpass EQ on phone dialogue, ducks dynamic score `-18 dB` under VO, masters to `-14.5 LUFS` / `-1.2 dBTP`).
 7. **Resumable Per-Shot Render & Stitch:** Run `node scripts/short3d_runner.mjs --slug <slug> --comp <CompName> --stage render` (enables viral subtitles automatically when `words.json` is present; add `--no-captions` to omit).
 8. **Frame-by-Frame QA:** Run `node scripts/short3d_runner.mjs --slug <slug> --comp <CompName> --stage qa` (add `--strict` to `short_qa.py` for CI enforcement) to verify `PACING`, `FRAMES`, `AUDIO`, and `SUBTITLES` all pass.
-
----
-
-## Google Flow Enhancement: `style-locked-flow` (the ONLY Flow mode)
-
-Google Flow **never invents its own art style**. It may only *enhance* frames that our Three.js scene already rendered, in our exact `/short3d` look. **Text-to-video (`flow-all`) is removed**: a shot with `set: "flow"` fails `export_timeline.mjs`, and Ingredients-only / text-only video calls are not allowed. Every shot in `story.ts` has `source: "threejs"` (default) or `source: "flow_clip"` (Flow-enhanced). Both go into the same 1080x1920 / 30 fps Remotion timeline. ElevenLabs VO, `mix.py`, the per-shot render + xfade stitch, `<PopCaptions>` and QA work the same for both. Flow's clip audio is always stripped.
-
-The shared rules live in `templates/scripts/flow_style_lock.mjs` (`STYLE_LOCK_PROMPT`, `buildFlowPrompt`, `lintMotion`, `timelineFlowSkip`, morph thresholds). Never write a Flow prompt by hand.
-
-### The strict 3-stage lock (every Flow-enhanced shot)
-**Stage A: Three.js keyframe lock.** Build the shot fully in Three.js first (real `set`, `CAMS`, lighting, rig, expressions). Then:
-```bash
-node scripts/short3d_runner.mjs --slug <slug> --comp <Comp> --stage refs [--shot 5,9]
-```
-This renders clean full-res keyframes (no captions, no HUD) straight from our scene and camera rig: `assets/flow_refs/shot_XX_start.png` and `shot_XX_end.png`. The end frame is kept **only when the camera or character moves across the shot**. If start and end are nearly the same (PSNR >= 38 dB), the end frame is deleted and Flow gets the start frame only. `flowEnd: true | false` forces either way.
-
-**Stage B: Flow image-to-video (Frames mode).**
-```bash
-node scripts/short3d_runner.mjs --slug <slug> --comp <Comp> --stage flow-plan [--shot 5,9]
-```
-This writes `out/<slug>/flow_plan.json`. Each `items[]` entry has `prompt`, `start_frame` (and `end_frame` when present), `aspect_ratio: "9:16"`, `model`, `duration` (shortest of 4/6/8/10 s covering `needs_s`) and `save_as`. Pass the items **unchanged** to `google_flow_mcp` `flow_generate_video` / `flow_batch_generate` (`items`), with `max_credits` set. Always use `start_frame`/`end_frame` (Frames mode). Never send `references`-only or prompt-only video requests. A shot is **blocked** from the plan when its start keyframe is missing, its take was rejected, or its `flowMotion` fails the lint.
-
-**Stage C: style-lock prompt (mandatory).** `flow-plan` wraps every shot's `flowMotion` in this exact text (from `STYLE_LOCK_PROMPT`):
-> Animate this exact stylized 2D-on-3D cartoon stickman frame. Preserve the exact white round-headed stickman character with bold black outlines, exact camera framing, and stylized 3D set colors. Upgrade only smooth natural character motion, subtle secondary movement, soft contact shadows, volumetric lighting, and atmospheric particles (rain/dust/reflections). Do NOT change character anatomy, do NOT turn characters into realistic humans, do NOT alter camera angle, and do NOT generate text.
-
-`flowMotion` holds **only the motion to add**, e.g. `"the stickman grips the wheel and leans forward, rain streaks across the glass"`. `lintMotion` refuses motion text that asks for text/letters/captions/logos, signs/counters/readouts, HUD/REC overlays, a different style (realistic, photoreal, anime…), a camera change (new angle, zoom out, cut to…), or new anatomy (fingers, hair, …).
-
-### Protect text, props & consistency
-- **Flow never renders anything readable.** All text stays in Remotion or Three.js: readable signs and `createFlipCounterProp` counters (Three.js / Remotion), the diegetic `● REC` HUD (`<DiegeticHUD>`), and the bold 1-3 word lower-third subtitles (`<PopCaptions>`). These DOM layers sit above Flow clips exactly as they sit above the WebGL canvas.
-- **Automatic Three.js fallback.** These shots render from the clean Three.js scene even if `story.ts` says `source: "flow_clip"` (`timeline.json` records `requestedSource` + `flowSkip`):
-  - fast beats of **<= 2.0 s** (`FAST_BEAT_MAX_S`);
-  - shots tagged `beat: "dialogue"` or `beat: "prop"` (dialogue breathers, flip counters and other prop gags);
-  - takes rejected by the **morph gate** (below).
-- **Morph gate (mandatory after every download):**
-  ```bash
-  node scripts/short3d_runner.mjs --slug <slug> --comp <Comp> --stage flow-check [--shot 7]
-  ```
-  This compares the raw take's first frame with `shot_XX_start.png` (structural SSIM >= 0.80) and the last used frame with `shot_XX_end.png` (>= 0.50). A take that fails is written to `assets/flow_clips/flow_reject.json` and that shot falls back to the clean Three.js render. It also writes 6-frame contact sheets to `out/<slug>/flow_check/shot_XX_sheet.jpg`. **Look at every sheet.** SSIM can miss small face or limb morphs, so if the stickman's round head, face, outline weight or stick limbs change at all, run `--stage flow-check --reject 7:morph`. `--accept 7` clears a rejection after you've checked it by eye. A re-generated take for a rejected shot needs `--stage flow-plan --shot 7`.
-- The composition only plays a Flow clip for shots that `render.mjs` passes as **accepted, conformed** takes (`flowClips`). Everything else renders from Three.js automatically, and a chunk re-renders by itself when its shot switches between Flow and Three.js.
-
-### Folders & naming (project root; `short3d_runner.mjs` creates them)
-- `assets/flow_refs/`: Stage A keyframes going **to** Flow (`shot_XX_start.png`, `shot_XX_end.png`).
-- `assets/flow_clips/`: takes coming **back**, `shot_XX.mp4` (two-digit id). Flow saves to `~/flow-media`; copy the file here under the `save_as` name. Also holds `flow_reject.json`.
-- `public/flow_clips/`: **generated** conformed copies (1080x1920, 30 fps CFR, exact frames + xfade tail, no audio). Never edit them by hand.
-
-### Shot fields (`story.ts`, one shot per line, flat fields)
-```ts
-{ id: 7, a: 945, b: 1075, set: "highway", light: "rain", xfade: 6, source: "flow_clip", clipStart: 0.3, clipRate: 1.15, flowMotion: "the stickman grips the wheel and leans forward, rain streaks across the glass" },
-{ id: 8, a: 1075, b: 1135, set: "office", light: "interior", source: "flow_clip", beat: "prop", flowMotion: "..." },   // stays Three.js (prop beat)
-```
-- `flowMotion` (required): the motion to add, nothing else. `flowModel`: default `Omni 1.1 Flash`; use `Veo 3.1 - Fast` for hero beats. `flowEnd`: force or suppress the end frame. `beat`: `"dialogue" | "prop"` always stay Three.js.
-- `clip` defaults to `assets/flow_clips/shot_XX.mp4`; `refStart`/`refEnd` default to `assets/flow_refs/shot_XX_start.png` / `_end.png`. `clipStart` trims Veo's slow first ~0.3-0.5 s. `clipRate` 1.1-1.3 tightens floaty motion to the 2.0-3.5 s pacing. `clipFit`: `cover` (default) or `contain`.
-- `render.mjs` conforms each take to exactly `(b - a) + next shot's xfade` frames and holds the last frame (with a warning) if it is short. Check with `--stage flow-status`.
-- `<CompName>.tsx` must follow `templates/dashcam/DashcamShort.tsx`: play `<FlowClipLayer>` only when `props.flowClips[id]` (or `props.flowPending`) is set and `!props.forceThree`, otherwise `<ThreeCanvas>`. HUD (unless `props.noOverlay`) and `<PopCaptions>` sit above both.
-
-### Commands
-- `--stage refs`: Stage A keyframes. `--stage flow-plan`: Stage B+C requests. `--stage flow-check [--reject id:why] [--accept id]`: morph gate. `--stage flow-status`: the Flow/Three.js decision for every shot, clip present or missing, refs, lint, and rejects.
-- `--stage stills` / `--stage render`: conform the accepted takes, rebundle when they change, and re-render only the chunks that changed. `render` refuses to run with missing clips unless you pass `--allow-missing-flow` (yellow "FLOW CLIP PENDING" slates, for timing tests only).
-
-### Flow session rules
-1. Read the `google_flow_mcp` skill `generate_media` (`get_skill`), then call `flow_status`. If it isn't logged in, stop and ask the user to sign in. Use one Flow project per short, named `<slug>`.
-2. Videos are always **9:16**. Run `flow_get_options` for the current models. Use `Omni 1.1 Flash` for most shots and `Veo 3.1 - Fast/Quality` for 2-4 hero beats at most.
-3. Before generating, copy `flow_plan.json`'s items (prompt, frames, model) into `src/videos/<slug>/FLOW.md` so every take can be reproduced.
-4. Send all shots in one `flow_batch_generate` / `items` call. Never call once per prompt. Always set `max_credits`. Pass `dry_run: true` first to get the credit estimate.
-
-### APPROVAL GATE (mandatory)
-**Never spend Flow video credits before the user has approved the keyframes.** After `--stage refs` and `--stage flow-plan`:
-1. Show every keyframe inline (`![shot_05_start](/abs/path.png)`).
-2. List the planned calls: shot ids, Frames (start / start+end), model, duration and estimated credits (from `dry_run: true`), plus any shots blocked or kept in Three.js and why.
-3. **Stop and wait** for an explicit go-ahead. Ask again after any change to keyframes or to the shot list. `dry_run` calls are fine before approval. `flow_generate_video`, `flow_extend_video`, `flow_batch_generate` with videos and `flow_upscale_video` are not.
-
-### Workflow
-1. Make the whole short in Three.js with normal pacing (Stages 1-5). Pick the shots to enhance (usually hook, Rule-of-3 peak, rain mood shift, final reveal, all longer than 2 s and not dialogue/prop beats). Set `source: "flow_clip"` plus `flowMotion` on them and keep their real `set`.
-2. `--stage refs` → `--stage flow-plan` → **APPROVAL GATE** → generate exactly the planned Frames requests.
-3. Download each take to `assets/flow_clips/shot_XX.mp4` → `--stage flow-check` (look at every sheet, reject any morph) → `--stage flow-status` → `--stage stills` → `--stage audio` → `--stage render` → `--stage qa`.
-4. Use `xfade: 4-6` into and out of Flow shots so the cut is invisible. Any shot can go back to Three.js at any time (`--reject`, or remove `source`) with no other changes.

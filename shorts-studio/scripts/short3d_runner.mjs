@@ -1,15 +1,7 @@
 #!/usr/bin/env node
 // One-command orchestrator for the /short3d slash command across Desktop, Linux, and Android/Termux.
 // Usage:
-//   node scripts/short3d_runner.mjs --slug dashcam --comp DashcamShort [--stage all|timeline|voice|stills|audio|render|qa|refs|flow-plan|flow-check|flow-status] [--scale 0.5] [--no-captions] [--shot 1,12]
-// Google Flow = style-locked-flow ONLY (text-to-video / flow-all is removed). Flow stages are never part of `all`:
-//   refs:        Stage A - clean Three.js Start (+ End when the shot moves) keyframes -> assets/flow_refs/shot_XX_start/end.png
-//   flow-plan:   Stage B+C - Frames-mode image-to-video requests, prompts wrapped in STYLE_LOCK_PROMPT -> out/<slug>/flow_plan.json
-//                (blocks shots with missing keyframes or motion text asking for text/signs/HUD/restyle/camera changes)
-//   flow-check:  morph gate on downloaded clips vs our keyframes + contact sheets; failures fall back to Three.js
-//                (--reject 7:morph / --accept 7 to override; stored in assets/flow_clips/flow_reject.json)
-//   flow-status: list Flow shots, auto Three.js fallbacks, rejects, clip present/missing, and seconds each needs
-//   render:      add --allow-missing-flow to render "FLOW CLIP PENDING" slates for clips not downloaded yet
+//   node scripts/short3d_runner.mjs --slug dashcam --comp DashcamShort [--stage all|timeline|voice|stills|audio|render|qa] [--scale 0.5] [--no-captions] [--shot 1,12]
 //   voice: ElevenLabs TTS from src/videos/<slug>/SCRIPT.md (needs ELEVENLABS_API_KEY + ELEVENLABS_VOICE_ID; add --force-voice to redo)
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -23,7 +15,7 @@ const getArg = (flag, def) => {
 
 const slug = getArg("--slug", "dashcam");
 const comp = getArg("--comp", "DashcamShort");
-const stage = getArg("--stage", "all"); // all | timeline | voice | stills | audio | render | qa | refs | flow-status
+const stage = getArg("--stage", "all"); // all | timeline | voice | stills | audio | render | qa
 const shotArg = getArg("--shot", "");
 const isTermux = Boolean(process.env.TERMUX_VERSION) || process.platform === "android" || fs.existsSync("/data/data/com.termux");
 const scale = getArg("--scale", isTermux ? "0.5" : "1.0");
@@ -52,11 +44,7 @@ function captionArgs() {
   return ["--captions", "--words", wordsJson];
 }
 
-// Google Flow hand-off folders (Stage A Three.js keyframes in, downloaded Flow takes + flow_reject.json back)
-for (const d of ["assets/flow_refs", "assets/flow_clips"]) fs.mkdirSync(d, { recursive: true });
-
-const flowStages = new Set(["refs", "flow-plan", "flow-check", "flow-status"]);
-if (stage === "all" || stage === "timeline" || flowStages.has(stage)) {
+if (stage === "all" || stage === "timeline") {
   step("Export Master Timeline", "node", ["scripts/export_timeline.mjs", storyTs, timelineJson]);
 }
 
@@ -89,39 +77,6 @@ if (stage === "all" || stage === "stills") {
   ]);
 }
 
-if (stage === "refs") {
-  step("Render Three.js Keyframes for Google Flow", "node", [
-    "scripts/render.mjs", "refs",
-    "--comp", comp,
-    "--timeline", timelineJson,
-    ...(shotArg ? ["--shot", shotArg] : []),
-  ]);
-}
-
-if (stage === "flow-plan") {
-  step("Style-Locked Flow Plan (Frames mode + style-lock prompt)", "node", [
-    "scripts/render.mjs", "flow-plan",
-    "--timeline", timelineJson,
-    "--out", path.join(outDir, "flow_plan.json"),
-    ...(shotArg ? ["--shot", shotArg] : []),
-  ]);
-}
-
-if (stage === "flow-check") {
-  step("Flow Morph Gate (keep clean Three.js on failure)", "node", [
-    "scripts/render.mjs", "flow-check",
-    "--timeline", timelineJson,
-    "--out", path.join(outDir, "flow_check"),
-    ...(shotArg ? ["--shot", shotArg] : []),
-    ...(getArg("--accept", "") ? ["--accept", getArg("--accept", "")] : []),
-    ...(getArg("--reject", "") ? ["--reject", getArg("--reject", "")] : []),
-  ]);
-}
-
-if (stage === "flow-status") {
-  step("Google Flow Clip Status", "node", ["scripts/render.mjs", "flow-status", "--timeline", timelineJson]);
-}
-
 if (stage === "all" || stage === "audio") {
   step("Generate Procedural SFX Manifest & Mix 4-Track Audio", pyBin, [
     "audio/mix.py",
@@ -135,7 +90,6 @@ if (stage === "all" || stage === "audio") {
 if (stage === "all" || stage === "render") {
   const extra = [
     ...(args.includes("--force") ? ["--force"] : []),
-    ...(args.includes("--allow-missing-flow") ? ["--allow-missing-flow"] : []),
     ...captionArgs(),
     ...(shotArg ? ["--shot", shotArg] : []),
   ];

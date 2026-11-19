@@ -10,9 +10,6 @@ Complete upgraded Three.js + Remotion + 4-Track FFmpeg/BS.1770-4 production temp
 | `templates/dashcam/` | Complete reference implementation of **"How the Dashcam Was Invented"** (`SCRIPT.md`, `story.ts`, `sets.ts`, `DashcamShort.tsx`) |
 | `templates/audio/` | 4-track FFmpeg audio mixer (`mix.py`), procedural 22-asset SFX generator + manifest builder (`generate_sfx_assets.py`), pure-NumPy-capable `dsp.py`, `instruments.py`, and `sfx_gen.py` |
 | `templates/scripts/` | `export_timeline.mjs` (`story.ts` -> `timeline.json` with `sfxEvents`, `MUSIC_CUES`, `DIALOGUE_FX`, `pacing`), persistent-bundle resumable `render.mjs`, `elevenlabs_tts.py` (`[SPEAKER:fx]` + dead-air trimmer + WPM check), `short_qa.py` (pacing, non-blank frames, audio, subtitle safe-zone QA), `sbs_sheet.py`, and `short3d_runner.mjs` |
-| `templates/core/FlowClip.tsx` | Google Flow shot layer: `FlowShotFields` (`source: "threejs" \| "flow_clip"`, `clip`, `clipStart`, `clipRate`, `clipFit`, `refStart`, `refEnd`), `<FlowClipLayer>` (frame-accurate `<OffthreadVideo>`), and a PENDING slate |
-| `assets/flow_refs/`, `assets/flow_clips/` (project root) | Flow hand-off folders: Three.js keyframes (`shot_XX_start/end.png`) go to Flow; `shot_XX.mp4` takes + `flow_reject.json` come back. See SKILL.md "Google Flow Enhancement: `style-locked-flow`" (Frames-mode only, mandatory style-lock prompt, morph gate, automatic Three.js fallback) |
-| `templates/scripts/flow_style_lock.mjs` | Single source of the Flow style lock: `STYLE_LOCK_PROMPT`, `buildFlowPrompt`, `lintMotion` (blocks text/signs/HUD/restyle/camera changes), fast/dialogue/prop beat fallback, morph-gate thresholds |
 | `references/` | Updated `STYLE_BIBLE.md` + 7 quantitative look-match reports |
 
 ## Quick Start (Desktop, Linux, or Android / Termux)
