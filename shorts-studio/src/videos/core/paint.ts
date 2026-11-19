@@ -718,3 +718,319 @@ export const chainHD = () => ctex("chainHD", 256, 1024, (g) => {
   }
 });
 
+// ---------------- Cinema Environmental Storytelling Textures ----------------
+
+/** Stylized asphalt with coarse aggregate grain, dual rubber tire-wear tracks, hairline tar cracks,
+ *  and optional glossy damp puddle contrast for `rainy_overcast` shots. 1024 px tile. */
+export const asphaltHD = (wet = false) => ctex(`asphaltHD_${wet ? "wet" : "dry"}`, 1024, 1024, (g, r) => {
+  const S = 1024;
+  g.fillStyle = wet ? "#232a33" : "#3a3e46";
+  g.fillRect(0, 0, S, S);
+
+  // Broad tonal asphalt patches
+  for (let i = 0; i < 24; i++) {
+    const x = U(r, 0, S), y = U(r, 0, S), rad = U(r, 80, 220);
+    const dark = r() < 0.55;
+    wrap2(S, S, x, y, rad * 1.3, (xx, yy) =>
+      blotch(g, xx, yy, rad, 1.3, dark ? (wet ? "14,20,28" : "28,30,36") : (wet ? "65,82,98" : "95,98,108"), wet ? 0.22 : 0.14),
+    );
+  }
+
+  // Dual wheel-wear tracks running vertically along the road
+  for (const tx of [275, 749]) {
+    const grad = g.createLinearGradient(tx - 95, 0, tx + 95, 0);
+    grad.addColorStop(0, "rgba(18,20,25,0)");
+    grad.addColorStop(0.5, wet ? "rgba(12,16,22,0.38)" : "rgba(22,24,29,0.26)");
+    grad.addColorStop(1, "rgba(18,20,25,0)");
+    g.fillStyle = grad;
+    g.fillRect(tx - 95, 0, 190, S);
+  }
+
+  // Coarse aggregate stone grain
+  for (let i = 0; i < 9500; i++) {
+    const x = U(r, 0, S), y = U(r, 0, S), sz = U(r, 1.0, 2.6), k = r();
+    g.fillStyle = k < 0.45
+      ? (wet ? "rgba(14,18,24,0.52)" : "rgba(25,27,32,0.45)")
+      : k < 0.85
+        ? (wet ? "rgba(95,112,128,0.28)" : "rgba(115,120,130,0.28)")
+        : (wet ? "rgba(175,202,225,0.24)" : "rgba(165,168,175,0.22)");
+    g.fillRect(x, y, sz, sz);
+  }
+
+  // Tar-sealed hairline cracks
+  g.lineCap = "round";
+  for (let c = 0; c < 6; c++) {
+    let x = U(r, 40, S - 40), y = U(r, 40, S - 40);
+    g.strokeStyle = wet ? "rgba(8,10,14,0.75)" : "rgba(20,22,26,0.65)";
+    g.lineWidth = U(r, 1.6, 3.0);
+    g.beginPath();
+    g.moveTo(x, y);
+    for (let s = 0; s < 10; s++) {
+      x += U(r, -28, 28);
+      y += U(r, 14, 42);
+      g.lineTo(x, y);
+    }
+    g.stroke();
+  }
+
+  // Wet asphalt puddle mirror streaks
+  if (wet) {
+    for (let p = 0; p < 14; p++) {
+      const px = U(r, 0, S), py = U(r, 0, S), rad = U(r, 65, 165);
+      wrap2(S, S, px, py, rad * 1.4, (xx, yy) =>
+        blotch(g, xx, yy, rad, 1.5, "135,172,198", U(r, 0.10, 0.20)),
+      );
+    }
+  }
+});
+
+/** Stylized saturated lawn with crisp layered grass blades and subtle clover/flower accents. 1024 px tile. */
+export const grassBladesHD = () => ctex("grassBladesHD", 1024, 1024, (g, r) => {
+  const S = 1024;
+  g.fillStyle = "#5aa436";
+  g.fillRect(0, 0, S, S);
+  for (let i = 0; i < 20; i++) {
+    const x = U(r, 0, S), y = U(r, 0, S), rad = U(r, 100, 260), sun = r() > 0.45;
+    wrap2(S, S, x, y, rad * 1.3, (xx, yy) =>
+      blotch(g, xx, yy, rad, 1.3, sun ? "138,208,68" : "58,118,32", 0.34),
+    );
+  }
+  g.lineCap = "round";
+  // Layered grass blade fans (back dark blades -> mid -> sunlit yellow-green tips)
+  const layers: [number, string, number, number][] = [
+    [1600, "#3f7d24", 18, 3.2],
+    [1800, "#66b63b", 15, 2.6],
+    [1200, "#96db56", 12, 2.1],
+  ];
+  for (const [count, col, maxH, lw] of layers) {
+    g.strokeStyle = col;
+    g.lineWidth = lw;
+    for (let i = 0; i < count; i++) {
+      const x = U(r, 0, S), y = U(r, 0, S), h = U(r, maxH * 0.55, maxH), bend = U(r, -6, 6);
+      wrap2(S, S, x, y, maxH + 6, (xx, yy) => {
+        g.beginPath();
+        g.moveTo(xx, yy);
+        g.quadraticCurveTo(xx + bend * 0.4, yy - h * 0.55, xx + bend, yy - h);
+        g.stroke();
+      });
+    }
+  }
+  // Wildflower dots
+  for (let i = 0; i < 26; i++) {
+    const x = U(r, 0, S), y = U(r, 0, S), col = pick(r, ["#fff8d6", "#ffd84d", "#ffacc2", "#d8ecff"]);
+    wrap2(S, S, x, y, 8, (xx, yy) => {
+      g.fillStyle = col; g.beginPath(); g.arc(xx, yy, 3.6, 0, TAU); g.fill();
+      g.fillStyle = "#e09b24"; g.beginPath(); g.arc(xx, yy, 1.3, 0, TAU); g.fill();
+    });
+  }
+});
+
+/** Glowing car dashboard instrument cluster + infotainment screen texture (1024 x 384). */
+export const dashboardClusterTex = (speedMph = 45, rpm = 2800, alertText = "GPS ACTIVE") => {
+  const sp = Math.round(speedMph);
+  const rp = Math.round(rpm / 100) * 100;
+  return ctex(`dashCluster_${sp}_${rp}_${alertText}`, 1024, 384, (g) => {
+    g.fillStyle = "#10141c";
+    g.fillRect(0, 0, 1024, 384);
+    g.strokeStyle = "#2b3648";
+    g.lineWidth = 6;
+    g.strokeRect(8, 8, 1008, 368);
+
+    const drawDial = (cx: number, cy: number, rad: number, frac: number, label: string, valText: string, accent: string) => {
+      const glow = g.createRadialGradient(cx, cy, rad * 0.15, cx, cy, rad * 1.05);
+      glow.addColorStop(0, "rgba(42,168,255,0.22)");
+      glow.addColorStop(0.75, "rgba(18,32,54,0.85)");
+      glow.addColorStop(1, "rgba(10,14,22,1)");
+      g.fillStyle = glow;
+      g.beginPath(); g.arc(cx, cy, rad, 0, TAU); g.fill();
+      g.strokeStyle = accent; g.lineWidth = 5; g.stroke();
+
+      // Tick marks
+      for (let i = 0; i <= 12; i++) {
+        const a = Math.PI * 0.78 + (i / 12) * Math.PI * 1.44;
+        const r0 = i % 2 === 0 ? rad - 22 : rad - 13;
+        g.strokeStyle = i >= 10 ? "#ff4a4a" : "#d8eeff";
+        g.lineWidth = i % 2 === 0 ? 4 : 2;
+        g.beginPath();
+        g.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0);
+        g.lineTo(cx + Math.cos(a) * (rad - 5), cy + Math.sin(a) * (rad - 5));
+        g.stroke();
+      }
+
+      // Glowing needle
+      const na = Math.PI * 0.78 + Math.max(0, Math.min(1, frac)) * Math.PI * 1.44;
+      g.strokeStyle = "#ff4e3b";
+      g.lineWidth = 6;
+      g.lineCap = "round";
+      g.beginPath();
+      g.moveTo(cx - Math.cos(na) * 18, cy - Math.sin(na) * 18);
+      g.lineTo(cx + Math.cos(na) * (rad - 24), cy + Math.sin(na) * (rad - 24));
+      g.stroke();
+
+      g.fillStyle = "#e8f4ff";
+      g.beginPath(); g.arc(cx, cy, 10, 0, TAU); g.fill();
+
+      g.fillStyle = "#ffffff";
+      g.font = "bold 36px monospace";
+      g.textAlign = "center";
+      g.fillText(valText, cx, cy + 54);
+      g.fillStyle = "#8cb4d8";
+      g.font = "bold 18px sans-serif";
+      g.fillText(label, cx, cy + 78);
+    };
+
+    // Left speedometer + right tachometer
+    drawDial(200, 196, 136, sp / 120, "MPH", String(sp), "#49c8ff");
+    drawDial(495, 196, 118, rp / 7000, "RPM x1000", (rp / 1000).toFixed(1), "#5ce6a0");
+
+    // Right-hand glowing car infotainment / GPS display
+    rr(g, 650, 44, 340, 296, 18);
+    g.fillStyle = "#12263a";
+    g.fill();
+    g.strokeStyle = "#48b6ff";
+    g.lineWidth = 4;
+    g.stroke();
+
+    // Stylized map grid + route line
+    g.strokeStyle = "rgba(92,190,255,0.22)";
+    g.lineWidth = 2;
+    for (let x = 675; x < 980; x += 36) { g.beginPath(); g.moveTo(x, 60); g.lineTo(x, 265); g.stroke(); }
+    for (let y = 75; y < 265; y += 36) { g.beginPath(); g.moveTo(665, y); g.lineTo(975, y); g.stroke(); }
+    g.strokeStyle = "#3ef0a8";
+    g.lineWidth = 7;
+    g.beginPath();
+    g.moveTo(720, 255); g.lineTo(780, 190); g.lineTo(870, 170); g.lineTo(925, 92);
+    g.stroke();
+    g.fillStyle = "#ffd64a";
+    g.beginPath(); g.arc(780, 190, 9, 0, TAU); g.fill();
+
+    // Status pill bar
+    rr(g, 668, 276, 304, 48, 10);
+    g.fillStyle = alertText.includes("WARN") || alertText.includes("ALERT") ? "#a82424" : "#1c4a6b";
+    g.fill();
+    g.fillStyle = "#f2fbff";
+    g.font = "bold 24px monospace";
+    g.textAlign = "center";
+    g.fillText(alertText, 820, 308);
+  });
+};
+
+/** Rich interior wood, stitched fabric, or leather trim texture (512 x 512). */
+export const interiorTrimTex = (kind: "wood" | "fabric" | "leather" = "wood") => ctex(`interiorTrim_${kind}`, 512, 512, (g, r) => {
+  const S = 512;
+  if (kind === "wood") {
+    g.fillStyle = "#6c3f22";
+    g.fillRect(0, 0, S, S);
+    for (let i = 0; i < 48; i++) {
+      const y = U(r, 0, S);
+      grain(g, r, S, U(r, 0, S), y, U(r, 180, 512), U(r, 2, 9), U(r, 1.5, 4.5),
+        r() < 0.35 ? "rgba(180,115,65,0.28)" : "rgba(38,18,8,0.34)");
+    }
+    g.fillStyle = "rgba(255,215,175,0.08)";
+    g.fillRect(0, 0, S, 18);
+  } else if (kind === "fabric") {
+    g.fillStyle = "#485264";
+    g.fillRect(0, 0, S, S);
+    for (let y = 0; y < S; y += 8) {
+      g.fillStyle = y % 16 === 0 ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)";
+      g.fillRect(0, y, S, 4);
+    }
+    for (let x = 0; x < S; x += 8) {
+      g.fillStyle = x % 16 === 0 ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.07)";
+      g.fillRect(x, 0, 4, S);
+    }
+    // Contrast seam stitching
+    g.strokeStyle = "rgba(220,230,245,0.35)";
+    g.lineWidth = 2;
+    g.setLineDash([8, 6]);
+    g.strokeRect(20, 20, S - 40, S - 40);
+    g.setLineDash([]);
+  } else {
+    g.fillStyle = "#26242b";
+    g.fillRect(0, 0, S, S);
+    for (let i = 0; i < 1600; i++) {
+      g.fillStyle = r() < 0.5 ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.14)";
+      g.beginPath(); g.arc(U(r, 0, S), U(r, 0, S), U(r, 1.5, 4.5), 0, TAU); g.fill();
+    }
+    // Quilted diamond stitching
+    g.strokeStyle = "rgba(120,112,135,0.22)";
+    g.lineWidth = 1.6;
+    for (let i = -S; i < S * 2; i += 64) {
+      g.beginPath(); g.moveTo(i, 0); g.lineTo(i + S, S); g.stroke();
+      g.beginPath(); g.moveTo(i + S, 0); g.lineTo(i, S); g.stroke();
+    }
+  }
+});
+
+/** Stylized layered city skyline texture (2048 x 512, transparent sky above rooftops) for background depth. */
+export const skylineTex = (mode: "day" | "sunset" | "night" = "day") => ctex(`skyline_${mode}`, 2048, 512, (g, r) => {
+  const W = 2048, H = 512;
+  g.clearRect(0, 0, W, H);
+  const palettes = {
+    day: { far: "#7f9ec4", mid: "#5c7ba6", near: "#3f577a", win: "#d9ecff", lit: "#fff4cc" },
+    sunset: { far: "#7a5378", mid: "#543761", near: "#322042", win: "#ffd39c", lit: "#ffae5c" },
+    night: { far: "#15203b", mid: "#101830", near: "#090e1f", win: "#283a63", lit: "#ffd97d" },
+  }[mode];
+
+  const drawLayer = (col: string, minH: number, maxH: number, minW: number, maxW: number, withWindows: boolean) => {
+    let x = 0;
+    while (x < W) {
+      const bw = U(r, minW, maxW);
+      const bh = U(r, minH, maxH);
+      const y = H - bh;
+      g.fillStyle = col;
+      g.fillRect(x, y, bw - 3, bh);
+      // Optional rooftop spire or water tank silhouette
+      if (r() < 0.25) {
+        g.fillRect(x + bw * 0.42, y - 22, 6, 22);
+      }
+      if (withWindows) {
+        const cols = Math.max(2, Math.floor((bw - 18) / 18));
+        const rows = Math.max(2, Math.floor((bh - 28) / 22));
+        for (let row = 0; row < rows; row++) {
+          for (let c = 0; c < cols; c++) {
+            const litChance = mode === "night" ? 0.52 : mode === "sunset" ? 0.35 : 0.2;
+            const on = r() < litChance;
+            g.fillStyle = on ? palettes.lit : palettes.win;
+            g.globalAlpha = on ? 0.92 : (mode === "night" ? 0.22 : 0.35);
+            g.fillRect(x + 10 + c * 18, y + 14 + row * 22, 10, 12);
+          }
+        }
+        g.globalAlpha = 1;
+      }
+      x += bw;
+    }
+  };
+
+  drawLayer(palettes.far, 180, 390, 55, 110, false);
+  drawLayer(palettes.mid, 130, 310, 65, 130, true);
+  drawLayer(palettes.near, 90, 230, 70, 145, true);
+});
+
+/** Crisp stylized green cash banknote texture for 3D exploding cash particles & desk stacks. */
+export const cashBillTex = () => ctex("cashBillTex", 256, 128, (g) => {
+  g.fillStyle = "#5aa454";
+  g.fillRect(0, 0, 256, 128);
+  g.fillStyle = "#7bc66c";
+  g.fillRect(12, 12, 232, 104);
+  g.strokeStyle = "#1f4722";
+  g.lineWidth = 6;
+  g.strokeRect(10, 10, 236, 108);
+  g.strokeStyle = "#2b5e2e";
+  g.lineWidth = 3;
+  g.strokeRect(20, 20, 216, 88);
+  // Center medallion + bold "$"
+  g.fillStyle = "#d9f0c7";
+  g.beginPath(); g.ellipse(128, 64, 34, 38, 0, 0, TAU); g.fill();
+  g.strokeStyle = "#1f4722"; g.lineWidth = 4; g.stroke();
+  g.fillStyle = "#1c4a1f";
+  g.font = "bold 54px sans-serif";
+  g.textAlign = "center";
+  g.textBaseline = "middle";
+  g.fillText("$", 128, 66);
+  g.font = "bold 20px sans-serif";
+  g.fillText("100", 48, 38);
+  g.fillText("100", 208, 92);
+});
+
+

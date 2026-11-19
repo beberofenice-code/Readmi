@@ -3,7 +3,8 @@
 // Features:
 //  1. Bundles Webpack ONCE into ./.remotion-bundle (reused across stills and all shot renders; zero temp-drive bloat).
 //  2. Auto-detects Chrome/Chromium binary & selects `angle` on desktop vs `swangle --concurrency=1` on Termux/headless ARM.
-//  3. Renders individual shots with +xfade handles so any tweak re-renders in seconds, then stitches via FFmpeg xfade + audio mux.
+//  3. Resumable per-shot rendering with +xfade handles so any tweak re-renders in seconds, then stitches via FFmpeg xfade + audio mux.
+//  4. Supports `--captions`, `--words <words.json>`, and `--shot <id[,id]>` for fast targeted verification renders.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -24,7 +25,24 @@ const bundleDir = path.resolve(getArg("--bundle-dir", ".remotion-bundle"));
 const timelinePath = getArg("--timeline", "out/dashcam/timeline.json");
 const audioPath = getArg("--audio", "");
 const outPath = getArg("--out", "out/dashcam/final-short.mp4");
+const wordsPath = getArg("--words", "");
+const captionsEnabled = args.includes("--captions");
+const shotFilterRaw = getArg("--shot", "");
+const shotFilter = shotFilterRaw
+  ? new Set(shotFilterRaw.split(",").map((x) => Number(x.trim())).filter(Number.isFinite))
+  : null;
+const frameOverride = getArg("--frame", "");
 const scale = Number(getArg("--scale", process.platform === "android" ? "0.5" : "1.0"));
+
+function loadWords() {
+  if (!wordsPath || !fs.existsSync(wordsPath)) return undefined;
+  try {
+    return JSON.parse(fs.readFileSync(wordsPath, "utf8"));
+  } catch (err) {
+    console.warn(`[render] Warning: failed to parse ${wordsPath}: ${err.message}`);
+    return undefined;
+  }
+}
 
 function detectEnv() {
   const isTermux = Boolean(process.env.TERMUX_VERSION) || process.platform === "android" || fs.existsSync("/data/data/com.termux");
@@ -41,7 +59,7 @@ function detectEnv() {
   const browserExecutable = candidates.find((p) => fs.existsSync(p)) || undefined;
   // Headless Linux (CI, cloud containers) has no GPU/display, so ANGLE cannot create a WebGL context there.
   const headlessLinux = process.platform === "linux" && !process.env.DISPLAY && !process.env.WAYLAND_DISPLAY;
-  const gl = getArg("--gl", process.env.REMOTION_GL || (isTermux || headlessLinux || process.arch === "arm64" && process.platform === "linux" ? "swangle" : "angle"));
+  const gl = getArg("--gl", process.env.REMOTION_GL || (isTermux || headlessLinux || (process.arch === "arm64" && process.platform === "linux") ? "swangle" : "angle"));
   const concurrency = Number(getArg("--concurrency", gl === "swangle" ? "1" : String(Math.max(1, Math.min(4, os.cpus().length >> 1)))));
   return { browserExecutable, gl, concurrency, isTermux };
 }
@@ -62,12 +80,24 @@ async function ensureBundle(force = false) {
 
 async function run() {
   if (mode === "help") {
-    console.log("Usage:\n  node scripts/render.mjs stills --comp DashcamShort --out out/dashcam/stills\n  node scripts/render.mjs render-shots --comp DashcamShort --timeline out/dashcam/timeline.json --audio audio/mix.wav --out out/dashcam/final-short.mp4");
+    console.log(
+      "Usage:\n" +
+      "  node scripts/render.mjs stills --comp DashcamShort --timeline out/dashcam/timeline.json [--shot 1,12] [--captions --words voice/dashcam/words.json] --out out/dashcam/stills\n" +
+      "  node scripts/render.mjs render-shots --comp DashcamShort --timeline out/dashcam/timeline.json --audio audio/mix.wav [--captions --words voice/dashcam/words.json] --out out/dashcam/final-short.mp4",
+    );
     return;
   }
 
   const env = detectEnv();
-  console.log(`[render] Platform=${process.platform}/${process.arch} | GL=${env.gl} | concurrency=${env.concurrency} | scale=${scale}`);
+  const words = loadWords();
+  const sharedProps = {
+    ...(captionsEnabled ? { captions: true } : {}),
+    ...(words ? { words } : {}),
+  };
+  console.log(
+    `[render] Platform=${process.platform}/${process.arch} | GL=${env.gl} | concurrency=${env.concurrency} | scale=${scale}` +
+    (captionsEnabled ? ` | captions=ON (${words?.length ?? 0} words)` : ""),
+  );
   const serveUrl = await ensureBundle(mode === "bundle" || args.includes("--rebundle"));
   if (mode === "bundle") return;
 
@@ -76,14 +106,16 @@ async function run() {
   const composition = await selectComposition({
     serveUrl,
     id: compId,
+    inputProps: sharedProps,
     browserExecutable: env.browserExecutable,
     chromiumOptions,
   });
 
   if (mode === "stills") {
     fs.mkdirSync(outPath, { recursive: true });
-    for (const s of tl.shots) {
-      const mid = Math.floor((s.a + s.b) / 2);
+    const selectedShots = shotFilter ? tl.shots.filter((s) => shotFilter.has(s.id)) : tl.shots;
+    for (const s of selectedShots) {
+      const mid = frameOverride !== "" ? Number(frameOverride) : Math.floor((s.a + s.b) / 2);
       const file = path.join(outPath, `shot_${String(s.id).padStart(2, "0")}_f${mid}.jpg`);
       await renderStill({
         composition,
@@ -93,7 +125,7 @@ async function run() {
         imageFormat: "jpeg",
         jpegQuality: 88,
         output: file,
-        inputProps: { shotId: s.id },
+        inputProps: { ...sharedProps, shotId: s.id },
         browserExecutable: env.browserExecutable,
         chromiumOptions,
       });
@@ -115,6 +147,9 @@ async function run() {
       const chunkFile = path.join(chunksDir, `shot_${String(s.id).padStart(2, "0")}.mp4`);
       chunkFiles.push({ file: chunkFile, shot: s, durFrames: endFrame - startFrame + 1, nextXfade });
 
+      if (shotFilter && !shotFilter.has(s.id)) {
+        continue;
+      }
       if (fs.existsSync(chunkFile) && !args.includes("--force")) {
         console.log(`[render-shots] Skipping cached Shot ${s.id} (${chunkFile})`);
         continue;
@@ -130,10 +165,15 @@ async function run() {
         frameRange: [startFrame, endFrame],
         concurrency: env.concurrency,
         outputLocation: chunkFile,
-        inputProps: { shotId: s.id },
+        inputProps: { ...sharedProps, shotId: s.id },
         browserExecutable: env.browserExecutable,
         chromiumOptions,
       });
+    }
+
+    if (shotFilter) {
+      console.log(`[render-shots] Rendered filtered shot(s) ${[...shotFilter].join(",")} only; skipping full stitch.`);
+      return;
     }
 
     // Stitch chunks via FFmpeg xfade / concat + mux audio
@@ -197,8 +237,10 @@ function stitchChunks(chunks, fps, audioFile, finalOut, totalFrames) {
   // 256k: at 192k the AAC encode overshot a -1.2 dBTP master to 0 dBFS
   if (withAudio) ffArgs.push("-map", `${segments.length}:a:0`, "-c:a", "aac", "-b:a", "256k");
   else ffArgs.push("-an");
-  ffArgs.push("-frames:v", String(frames), "-t", (frames / fps).toFixed(6), "-r", String(fps),
-    "-threads", "2", "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", finalOut);
+  ffArgs.push(
+    "-frames:v", String(frames), "-t", (frames / fps).toFixed(6), "-r", String(fps),
+    "-threads", "2", "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", finalOut,
+  );
   console.log(`[stitch] ${chunks.length} chunks (${segments.length} segments) -> ${frames} frames (${(frames / fps).toFixed(2)} s) -> ${finalOut}`);
   try {
     execFileSync("ffmpeg", ["-v", "warning", ...ffArgs], { stdio: "inherit" });
