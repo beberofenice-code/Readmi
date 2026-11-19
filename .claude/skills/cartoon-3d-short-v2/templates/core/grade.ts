@@ -1,5 +1,6 @@
 // Display-referred 7-knot monotone Hermite tone curve + 3-zone saturation + BT.709 split-tone + elliptical vignette.
-// Upgraded with all 5 LightMode presets (day, golden, night, interior, rain) calibrated to grade.md cluster stats.
+// Supports all 5 legacy LightMode presets (day, golden, night, interior, rain) plus the 4 cinema presets
+// (daylight_crisp, sunset_glow, night_spotlight, rainy_overcast).
 import { Effect, BlendFunction } from "postprocessing";
 import { Uniform, Vector3, Vector2 } from "three";
 import type { LightMode } from "./lights";
@@ -109,10 +110,42 @@ export const GRADES: Record<LightMode, GradeParams> = {
     tintS: [0.020, -0.008], tintM: [0.014, -0.006], tintH: [0.006, -0.002],
     vig: [0.24, 0.38],
   },
+  daylight_crisp: {
+    ky: [0.015, 0.095, 0.275, 0.61, 0.85, 0.955, 1.0],
+    sat: [1.04, 1.13, 1.06],
+    tintS: [0.012, 0.002], tintM: [0.0, 0.0], tintH: [0.002, 0.002],
+    vig: [0.14, 0.48],
+  },
+  sunset_glow: {
+    ky: [0.015, 0.085, 0.24, 0.545, 0.815, 0.94, 1.0],
+    sat: [1.06, 1.16, 1.18],
+    tintS: [0.028, 0.006], tintM: [-0.004, 0.006], tintH: [-0.016, 0.012],
+    vig: [0.22, 0.38],
+  },
+  night_spotlight: {
+    ky: [0.01, 0.075, 0.20, 0.45, 0.755, 0.92, 1.0],
+    sat: [1.16, 1.20, 1.08],
+    tintS: [0.036, -0.005], tintM: [0.014, 0.002], tintH: [-0.016, 0.014],
+    vig: [0.38, 0.32],
+  },
+  rainy_overcast: {
+    ky: [0.018, 0.095, 0.245, 0.515, 0.785, 0.93, 1.0],
+    sat: [0.90, 0.93, 0.98],
+    tintS: [0.022, -0.012], tintM: [0.016, -0.009], tintH: [0.008, -0.004],
+    vig: [0.28, 0.36],
+  },
 };
 
 export const GRADE_STRENGTH: Record<LightMode, number> = {
-  day: 1.0, golden: 1.0, night: 1.0, interior: 1.0, rain: 1.0,
+  day: 1.0,
+  golden: 1.0,
+  night: 1.0,
+  interior: 1.0,
+  rain: 1.0,
+  daylight_crisp: 1.0,
+  sunset_glow: 1.0,
+  night_spotlight: 1.0,
+  rainy_overcast: 1.0,
 };
 
 export class GradeEffect extends Effect {

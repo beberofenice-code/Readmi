@@ -1,10 +1,17 @@
-# Own small DSP kit for "The Bridge That Fell for a Song" soundtrack (numpy + scipy only, no third-party audio code):
+# Small DSP kit for Shorts-Studio soundtracks (numpy + optional scipy; pure-NumPy FFT fallbacks when scipy is absent):
 # filters, noise colours, envelopes, STFT spectral shaping, modal / additive helpers, stereo placement,
 # synthetic reverb impulse responses, BS.1770-4 loudness (integrated / momentary / short-term / LRA), true peak,
 # 16/24-bit WAV read/write.
 import wave
 import numpy as np
-from scipy import signal
+
+try:
+    from scipy import ndimage, signal
+    _HAS_SCIPY = True
+except ImportError:
+    signal = None
+    ndimage = None
+    _HAS_SCIPY = False
 
 SR = 48000
 TAU = 2 * np.pi
@@ -27,20 +34,59 @@ def rng(seed):
 
 
 # ---------------------------------------------------------------- filters
+def _fft_filter(x, gain_fn):
+    """Apply a frequency-domain filter gain_fn(freqs) along the last axis (pure NumPy fallback)."""
+    x = np.asarray(x, dtype=np.float64)
+    n = x.shape[-1]
+    if n == 0:
+        return x.copy()
+    nfft = 1 << int(np.ceil(np.log2(max(n, 2))))
+    X = np.fft.rfft(x, n=nfft, axis=-1)
+    f = np.fft.rfftfreq(nfft, 1.0 / SR)
+    H = gain_fn(f)
+    y = np.fft.irfft(X * H, n=nfft, axis=-1)[..., :n]
+    return y
+
+
+def _biquad_fft(x, b, a):
+    """Evaluate exact biquad complex response H(e^jw) in the frequency domain (pure NumPy fallback)."""
+    def resp(f):
+        w = TAU * f / SR
+        z1 = np.exp(-1j * w)
+        z2 = z1 * z1
+        num = b[0] + b[1] * z1 + b[2] * z2
+        den = a[0] + a[1] * z1 + a[2] * z2
+        return num / (den + 1e-18)
+    return _fft_filter(x, resp)
+
+
 def _sos(kind, f, order):
     return signal.butter(order, f, btype=kind, fs=SR, output="sos")
 
 
 def lp(x, f, order=2):
-    return signal.sosfilt(_sos("lowpass", min(f, SR * 0.45), order), x, axis=-1)
+    fc = min(float(f), SR * 0.45)
+    if _HAS_SCIPY:
+        return signal.sosfilt(_sos("lowpass", fc, order), x, axis=-1)
+    return _fft_filter(x, lambda fr: 1.0 / np.sqrt(1.0 + (fr / max(fc, 1.0)) ** (2 * order)))
 
 
 def hp(x, f, order=2):
-    return signal.sosfilt(_sos("highpass", f, order), x, axis=-1)
+    fc = max(float(f), 1.0)
+    if _HAS_SCIPY:
+        return signal.sosfilt(_sos("highpass", fc, order), x, axis=-1)
+    def resp(fr):
+        ratio = np.where(fr > 0, fc / np.maximum(fr, 1e-6), 1e6)
+        return 1.0 / np.sqrt(1.0 + np.minimum(ratio, 1e4) ** (2 * order))
+    return _fft_filter(x, resp)
 
 
 def bp(x, lo, hi, order=2):
-    return signal.sosfilt(_sos("bandpass", [lo, min(hi, SR * 0.45)], order), x, axis=-1)
+    lo_f = max(float(lo), 1.0)
+    hi_f = min(float(hi), SR * 0.45)
+    if _HAS_SCIPY:
+        return signal.sosfilt(_sos("bandpass", [lo_f, hi_f], order), x, axis=-1)
+    return lp(hp(x, lo_f, order), hi_f, order)
 
 
 def biquad(kind, f0, q=0.707, gain_db=0.0):
@@ -70,26 +116,71 @@ def biquad(kind, f0, q=0.707, gain_db=0.0):
 
 def peq(x, f0, gain_db, q=1.0):
     b, a = biquad("peak", f0, q, gain_db)
-    return signal.lfilter(b, a, x, axis=-1)
+    if _HAS_SCIPY:
+        return signal.lfilter(b, a, x, axis=-1)
+    return _biquad_fft(x, b, a)
 
 
 def shelf(x, f0, gain_db, kind="high", q=0.707):
     b, a = biquad("highshelf" if kind == "high" else "lowshelf", f0, q, gain_db)
-    return signal.lfilter(b, a, x, axis=-1)
+    if _HAS_SCIPY:
+        return signal.lfilter(b, a, x, axis=-1)
+    return _biquad_fft(x, b, a)
 
 
 def reson(x, f0, q):
     b, a = biquad("bpf", f0, q)
-    return signal.lfilter(b, a, x, axis=-1)
+    if _HAS_SCIPY:
+        return signal.lfilter(b, a, x, axis=-1)
+    return _biquad_fft(x, b, a)
 
 
 def resbank(x, modes):
     """parallel resonators: modes = [(freq, q, gain)]"""
-    y = np.zeros_like(x)
+    y = np.zeros_like(x, dtype=np.float64)
     for f, q, g in modes:
         if f < SR * 0.45:
             y += g * reson(x, f, q)
     return y
+
+
+def moving_avg(x, size):
+    """1D moving average along last axis (scipy ndimage or pure NumPy cumsum fallback)."""
+    size = max(1, int(size))
+    if size <= 1:
+        return np.array(x, dtype=np.float64, copy=True)
+    if _HAS_SCIPY:
+        return ndimage.uniform_filter1d(x, size, mode="nearest")
+    x = np.asarray(x, dtype=np.float64)
+    pad_l = size // 2
+    pad_r = size - 1 - pad_l
+    xp = np.pad(x, (pad_l, pad_r), mode="edge")
+    cs = np.concatenate([[0.0], np.cumsum(xp)])
+    return (cs[size:] - cs[:-size]) / size
+
+
+def moving_min(x, size):
+    """1D sliding minimum (scipy ndimage or pure NumPy chunked window fallback)."""
+    size = max(1, int(size))
+    if size <= 1:
+        return np.array(x, dtype=np.float64, copy=True)
+    if _HAS_SCIPY:
+        return ndimage.minimum_filter1d(x, size, mode="nearest")
+    x = np.asarray(x, dtype=np.float64)
+    pad_l = size // 2
+    pad_r = size - 1 - pad_l
+    xp = np.pad(x, (pad_l, pad_r), mode="edge")
+    # Vectorized van Herk / Gil-Werman O(N) sliding window minimum
+    n = len(xp)
+    rem = (-n) % size
+    if rem:
+        xp = np.pad(xp, (0, rem), mode="edge")
+    blocks = xp.reshape(-1, size)
+    prefix = np.minimum.accumulate(blocks, axis=1)
+    suffix = np.minimum.accumulate(blocks[:, ::-1], axis=1)[:, ::-1]
+    out_p = prefix.ravel()
+    out_s = suffix.ravel()
+    return np.minimum(out_s[: len(x)], out_p[size - 1: size - 1 + len(x)])
 
 
 # ---------------------------------------------------------------- noise
@@ -107,7 +198,15 @@ def smooth_noise(n, r, rate_hz, ctrl=200):
     """slow random curve in [-1, 1]-ish (low-passed control noise), e.g. for gusts or pitch drift"""
     m = max(4, int(n / SR * ctrl) + 4)
     c = r.standard_normal(m)
-    c = signal.sosfiltfilt(signal.butter(2, min(rate_hz / (ctrl / 2), 0.99), output="sos"), c)
+    if _HAS_SCIPY and m > 12:
+        c = signal.sosfiltfilt(signal.butter(2, min(rate_hz / (ctrl / 2), 0.99), output="sos"), c)
+    else:
+        nfft = 1 << int(np.ceil(np.log2(max(m, 4))))
+        C = np.fft.rfft(c, n=nfft)
+        fr = np.fft.rfftfreq(nfft, 1.0 / ctrl)
+        fc = max(0.05, min(rate_hz, ctrl * 0.45))
+        C *= 1.0 / (1.0 + (fr / fc) ** 4)
+        c = np.fft.irfft(C, n=nfft)[:m]
     c /= np.max(np.abs(c)) + 1e-12
     return np.interp(np.arange(n) / SR * ctrl, np.arange(m), c)
 
@@ -139,12 +238,34 @@ def curve(n, pts, t0=0.0):
 def shape(x, gain, nper=1024, hop=256):
     """time-varying spectral gain via STFT; gain(times[F], freqs[B]) -> (B, F) magnitude multipliers"""
     n = len(x)
-    f, t, Z = signal.stft(x, fs=SR, window="hann", nperseg=nper, noverlap=nper - hop, boundary="zeros", padded=True)
+    if _HAS_SCIPY:
+        f, t, Z = signal.stft(x, fs=SR, window="hann", nperseg=nper, noverlap=nper - hop, boundary="zeros", padded=True)
+        G = gain(t, f)
+        _, y = signal.istft(Z * G, fs=SR, window="hann", nperseg=nper, noverlap=nper - hop, boundary=True)
+        y = y[:n]
+        if len(y) < n:
+            y = np.pad(y, (0, n - len(y)))
+        return y
+    # Pure-NumPy Hann STFT / overlap-add iSTFT fallback
+    win = np.hanning(nper + 1)[:-1]
+    pad = nper // 2
+    xp = np.pad(x, (pad, pad + nper))
+    n_frames = max(1, 1 + (len(xp) - nper) // hop)
+    idx = np.arange(nper)[None, :] + (np.arange(n_frames) * hop)[:, None]
+    frames = xp[idx] * win[None, :]
+    Z = np.fft.rfft(frames, axis=1).T  # (B, F)
+    f = np.fft.rfftfreq(nper, 1.0 / SR)
+    t = np.arange(n_frames) * hop / SR
     G = gain(t, f)
-    _, y = signal.istft(Z * G, fs=SR, window="hann", nperseg=nper, noverlap=nper - hop, boundary=True)
-    y = y[:n]
-    if len(y) < n:
-        y = np.pad(y, (0, n - len(y)))
+    rec = np.fft.irfft((Z * G).T, n=nper, axis=1) * win[None, :]
+    y = np.zeros(len(xp), dtype=np.float64)
+    wsum = np.zeros(len(xp), dtype=np.float64)
+    w2 = win * win
+    for i in range(n_frames):
+        s = i * hop
+        y[s:s + nper] += rec[i]
+        wsum[s:s + nper] += w2
+    y = y[pad:pad + n] / np.maximum(wsum[pad:pad + n], 1e-8)
     return y
 
 
@@ -237,12 +358,21 @@ def make_ir(rt60, seed, length=None, pre=0.012, hf=1.0, early=(), density_lp=Non
     return np.concatenate([np.zeros((2, ns(pre))), ir], axis=1)
 
 
+def _fft_convolve_1d(a, b, out_n):
+    nfft = 1 << int(np.ceil(np.log2(max(len(a) + len(b) - 1, 2))))
+    return np.fft.irfft(np.fft.rfft(a, n=nfft) * np.fft.rfft(b, n=nfft), n=nfft)[:out_n]
+
+
 def convolve_st(x, ir):
     """x mono (n) or stereo (2, n) send -> stereo wet (2, n) (tail cropped)"""
     n = x.shape[-1]
+    if _HAS_SCIPY:
+        if x.ndim == 1:
+            return np.stack([signal.fftconvolve(x, ir[c])[:n] for c in range(2)])
+        return np.stack([signal.fftconvolve(x[c], ir[c])[:n] for c in range(2)])
     if x.ndim == 1:
-        return np.stack([signal.fftconvolve(x, ir[c])[:n] for c in range(2)])
-    return np.stack([signal.fftconvolve(x[c], ir[c])[:n] for c in range(2)])
+        return np.stack([_fft_convolve_1d(x, ir[c], n) for c in range(2)])
+    return np.stack([_fft_convolve_1d(x[c], ir[c], n) for c in range(2)])
 
 
 # ---------------------------------------------------------------- loudness (ITU-R BS.1770-4 / EBU R128)
@@ -253,7 +383,9 @@ _KA2 = np.array([1.0, -1.99004745483398, 0.99007225036621])
 
 
 def kfilt(x):
-    return signal.lfilter(_KB2, _KA2, signal.lfilter(_KB1, _KA1, x, axis=-1), axis=-1)
+    if _HAS_SCIPY:
+        return signal.lfilter(_KB2, _KA2, signal.lfilter(_KB1, _KA1, x, axis=-1), axis=-1)
+    return _biquad_fft(_biquad_fft(x, _KB1, _KA1), _KB2, _KA2)
 
 
 def _blocks(x, win, hop):
@@ -276,6 +408,8 @@ def integrated(x):
         return -np.inf
     rel = -0.691 + 10 * np.log10(z[keep].mean()) - 10
     k2 = keep & (L > rel)
+    if not k2.any():
+        return -np.inf
     return -0.691 + 10 * np.log10(z[k2].mean())
 
 
@@ -298,11 +432,26 @@ def lra(x):
         return 0.0
     rel = -0.691 + 10 * np.log10(z[keep].mean()) - 20
     v = L[keep & (L > rel)]
+    if len(v) < 2:
+        return 0.0
     return float(np.percentile(v, 95) - np.percentile(v, 10))
 
 
+def oversample4x(x):
+    """4x oversampling along last axis for true-peak detection."""
+    x = st(x)
+    if _HAS_SCIPY:
+        return signal.resample_poly(x, 4, 1, axis=-1)
+    n = x.shape[-1]
+    X = np.fft.rfft(x, axis=-1)
+    n_up = n * 4
+    X_up = np.zeros((x.shape[0], n_up // 2 + 1), dtype=np.complex128)
+    X_up[:, : X.shape[1]] = X * 4.0
+    return np.fft.irfft(X_up, n=n_up, axis=-1)
+
+
 def true_peak(x):
-    up = signal.resample_poly(st(x), 4, 1, axis=-1)
+    up = oversample4x(x)
     return 20 * np.log10(np.abs(up).max() + 1e-30)
 
 
@@ -315,11 +464,51 @@ def norm_to(x, target_lufs, mode="momentary"):
 
 
 # ---------------------------------------------------------------- wav io
+def _read_riff_wav(path):
+    """Pure-Python RIFF WAV reader supporting PCM (1), IEEE float (3), and WAVE_FORMAT_EXTENSIBLE (0xFFFE)."""
+    import struct
+    with open(path, "rb") as f:
+        header = f.read(12)
+        if len(header) < 12 or header[:4] != b"RIFF" or header[8:12] != b"WAVE":
+            raise ValueError(f"Not a valid RIFF/WAVE file: {path}")
+        fmt_tag = ch = sr = bits = None
+        sub_tag = None
+        raw = None
+        while True:
+            chdr = f.read(8)
+            if len(chdr) < 8:
+                break
+            cid, csize = chdr[:4], struct.unpack("<I", chdr[4:8])[0]
+            if cid == b"fmt ":
+                fmt = f.read(csize)
+                fmt_tag, ch, sr, _br, _ba, bits = struct.unpack("<HHIIHH", fmt[:16])
+                if fmt_tag == 0xFFFE and len(fmt) >= 26:
+                    sub_tag = struct.unpack("<H", fmt[24:26])[0]
+                else:
+                    sub_tag = fmt_tag
+            elif cid == b"data":
+                raw = f.read(csize)
+            else:
+                f.seek(csize, 1)
+            if csize & 1:
+                f.seek(1, 1)
+    if raw is None or ch is None or sr is None or bits is None:
+        raise ValueError(f"Incomplete WAV chunks in {path}")
+    sw = bits // 8
+    return raw, ch, sw, sr, sub_tag
+
+
 def read_wav(path):
-    with wave.open(path, "rb") as w:
-        n, ch, sw, sr = w.getnframes(), w.getnchannels(), w.getsampwidth(), w.getframerate()
-        raw = w.readframes(n)
-    if sw == 2:
+    sub_tag = 1
+    try:
+        with wave.open(path, "rb") as w:
+            n, ch, sw, sr = w.getnframes(), w.getnchannels(), w.getsampwidth(), w.getframerate()
+            raw = w.readframes(n)
+    except wave.Error:
+        raw, ch, sw, sr, sub_tag = _read_riff_wav(path)
+    if sub_tag == 3 and sw == 4:
+        x = np.frombuffer(raw, "<f4").astype(np.float64)
+    elif sw == 2:
         x = np.frombuffer(raw, "<i2").astype(np.float64) / 32768.0
     elif sw == 3:
         b = np.frombuffer(raw, np.uint8).reshape(-1, 3).astype(np.int32)
@@ -328,7 +517,7 @@ def read_wav(path):
     elif sw == 4:
         x = np.frombuffer(raw, "<i4").astype(np.float64) / float(1 << 31)
     else:
-        raise ValueError(sw)
+        raise ValueError(f"Unsupported WAV sample width {sw} (format={sub_tag})")
     return x.reshape(-1, ch).T, sr
 
 

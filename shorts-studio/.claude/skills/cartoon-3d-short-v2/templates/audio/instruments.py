@@ -3,7 +3,10 @@
 # portamento, scoops, vibrato, breath), field snare (strokes, flams, buzz rolls), clash cymbal, triangle, timpani,
 # warm pad, plucked strings, brushes.
 import numpy as np
-from scipy import signal
+try:
+    from scipy import signal
+except ImportError:
+    signal = None
 from dsp import SR, TAU, ns, tt, rng, lp, hp, bp, reson, peq, colored, smooth_noise, ramp, fades, shape, phase, modal
 
 
@@ -144,7 +147,16 @@ def whistle(notes, r, detune=0.0, jit=0.010, lag=0.0, vib_rate=5.7, vib_depth=16
     idx = np.where(~np.isnan(logf))[0]
     logf = np.interp(np.arange(nc), idx, logf[idx])
     # portamento: one-pole smoothing of the pitch line, asymmetric attack/release smoothing of the amplitude
-    logf = signal.lfilter([1 - np.exp(-1 / (0.016 * ctrl))], [1, -np.exp(-1 / (0.016 * ctrl))], logf - logf[0]) + logf[0]
+    a_p = np.exp(-1 / (0.016 * ctrl))
+    if signal is not None:
+        logf = signal.lfilter([1 - a_p], [1, -a_p], logf - logf[0]) + logf[0]
+    else:
+        lf_sm = np.empty_like(logf)
+        acc_f = logf[0]
+        for i in range(nc):
+            acc_f = a_p * acc_f + (1 - a_p) * logf[i]
+            lf_sm[i] = acc_f
+        logf = lf_sm
     a_att, a_rel = np.exp(-1 / (0.012 * ctrl)), np.exp(-1 / (0.035 * ctrl))
     sm = np.zeros(nc)
     acc = 0.0
@@ -154,7 +166,16 @@ def whistle(notes, r, detune=0.0, jit=0.010, lag=0.0, vib_rate=5.7, vib_depth=16
         sm[i] = acc
     amp = sm
     cents = onset_off + vib_depth * vib_env * np.sin(TAU * vib_rate * (tc - t0) + r.uniform(0, TAU))
-    drift = signal.sosfiltfilt(signal.butter(2, 2.5 / (ctrl / 2), output="sos"), r.standard_normal(nc)) if nc > 64 else np.zeros(nc)
+    if nc > 64:
+        if signal is not None:
+            drift = signal.sosfiltfilt(signal.butter(2, 2.5 / (ctrl / 2), output="sos"), r.standard_normal(nc))
+        else:
+            nfft = 1 << int(np.ceil(np.log2(nc)))
+            D = np.fft.rfft(r.standard_normal(nc), n=nfft)
+            fr = np.fft.rfftfreq(nfft, 1.0 / ctrl)
+            drift = np.fft.irfft(D / (1.0 + (fr / 2.5) ** 4), n=nfft)[:nc]
+    else:
+        drift = np.zeros(nc)
     cents += 5 * drift / (np.max(np.abs(drift)) + 1e-9)
     if falter:
         tf, semi = falter

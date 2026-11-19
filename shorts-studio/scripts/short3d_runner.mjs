@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // One-command orchestrator for the /short3d slash command across Desktop, Linux, and Android/Termux.
 // Usage:
-//   node scripts/short3d_runner.mjs --slug dashcam --comp DashcamShort [--stage all|timeline|voice|stills|audio|render|qa] [--scale 0.5]
+//   node scripts/short3d_runner.mjs --slug dashcam --comp DashcamShort [--stage all|timeline|voice|stills|audio|render|qa] [--scale 0.5] [--no-captions] [--shot 1,12]
 //   voice: ElevenLabs TTS from src/videos/<slug>/SCRIPT.md (needs ELEVENLABS_API_KEY + ELEVENLABS_VOICE_ID; add --force-voice to redo)
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -16,9 +16,10 @@ const getArg = (flag, def) => {
 const slug = getArg("--slug", "dashcam");
 const comp = getArg("--comp", "DashcamShort");
 const stage = getArg("--stage", "all"); // all | timeline | voice | stills | audio | render | qa
+const shotArg = getArg("--shot", "");
 const isTermux = Boolean(process.env.TERMUX_VERSION) || process.platform === "android" || fs.existsSync("/data/data/com.termux");
 const scale = getArg("--scale", isTermux ? "0.5" : "1.0");
-const pyBin = fs.existsSync("/data/data/com.termux/files/usr/bin/python3") ? "python3" : "python3";
+const pyBin = "python3";
 
 const storyTs = getArg("--story", `src/videos/${slug}/story.ts`);
 const outDir = getArg("--outdir", `out/${slug}`);
@@ -30,11 +31,17 @@ const wordsJson = getArg("--words", `voice/${slug}/words.json`);
 const scriptMd = getArg("--script", `src/videos/${slug}/SCRIPT.md`);
 const mixWav = getArg("--mix", `audio/${slug}_mix.wav`);
 const finalMp4 = getArg("--out", path.join(outDir, "final-short.mp4"));
+const noCaptions = args.includes("--no-captions");
 
 function step(label, cmd, cmdArgs) {
   console.log(`\n==================== [short3d: ${label}] ====================`);
   console.log(`$ ${cmd} ${cmdArgs.join(" ")}`);
   execFileSync(cmd, cmdArgs, { stdio: "inherit" });
+}
+
+function captionArgs() {
+  if (noCaptions || !fs.existsSync(wordsJson)) return [];
+  return ["--captions", "--words", wordsJson];
 }
 
 if (stage === "all" || stage === "timeline") {
@@ -65,11 +72,13 @@ if (stage === "all" || stage === "stills") {
     "--comp", comp,
     "--timeline", timelineJson,
     "--out", stillsDir,
+    ...captionArgs(),
+    ...(shotArg ? ["--shot", shotArg] : []),
   ]);
 }
 
 if (stage === "all" || stage === "audio") {
-  step("Synthesize & Master BS.1770-4 Audio", pyBin, [
+  step("Generate Procedural SFX Manifest & Mix 4-Track Audio", pyBin, [
     "audio/mix.py",
     "--timeline", timelineJson,
     "--voice", voiceWav,
@@ -79,7 +88,11 @@ if (stage === "all" || stage === "audio") {
 }
 
 if (stage === "all" || stage === "render") {
-  const extra = args.includes("--force") ? ["--force"] : [];
+  const extra = [
+    ...(args.includes("--force") ? ["--force"] : []),
+    ...captionArgs(),
+    ...(shotArg ? ["--shot", shotArg] : []),
+  ];
   step("Resumable Per-Shot Render & FFmpeg Stitch", "node", [
     "scripts/render.mjs", "render-shots",
     "--comp", comp,
@@ -100,11 +113,12 @@ if (stage === "all" || stage === "render") {
 }
 
 if (stage === "all" || stage === "qa") {
-  step("Frame-by-Frame 30fps QA & Contact Sheets", pyBin, [
+  step("Frame-by-Frame 30fps Cinema QA & Contact Sheets", pyBin, [
     "scripts/short_qa.py",
     finalMp4,
     qaDir,
     timelineJson,
+    ...(fs.existsSync(wordsJson) ? ["--words", wordsJson] : []),
   ]);
 }
 

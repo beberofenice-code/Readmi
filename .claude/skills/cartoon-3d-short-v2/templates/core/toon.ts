@@ -227,7 +227,8 @@ const DEF_LIGHT = rad(-120);
 
 // ---------------- faces ----------------
 export type Expr = "neutral" | "stern" | "grin" | "laugh" | "whistle" | "nervous" | "shock" | "relief" | "relief_open" | "dazed"
-  | "pained" | "smile" | "smile_closed" | "lick";
+  | "pained" | "smile" | "smile_closed" | "lick"
+  | "smug" | "panicked" | "fake_pain" | "shocked_sweat" | "deadpan" | "annoyed" | "triumphant";
 type EyeK = "dot" | "small" | "lid" | "slit" | "happy" | "dash" | "squeeze" | "shock" | "shockHalf" | "spiral";
 type MouthK = "dash" | "frown" | "smirk" | "smile" | "smileWide" | "grin" | "laugh" | "o" | "O" | "wave" | "teeth" | "lick";
 /** eyes [back, front], brows [inner, outer] offsets in u (+ = down), mouth kind */
@@ -246,6 +247,13 @@ const FACE: Record<Expr, { eye: [EyeK, EyeK]; brow: [number, number]; mouth: Mou
   smile: { eye: ["dot", "dot"], brow: [0, -1], mouth: "smirk" },
   smile_closed: { eye: ["happy", "happy"], brow: [0, -1], mouth: "smile" },
   lick: { eye: ["dot", "dot"], brow: [0, -1], mouth: "lick" },
+  smug: { eye: ["slit", "lid"], brow: [-2, 3], mouth: "smirk" },
+  panicked: { eye: ["shock", "shock"], brow: [-7, 2], mouth: "O" },
+  fake_pain: { eye: ["squeeze", "slit"], brow: [-4, 3], mouth: "teeth" },
+  shocked_sweat: { eye: ["shock", "shock"], brow: [-7, -5], mouth: "wave" },
+  deadpan: { eye: ["slit", "slit"], brow: [1, 1], mouth: "dash" },
+  annoyed: { eye: ["slit", "slit"], brow: [4, -2], mouth: "frown" },
+  triumphant: { eye: ["happy", "happy"], brow: [-5, -3], mouth: "laugh" },
 };
 const halfLid = (k: EyeK): EyeK => (k === "dot" || k === "small" ? "lid" : k === "lid" ? "slit" : k === "shock" ? "shockHalf" : k);
 const eyeKind = (k: EyeK, lid: number): EyeK =>
@@ -321,7 +329,8 @@ const faceFront = (p: Pen, cx: number, cy: number, W: number, expr: Expr, facing
   mouth(p, F.mouth, mx, my, u);
   if (moustache) for (const s of [-1, 1])
     taper(p, [mx + s * 1.5 * u, cy + 12.5 * u], [mx + s * (stout ? 19 : 15) * u, cy + (stout ? 10.5 : 15) * u], stout ? 5.5 * u : 4.5 * u, 1.6 * u, moustache);
-  if (expr === "nervous") p.ell(cx + 40 * u * (facing || 1), cy - 22 * u, 3 * u, 5 * u, "#9fd4ff", 2 * u);
+  if (expr === "nervous" || expr === "shocked_sweat" || expr === "panicked")
+    p.ell(cx + 40 * u * (facing || 1), cy - 22 * u, 3.6 * u, 6 * u, "#8fd4ff", 2.2 * u);
 };
 
 /** profile face (facing screen-right): one eye, brow, nose tick, mouth near the front edge; no skin bump nose, no ear */
@@ -335,7 +344,8 @@ const faceSide = (p: Pen, hx: number, hy: number, W: number, expr: Expr, lid: nu
   p.stroke([[hx + 44 * u, hy + 4 * u], [hx + 47.5 * u, hy + 9 * u], [hx + 43 * u, hy + 10 * u]], 3 * u);
   mouth(p, F.mouth, hx + 33 * u, hy + 21 * u, u, 0.62);
   if (moustache) taper(p, [hx + 41 * u, hy + 13.5 * u], [hx + 25 * u, hy + (stout ? 11.5 : 16) * u], stout ? 5.5 * u : 4.5 * u, 1.6 * u, moustache);
-  if (expr === "nervous") p.ell(hx - 30 * u, hy - 24 * u, 3 * u, 5 * u, "#9fd4ff", 2 * u);
+  if (expr === "nervous" || expr === "shocked_sweat" || expr === "panicked")
+    p.ell(hx - 30 * u, hy - 24 * u, 3.6 * u, 6 * u, "#8fd4ff", 2.2 * u);
 };
 
 // ---------------- hats ----------------
