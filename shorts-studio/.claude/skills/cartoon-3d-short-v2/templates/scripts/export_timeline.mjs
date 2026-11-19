@@ -5,9 +5,11 @@
 // Usage: node scripts/export_timeline.mjs [src/videos/dashcam/story.ts] [out/dashcam/timeline.json]
 import fs from "node:fs";
 import path from "node:path";
+import { timelineFlowSkip } from "./flow_style_lock.mjs";
 
 const [storyPath = "src/videos/dashcam/story.ts", outPath = "out/dashcam/timeline.json"] = process.argv.slice(2);
-const src = fs.readFileSync(storyPath, "utf8");
+// Drop whole-line // comments first so commented example shots/events are never parsed as real ones.
+const src = fs.readFileSync(storyPath, "utf8").split("\n").filter((l) => !/^\s*\/\//.test(l)).join("\n");
 
 const fps = Number(src.match(/FPS\s*=\s*(\d+)/)?.[1] ?? 30);
 const total = Number(src.match(/TOTAL\s*=\s*(\d+)/)?.[1] ?? 1867);
@@ -23,8 +25,36 @@ for (const m of src.matchAll(shotRe)) {
   const xfadeMatch = m[6].match(/xfade:\s*(\d+)/);
   const hudMatch = m[6].match(/hud:\s*"([^"]+)"/);
   const rigMatch = m[6].match(/camRig:\s*"([^"]+)"/);
+  // Google Flow mixing: source "threejs" (default) | "flow_clip" + clip conform options
+  const str = (k) => m[6].match(new RegExp(`${k}:\\s*"([^"]+)"`))?.[1];
+  const num = (k) => { const v = m[6].match(new RegExp(`${k}:\\s*(-?[\\d.]+)`))?.[1]; return v === undefined ? undefined : Number(v); };
+  const bool = (k) => { const v = m[6].match(new RegExp(`${k}:\\s*(true|false)`))?.[1]; return v === undefined ? undefined : v === "true"; };
+  const requested = str("source") ?? "threejs";
+  const id = Number(m[1]);
+  if (m[4] === "flow") {
+    throw new Error(`[export_timeline] Shot ${id}: set "flow" (text-to-video / flow-all) is removed. Flow only enhances ` +
+      `Three.js keyframes (style-locked-flow): give the shot its real Three.js set.`);
+  }
+  // Stage A..C style lock: fast 1-2 s beats and dialogue/prop beats are forced back to the clean Three.js render.
+  const beat = str("beat");
+  const skip = requested === "flow_clip" ? timelineFlowSkip({ a: Number(m[2]), b: bVal, beat }, fps) : null;
+  const source = skip ? "threejs" : requested;
+  const p2 = String(id).padStart(2, "0");
+  const flowFields = source === "flow_clip"
+    ? {
+        clip: str("clip") ?? `assets/flow_clips/shot_${p2}.mp4`,
+        clipStart: num("clipStart") ?? 0,
+        clipRate: num("clipRate") ?? 1,
+        clipFit: str("clipFit") ?? "cover",
+        refStart: str("refStart") ?? `assets/flow_refs/shot_${p2}_start.png`,
+        refEnd: str("refEnd") ?? `assets/flow_refs/shot_${p2}_end.png`, // dropped by `refs` when the shot doesn't move
+        ...(bool("flowEnd") !== undefined ? { flowEnd: bool("flowEnd") } : {}),
+        flowMotion: str("flowMotion") ?? "",
+        ...(str("flowModel") ? { flowModel: str("flowModel") } : {}),
+      }
+    : {};
   shots.push({
-    id: Number(m[1]),
+    id,
     a: Number(m[2]),
     b: bVal,
     set: m[4],
@@ -32,6 +62,10 @@ for (const m of src.matchAll(shotRe)) {
     xfade: xfadeMatch ? Number(xfadeMatch[1]) : 0,
     hud: hudMatch ? hudMatch[1] : null,
     ...(rigMatch ? { camRig: rigMatch[1] } : {}),
+    ...(beat ? { beat } : {}),
+    source,
+    ...(skip ? { requestedSource: requested, flowSkip: skip } : {}),
+    ...flowFields,
   });
 }
 
@@ -112,6 +146,20 @@ const pacing = {
   target_cuts_per_60s: [18, 25],
 };
 
+const flowShots = shots.filter((s) => s.source === "flow_clip");
+const flow = {
+  threejs_shots: shots.length - flowShots.length,
+  mode: "style-locked-flow",
+  flow_shots: flowShots.map((s) => s.id),
+  kept_threejs: Object.fromEntries(shots.filter((s) => s.flowSkip).map((s) => [s.id, s.flowSkip])),
+  // Seconds of Flow footage each clip must cover (shot + dissolve tail handle into the next shot), after clipStart & clipRate
+  needs_s: Object.fromEntries(flowShots.map((s) => {
+    const next = shots[shots.indexOf(s) + 1];
+    const frames = s.b - s.a + (next?.xfade ?? 0);
+    return [s.id, Number(((frames / fps) * s.clipRate + s.clipStart).toFixed(2))];
+  })),
+};
+
 const payload = {
   profile,
   fps,
@@ -123,6 +171,7 @@ const payload = {
   ...(musicCues.length ? { musicCues } : {}),
   ...(Object.keys(dialogueFx).length ? { dialogueFx } : {}),
   pacing,
+  flow,
   xfade,
   ...(flash >= 0 ? { flash: [flash, flash + 4] } : {}),
   planned: [...cuts, ...kicks],
@@ -131,5 +180,5 @@ const payload = {
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, JSON.stringify(payload, null, 2));
 console.log(
-  `[export_timeline] Wrote ${shots.length} shots (${effectiveCuts} cuts, ${pacing.cuts_per_60s}/60s, avg ${pacing.avg_cut_s}s) & ${events.length} SFX events -> ${outPath}`,
+  `[export_timeline] Wrote ${shots.length} shots (${flowShots.length} Flow clips, ${effectiveCuts} cuts, ${pacing.cuts_per_60s}/60s, avg ${pacing.avg_cut_s}s) & ${events.length} SFX events -> ${outPath}`,
 );

@@ -14,7 +14,8 @@ import { InkPass, noInkFallback } from "../core/ink";
 import { LensBlur } from "../core/lensblur";
 import { GradeEffect, GRADES, GRADE_STRENGTH, gradeFor } from "../core/grade";
 import { DashcamHUD, PopCaptions, WordItem } from "../core/OverlayLayer";
-import { TOTAL, shotAt, dofAt, dashcamMph } from "./story";
+import { FlowClipLayer, isFlowShot } from "../core/FlowClip";
+import { SHOTS, TOTAL, shotAt, dofAt, dashcamMph } from "./story";
 
 export const DASHCAM_FRAMES = TOTAL;
 
@@ -23,6 +24,10 @@ type InputProps = {
   captions?: boolean;
   words?: WordItem[];
   dpr?: number;
+  flowClips?: Record<string, string>; // shot id -> conformed public/ clip path of an ACCEPTED Flow take (set by render.mjs)
+  flowPending?: number[]; // render.mjs --allow-missing-flow: Flow shots whose clip isn't downloaded yet (slate)
+  forceThree?: boolean;  // render.mjs `refs`: draw a flow_clip shot's Three.js set to make Flow keyframes
+  noOverlay?: boolean;   // render.mjs `refs`: clean frame without HUD
 };
 
 const makeBloom = () => {
@@ -88,10 +93,18 @@ const SceneInner: React.FC<{ shotId: number }> = ({ shotId }) => {
 export const DashcamShort: React.FC = () => {
   const f = useCurrentFrame();
   const props = getInputProps() as InputProps;
-  const activeShot = props.shotId ? { id: props.shotId, hud: shotAt(f).hud } : shotAt(f);
+  const activeShot = props.shotId ? { ...(SHOTS.find((s) => s.id === props.shotId) ?? shotAt(f)), hud: shotAt(f).hud } : shotAt(f);
+  // style-locked-flow: a flow_clip shot plays Flow footage ONLY when render.mjs passed an accepted, conformed take
+  // (or a pending slate). Rejected/morphed takes, fast 1-2 s beats and dialogue/prop beats get no entry, so they
+  // render from this same clean Three.js scene. Flow shots unmount the WebGL canvas; captions & HUD layer on top.
+  const flowSrc = props.flowClips?.[String(activeShot.id)];
+  const flow = isFlowShot(activeShot) && !props.forceThree && (!!flowSrc || !!props.flowPending?.includes(activeShot.id));
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#1b2838" }}>
+      {flow ? (
+        <FlowClipLayer shot={activeShot} src={flowSrc} />
+      ) : (
       <ThreeCanvas
         width={1080}
         height={1920}
@@ -102,7 +115,8 @@ export const DashcamShort: React.FC = () => {
       >
         <SceneInner shotId={activeShot.id} />
       </ThreeCanvas>
-      {activeShot.hud === "dashcam" && f < 1790 && <DashcamHUD mph={dashcamMph(f)} />}
+      )}
+      {!props.noOverlay && activeShot.hud === "dashcam" && f < 1790 && <DashcamHUD mph={dashcamMph(f)} />}
       <PopCaptions words={props.words ?? []} enabled={!!props.captions} />
     </AbsoluteFill>
   );
