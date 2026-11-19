@@ -1,0 +1,1022 @@
+[
+ {
+  "w": "Crunch!",
+  "s": 0.0,
+  "e": 0.766,
+  "speaker": "narrator"
+ },
+ {
+  "w": "A",
+  "s": 0.876,
+  "e": 0.946,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rich",
+  "s": 1.027,
+  "e": 1.213,
+  "speaker": "narrator"
+ },
+ {
+  "w": "man's",
+  "s": 1.259,
+  "e": 1.526,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cigar",
+  "s": 1.573,
+  "e": 2.037,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dies",
+  "s": 2.13,
+  "e": 2.606,
+  "speaker": "narrator"
+ },
+ {
+  "w": "under",
+  "s": 2.687,
+  "e": 2.885,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 2.943,
+  "e": 2.978,
+  "speaker": "narrator"
+ },
+ {
+  "w": "carriage",
+  "s": 3.024,
+  "e": 3.361,
+  "speaker": "narrator"
+ },
+ {
+  "w": "wheel,",
+  "s": 3.396,
+  "e": 3.767,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 3.825,
+  "e": 3.953,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 4.011,
+  "e": 4.034,
+  "speaker": "narrator"
+ },
+ {
+  "w": "barefoot",
+  "s": 4.092,
+  "e": 4.533,
+  "speaker": "narrator"
+ },
+ {
+  "w": "beggar",
+  "s": 4.615,
+  "e": 4.94,
+  "speaker": "narrator"
+ },
+ {
+  "w": "snatches",
+  "s": 5.056,
+  "e": 5.52,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 5.567,
+  "e": 5.636,
+  "speaker": "narrator"
+ },
+ {
+  "w": "from",
+  "s": 5.671,
+  "e": 5.787,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 5.822,
+  "e": 5.892,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gutter.",
+  "s": 5.938,
+  "e": 6.565,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Seville,",
+  "s": 6.645,
+  "e": 7.237,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Spain.",
+  "s": 7.307,
+  "e": 7.91,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Cigars",
+  "s": 8.02,
+  "e": 8.438,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cost",
+  "s": 8.485,
+  "e": 8.694,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 8.729,
+  "e": 8.763,
+  "speaker": "narrator"
+ },
+ {
+  "w": "fortune,",
+  "s": 8.845,
+  "e": 9.274,
+  "speaker": "narrator"
+ },
+ {
+  "w": "but",
+  "s": 9.297,
+  "e": 9.414,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 9.437,
+  "e": 9.506,
+  "speaker": "narrator"
+ },
+ {
+  "w": "scraps",
+  "s": 9.564,
+  "e": 9.936,
+  "speaker": "narrator"
+ },
+ {
+  "w": "are",
+  "s": 9.971,
+  "e": 10.075,
+  "speaker": "narrator"
+ },
+ {
+  "w": "free.",
+  "s": 10.122,
+  "e": 10.563,
+  "speaker": "narrator"
+ },
+ {
+  "w": "So",
+  "s": 10.643,
+  "e": 10.806,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 10.875,
+  "e": 10.933,
+  "speaker": "narrator"
+ },
+ {
+  "w": "shreds",
+  "s": 11.003,
+  "e": 11.374,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 11.421,
+  "e": 11.491,
+  "speaker": "narrator"
+ },
+ {
+  "w": "leftover",
+  "s": 11.537,
+  "e": 11.932,
+  "speaker": "narrator"
+ },
+ {
+  "w": "tobacco,",
+  "s": 11.99,
+  "e": 12.617,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rolls",
+  "s": 12.686,
+  "e": 12.977,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 13.023,
+  "e": 13.093,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 13.128,
+  "e": 13.197,
+  "speaker": "narrator"
+ },
+ {
+  "w": "old",
+  "s": 13.244,
+  "e": 13.383,
+  "speaker": "narrator"
+ },
+ {
+  "w": "paper,",
+  "s": 13.453,
+  "e": 13.905,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 13.987,
+  "e": 14.126,
+  "speaker": "narrator"
+ },
+ {
+  "w": "sells",
+  "s": 14.184,
+  "e": 14.451,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 14.486,
+  "e": 14.544,
+  "speaker": "narrator"
+ },
+ {
+  "w": "for",
+  "s": 14.59,
+  "e": 14.695,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pennies.",
+  "s": 14.741,
+  "e": 15.426,
+  "speaker": "narrator"
+ },
+ {
+  "w": "The",
+  "s": 15.506,
+  "e": 15.645,
+  "speaker": "narrator"
+ },
+ {
+  "w": "poor",
+  "s": 15.692,
+  "e": 15.889,
+  "speaker": "narrator"
+ },
+ {
+  "w": "can't",
+  "s": 15.947,
+  "e": 16.156,
+  "speaker": "narrator"
+ },
+ {
+  "w": "get",
+  "s": 16.191,
+  "e": 16.319,
+  "speaker": "narrator"
+ },
+ {
+  "w": "enough.",
+  "s": 16.365,
+  "e": 16.946,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Soon,",
+  "s": 17.026,
+  "e": 17.49,
+  "speaker": "narrator"
+ },
+ {
+  "w": "whole",
+  "s": 17.525,
+  "e": 17.792,
+  "speaker": "narrator"
+ },
+ {
+  "w": "factories",
+  "s": 17.85,
+  "e": 18.35,
+  "speaker": "narrator"
+ },
+ {
+  "w": "copy",
+  "s": 18.408,
+  "e": 18.709,
+  "speaker": "narrator"
+ },
+ {
+  "w": "his",
+  "s": 18.779,
+  "e": 18.895,
+  "speaker": "narrator"
+ },
+ {
+  "w": "trick:",
+  "s": 18.953,
+  "e": 19.36,
+  "speaker": "narrator"
+ },
+ {
+  "w": "thousands",
+  "s": 19.47,
+  "e": 20.051,
+  "speaker": "narrator"
+ },
+ {
+  "w": "of",
+  "s": 20.086,
+  "e": 20.144,
+  "speaker": "narrator"
+ },
+ {
+  "w": "women,",
+  "s": 20.213,
+  "e": 20.562,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rolling",
+  "s": 20.678,
+  "e": 21.038,
+  "speaker": "narrator"
+ },
+ {
+  "w": "by",
+  "s": 21.107,
+  "e": 21.282,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hand,",
+  "s": 21.363,
+  "e": 21.769,
+  "speaker": "narrator"
+ },
+ {
+  "w": "four",
+  "s": 21.816,
+  "e": 22.083,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 22.141,
+  "e": 22.164,
+  "speaker": "narrator"
+ },
+ {
+  "w": "minute.",
+  "s": 22.21,
+  "e": 22.884,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Then,",
+  "s": 22.964,
+  "e": 23.347,
+  "speaker": "narrator"
+ },
+ {
+  "w": "war.",
+  "s": 23.405,
+  "e": 23.858,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Soldiers",
+  "s": 24.009,
+  "e": 24.404,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 24.45,
+  "e": 24.52,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Crimea",
+  "s": 24.578,
+  "e": 25.031,
+  "speaker": "narrator"
+ },
+ {
+  "w": "roll",
+  "s": 25.112,
+  "e": 25.344,
+  "speaker": "narrator"
+ },
+ {
+  "w": "them",
+  "s": 25.39,
+  "e": 25.518,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 25.576,
+  "e": 25.646,
+  "speaker": "narrator"
+ },
+ {
+  "w": "newspaper,",
+  "s": 25.716,
+  "e": 26.308,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 26.331,
+  "e": 26.424,
+  "speaker": "narrator"
+ },
+ {
+  "w": "carry",
+  "s": 26.505,
+  "e": 26.784,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 26.83,
+  "e": 26.911,
+  "speaker": "narrator"
+ },
+ {
+  "w": "habit",
+  "s": 26.981,
+  "e": 27.26,
+  "speaker": "narrator"
+ },
+ {
+  "w": "home.",
+  "s": 27.318,
+  "e": 27.98,
+  "speaker": "narrator"
+ },
+ {
+  "w": "By",
+  "s": 28.059,
+  "e": 28.245,
+  "speaker": "narrator"
+ },
+ {
+  "w": "eighteen",
+  "s": 28.303,
+  "e": 28.605,
+  "speaker": "narrator"
+ },
+ {
+  "w": "seventy-five,",
+  "s": 28.674,
+  "e": 29.475,
+  "speaker": "narrator"
+ },
+ {
+  "w": "one",
+  "s": 29.626,
+  "e": 29.789,
+  "speaker": "narrator"
+ },
+ {
+  "w": "American",
+  "s": 29.824,
+  "e": 30.195,
+  "speaker": "narrator"
+ },
+ {
+  "w": "tobacco",
+  "s": 30.242,
+  "e": 30.729,
+  "speaker": "narrator"
+ },
+ {
+  "w": "boss",
+  "s": 30.811,
+  "e": 31.101,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 31.159,
+  "e": 31.31,
+  "speaker": "narrator"
+ },
+ {
+  "w": "desperate.",
+  "s": 31.403,
+  "e": 31.995,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Hand",
+  "s": 32.105,
+  "e": 32.372,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rolling",
+  "s": 32.43,
+  "e": 32.72,
+  "speaker": "narrator"
+ },
+ {
+  "w": "is",
+  "s": 32.767,
+  "e": 32.836,
+  "speaker": "narrator"
+ },
+ {
+  "w": "too",
+  "s": 32.883,
+  "e": 33.034,
+  "speaker": "narrator"
+ },
+ {
+  "w": "slow,",
+  "s": 33.103,
+  "e": 33.428,
+  "speaker": "narrator"
+ },
+ {
+  "w": "so",
+  "s": 33.463,
+  "e": 33.568,
+  "speaker": "narrator"
+ },
+ {
+  "w": "he",
+  "s": 33.637,
+  "e": 33.695,
+  "speaker": "narrator"
+ },
+ {
+  "w": "offers",
+  "s": 33.765,
+  "e": 34.055,
+  "speaker": "narrator"
+ },
+ {
+  "w": "seventy-five",
+  "s": 34.113,
+  "e": 34.868,
+  "speaker": "narrator"
+ },
+ {
+  "w": "thousand",
+  "s": 34.914,
+  "e": 35.367,
+  "speaker": "narrator"
+ },
+ {
+  "w": "dollars",
+  "s": 35.437,
+  "e": 35.774,
+  "speaker": "narrator"
+ },
+ {
+  "w": "to",
+  "s": 35.808,
+  "e": 35.878,
+  "speaker": "narrator"
+ },
+ {
+  "w": "anyone",
+  "s": 35.959,
+  "e": 36.226,
+  "speaker": "narrator"
+ },
+ {
+  "w": "who",
+  "s": 36.25,
+  "e": 36.319,
+  "speaker": "narrator"
+ },
+ {
+  "w": "can",
+  "s": 36.354,
+  "e": 36.47,
+  "speaker": "narrator"
+ },
+ {
+  "w": "build",
+  "s": 36.517,
+  "e": 36.749,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 36.795,
+  "e": 36.83,
+  "speaker": "narrator"
+ },
+ {
+  "w": "machine.",
+  "s": 36.865,
+  "e": 37.736,
+  "speaker": "narrator"
+ },
+ {
+  "w": "An",
+  "s": 37.816,
+  "e": 37.944,
+  "speaker": "narrator"
+ },
+ {
+  "w": "eighteen-year-old",
+  "s": 38.002,
+  "e": 38.71,
+  "speaker": "narrator"
+ },
+ {
+  "w": "farm",
+  "s": 38.791,
+  "e": 39.093,
+  "speaker": "narrator"
+ },
+ {
+  "w": "kid",
+  "s": 39.163,
+  "e": 39.337,
+  "speaker": "narrator"
+ },
+ {
+  "w": "calls",
+  "s": 39.395,
+  "e": 39.639,
+  "speaker": "narrator"
+ },
+ {
+  "w": "him.",
+  "s": 39.674,
+  "e": 40.092,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Eighteen?",
+  "s": 40.172,
+  "e": 40.88,
+  "speaker": "boss",
+  "fx": "phone"
+ },
+ {
+  "w": "Kid,",
+  "s": 40.99,
+  "e": 41.466,
+  "speaker": "boss",
+  "fx": "phone"
+ },
+ {
+  "w": "go",
+  "s": 41.617,
+  "e": 41.757,
+  "speaker": "boss",
+  "fx": "phone"
+ },
+ {
+  "w": "back",
+  "s": 41.815,
+  "e": 41.954,
+  "speaker": "boss",
+  "fx": "phone"
+ },
+ {
+  "w": "to",
+  "s": 42.0,
+  "e": 42.058,
+  "speaker": "boss",
+  "fx": "phone"
+ },
+ {
+  "w": "school.",
+  "s": 42.117,
+  "e": 42.825,
+  "speaker": "boss",
+  "fx": "phone"
+ },
+ {
+  "w": "Sure.",
+  "s": 42.904,
+  "e": 43.322,
+  "speaker": "james"
+ },
+ {
+  "w": "Right",
+  "s": 43.496,
+  "e": 43.67,
+  "speaker": "james"
+ },
+ {
+  "w": "after",
+  "s": 43.693,
+  "e": 43.868,
+  "speaker": "james"
+ },
+ {
+  "w": "I",
+  "s": 43.902,
+  "e": 43.937,
+  "speaker": "james"
+ },
+ {
+  "w": "take",
+  "s": 44.007,
+  "e": 44.158,
+  "speaker": "james"
+ },
+ {
+  "w": "your",
+  "s": 44.193,
+  "e": 44.297,
+  "speaker": "james"
+ },
+ {
+  "w": "money.",
+  "s": 44.344,
+  "e": 44.947,
+  "speaker": "james"
+ },
+ {
+  "w": "So",
+  "s": 45.028,
+  "e": 45.191,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 45.26,
+  "e": 45.318,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 45.353,
+  "e": 45.376,
+  "speaker": "narrator"
+ },
+ {
+  "w": "leaky",
+  "s": 45.434,
+  "e": 45.725,
+  "speaker": "narrator"
+ },
+ {
+  "w": "barn,",
+  "s": 45.806,
+  "e": 46.282,
+  "speaker": "narrator"
+ },
+ {
+  "w": "James",
+  "s": 46.392,
+  "e": 46.81,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Bonsack",
+  "s": 46.868,
+  "e": 47.448,
+  "speaker": "narrator"
+ },
+ {
+  "w": "builds",
+  "s": 47.541,
+  "e": 47.843,
+  "speaker": "narrator"
+ },
+ {
+  "w": "it",
+  "s": 47.878,
+  "e": 47.948,
+  "speaker": "narrator"
+ },
+ {
+  "w": "alone,",
+  "s": 47.982,
+  "e": 48.435,
+  "speaker": "narrator"
+ },
+ {
+  "w": "while",
+  "s": 48.482,
+  "e": 48.702,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 48.725,
+  "e": 48.795,
+  "speaker": "narrator"
+ },
+ {
+  "w": "rain",
+  "s": 48.876,
+  "e": 49.143,
+  "speaker": "narrator"
+ },
+ {
+  "w": "pours.",
+  "s": 49.225,
+  "e": 50.037,
+  "speaker": "narrator"
+ },
+ {
+  "w": "One",
+  "s": 50.117,
+  "e": 50.314,
+  "speaker": "narrator"
+ },
+ {
+  "w": "crank.",
+  "s": 50.361,
+  "e": 50.814,
+  "speaker": "narrator"
+ },
+ {
+  "w": "The",
+  "s": 50.906,
+  "e": 51.023,
+  "speaker": "narrator"
+ },
+ {
+  "w": "machine",
+  "s": 51.057,
+  "e": 51.406,
+  "speaker": "narrator"
+ },
+ {
+  "w": "roars.",
+  "s": 51.464,
+  "e": 52.021,
+  "speaker": "narrator"
+ },
+ {
+  "w": "Two",
+  "s": 52.101,
+  "e": 52.31,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hundred",
+  "s": 52.38,
+  "e": 52.705,
+  "speaker": "narrator"
+ },
+ {
+  "w": "every",
+  "s": 52.763,
+  "e": 52.972,
+  "speaker": "narrator"
+ },
+ {
+  "w": "minute.",
+  "s": 53.041,
+  "e": 53.413,
+  "speaker": "narrator"
+ },
+ {
+  "w": "A",
+  "s": 53.564,
+  "e": 53.622,
+  "speaker": "narrator"
+ },
+ {
+  "w": "hundred",
+  "s": 53.692,
+  "e": 53.959,
+  "speaker": "narrator"
+ },
+ {
+  "w": "and",
+  "s": 53.982,
+  "e": 54.063,
+  "speaker": "narrator"
+ },
+ {
+  "w": "twenty",
+  "s": 54.086,
+  "e": 54.353,
+  "speaker": "narrator"
+ },
+ {
+  "w": "thousand",
+  "s": 54.411,
+  "e": 54.748,
+  "speaker": "narrator"
+ },
+ {
+  "w": "a",
+  "s": 54.818,
+  "e": 54.841,
+  "speaker": "narrator"
+ },
+ {
+  "w": "day.",
+  "s": 54.887,
+  "e": 55.491,
+  "speaker": "narrator"
+ },
+ {
+  "w": "And",
+  "s": 55.571,
+  "e": 55.722,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 55.768,
+  "e": 55.838,
+  "speaker": "narrator"
+ },
+ {
+  "w": "beggar's",
+  "s": 55.884,
+  "e": 56.221,
+  "speaker": "narrator"
+ },
+ {
+  "w": "gutter",
+  "s": 56.291,
+  "e": 56.593,
+  "speaker": "narrator"
+ },
+ {
+  "w": "trick",
+  "s": 56.651,
+  "e": 56.895,
+  "speaker": "narrator"
+ },
+ {
+  "w": "became",
+  "s": 56.953,
+  "e": 57.278,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 57.312,
+  "e": 57.382,
+  "speaker": "narrator"
+ },
+ {
+  "w": "deadliest",
+  "s": 57.475,
+  "e": 57.986,
+  "speaker": "narrator"
+ },
+ {
+  "w": "product",
+  "s": 58.032,
+  "e": 58.381,
+  "speaker": "narrator"
+ },
+ {
+  "w": "in",
+  "s": 58.427,
+  "e": 58.497,
+  "speaker": "narrator"
+ },
+ {
+  "w": "history:",
+  "s": 58.566,
+  "e": 59.147,
+  "speaker": "narrator"
+ },
+ {
+  "w": "the",
+  "s": 59.257,
+  "e": 59.373,
+  "speaker": "narrator"
+ },
+ {
+  "w": "cigarette.",
+  "s": 59.466,
+  "e": 60.36,
+  "speaker": "narrator"
+ }
+]

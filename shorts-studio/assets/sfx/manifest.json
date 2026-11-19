@@ -12,7 +12,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Heavy pedal stomp + spring thump for sudden brake-check cold opens",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -20.89
     },
     "tire_screech": {
       "file": "tire_screech.wav",
@@ -22,7 +22,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Dry asphalt tire lockup screech and rubber skid",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -8.95
     },
     "tire_screech_wet": {
       "file": "tire_screech_wet.wav",
@@ -32,7 +32,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Wet road tire skid with hydroplane water spray",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -10.38
     },
     "crash_impact": {
       "file": "crash_impact.wav",
@@ -42,7 +42,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Sub-bass thud + chassis metallic crunch + shattering glass shards",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -19.63
     },
     "car_horn": {
       "file": "car_horn.wav",
@@ -52,7 +52,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Dual-tone sedan horn honk",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -11.59
     },
     "car_whoosh": {
       "file": "car_whoosh.wav",
@@ -62,7 +62,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Stereo Doppler pass-by car whoosh",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -12.23
     },
     "lane_swoop": {
       "file": "lane_swoop.wav",
@@ -72,7 +72,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Quick swerve tire chirp for abrupt lane cuts",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -8.69
     },
     "siren_chirp": {
       "file": "siren_chirp.wav",
@@ -82,7 +82,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Police cruiser double siren chirp",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -3.46
     },
     "cash_register": {
       "file": "cash_register.wav",
@@ -92,7 +92,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Classic cash register drawer slam + bright bell cha-ching",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -10.6
     },
     "cash_rustle": {
       "file": "cash_rustle.wav",
@@ -102,7 +102,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Crisp stacked paper cash thumb-riffle and bill snap",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -13.22
     },
     "money_rain": {
       "file": "money_rain.wav",
@@ -112,7 +112,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Fluttering airborne banknotes raining down",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -13.62
     },
     "pop_in": {
       "file": "pop_in.wav",
@@ -122,7 +122,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Punchy cartoon/UI bubble pop-in for visual gags and prop appearances",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -16.99
     },
     "counter_flip": {
       "file": "counter_flip.wav",
@@ -132,7 +132,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Mechanical tabletop flip-counter card clack",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -22.92
     },
     "calendar_flip": {
       "file": "calendar_flip.wav",
@@ -142,7 +142,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Desk calendar page swoosh + crisp clack",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -17.82
     },
     "phone_ring": {
       "file": "phone_ring.wav",
@@ -152,7 +152,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Office desk telephone double ring",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -9.49
     },
     "camera_beep": {
       "file": "camera_beep.wav",
@@ -162,7 +162,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Dashcam / device dual REC confirmation beep",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -6.51
     },
     "whoosh_transition": {
       "file": "whoosh_transition.wav",
@@ -172,7 +172,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Subtle clean air transition whoosh for fast scene cuts",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -14.79
     },
     "hottub_bubbles": {
       "file": "hottub_bubbles.wav",
@@ -182,7 +182,7 @@
       "loopable": true,
       "sample_rate": 48000,
       "description": "Jacuzzi/hot-tub churning bubbles loop",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -14.2
     },
     "rain_loop_exterior": {
       "file": "rain_loop_exterior.wav",
@@ -192,7 +192,7 @@
       "loopable": true,
       "sample_rate": 48000,
       "description": "Full-spectrum continuous exterior rain shower loop",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -9.76
     },
     "rain_loop_cabin": {
       "file": "rain_loop_cabin.wav",
@@ -202,7 +202,7 @@
       "loopable": true,
       "sample_rate": 48000,
       "description": "Muffled low-pass interior car-cabin rain bed (roof drumming)",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -13.96
     },
     "highway_ambience": {
       "file": "highway_ambience.wav",
@@ -212,7 +212,7 @@
       "loopable": true,
       "sample_rate": 48000,
       "description": "Steady highway engine/road hum + passing air bed",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -15.31
     },
     "wiper_sweep": {
       "file": "wiper_sweep.wav",
@@ -222,7 +222,7 @@
       "loopable": false,
       "sample_rate": 48000,
       "description": "Rhythmic windshield wiper rubber swish",
-      "integrated_lufs": -16.0
+      "integrated_lufs": -12.17
     }
   },
   "aliases": {
